@@ -89,6 +89,10 @@ body {
     width: 0;
 }
 
+.slide .presenter-notes {
+    display: none;
+}
+
 #black {
     position: absolute;
     top: 0;

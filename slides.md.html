@@ -10,6 +10,11 @@ Zefram Cochrane
 
 ---
 
+>>> presenter notes
+>>> look like this
+
+# Test
+
 ## This paper...
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -60,6 +65,8 @@ more
     var currentSlideNum;
     var slideCount = 0;
 
+    var presenterNotesWindow;
+
     // break rendered markdeep into slides on <hr> tags (unless the class
     // "ignore" is set). insert slide numbers too. kick off some other init
     // stuff as well. supply mode = "draft" to disable slide letterboxing.
@@ -76,6 +83,7 @@ more
         //var slideCount = 0;  // it's global
         var slides = [];
         var currentSlide = [];
+        var currentPresenterNotes = [];
         for (var i = 0; i < es.length; i++) {
             var e = es[i];
             //console.log(e);
@@ -94,6 +102,16 @@ more
                     slide.appendChild(sn);
                 }
 
+                // presenter notes (if any)
+                if (currentPresenterNotes.length > 0) {
+                    var pn = document.createElement('div');
+                    pn.className = "presenter-notes";
+                    for (var j = 0; j < currentPresenterNotes.length; j++) {
+                        pn.innerHTML += "<p>" + currentPresenterNotes[j] + "</p>";
+                    }
+                    slide.appendChild(pn);
+                }
+
                 // insert elements
                 for (var j = 0; j < currentSlide.length; j++) {
                     var se = currentSlide[j];
@@ -108,8 +126,18 @@ more
                 slides.push(slide);
                 slideCount++;
                 currentSlide = [];
+                currentPresenterNotes = [];
             } else {
-                currentSlide.push(e);
+                if (e.tagName == "BLOCKQUOTE"
+                    && e.children[0].tagName == "BLOCKQUOTE"
+                    && e.children[0].children[0].tagName == "BLOCKQUOTE") {
+
+                    // extract presenter notes from three nested blockquotes, in source ">>>"
+                    currentPresenterNotes.push(e.children[0].children[0].innerHTML);
+
+                } else {
+                    currentSlide.push(e);
+                }
             }
         }
 
@@ -167,6 +195,23 @@ more
         document.getElementById("slide" + slideNum).scrollIntoView(true);
         history.replaceState({}, '', '#' + "slide" + slideNum);
         currentSlideNum = slideNum;
+
+        updatePresenterNotes(slideNum);
+    }
+
+    function updatePresenterNotes(slideNum) {
+        var presenterNotesElement = document.getElementById("slide" + slideNum).querySelector(".presenter-notes");
+        var presenterNotes = "";
+        if (presenterNotesElement) {
+            presenterNotes = presenterNotesElement.innerHTML;
+        }
+        if (presenterNotesWindow) {
+            with (presenterNotesWindow.document) {
+                open("text/html", "replace");
+                write("<html><head><title>Presenter Notes</title></head><body>" + presenterNotes + "</body></html>");
+                close();
+            }
+        }
     }
 
     function nextSlide() {
@@ -239,6 +284,10 @@ more
             break;
           case 190: // .
             toggleBlack();
+            break;
+          case 78:  // n
+            openPresenterNotes();
+            break;
           default:
             break;
         }
@@ -264,7 +313,8 @@ more
 
     // TODO open a second view with the presenter notes (collect them in makeSlides()?)
     function openPresenterNotes() {
-
+        presenterNotesWindow = window.open("", "presenternotes", "");
+        updatePresenterNotes(currentSlideNum);
     }
 
     // TODO when scrolling, update slide id slug? https://stackoverflow.com/questions/11760898/find-element-thats-on-the-middle-of-the-visible-screen-viewport-on-scroll
