@@ -1,0 +1,412 @@
+:root {
+    --text-color: black;
+    --accent-color: #666;
+    --accent-color2: #ddd;
+    --link-color: #38c;
+
+    --font-size: 1;
+
+    --slide-vertical-padding: 1rem;
+    --side-margin: 2rem;
+
+    --text-font: "Source Sans Pro";
+    --code-font: "Iosevka Web";
+
+    --aspect-ratio: 16 / 9;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+}
+html.taller {
+    font-size: calc(var(--font-size) * 2.5vw);
+}
+html.wider {
+    font-size: calc(var(--font-size) * 2.5vh * (var(--aspect-ratio)));
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    text-align: left;
+    color: var(--text-color);
+}
+
+.slide {
+    background-color: white;
+    padding: 0 var(--side-margin);
+    margin: 0;
+    border-style: solid;
+    border-color: black;
+    box-sizing: content-box;  /* exclude borders from width/height attribute */
+    overflow: hidden;  /* fix weird margin thing */
+}
+
+.draft .slide {
+    border: none !important;
+}
+
+.wider .slide {
+    --slide-height: 100vh;
+    --slide-width: calc(var(--slide-height) * (var(--aspect-ratio)));
+    --slide-letterbox-width: calc(100vw - var(--slide-width));
+
+    height: var(--slide-height);
+    width: calc(var(--slide-width) - 2 * var(--side-margin));
+    border-left-width: calc(var(--slide-letterbox-width) / 2);
+    border-right-width: calc(var(--slide-letterbox-width) / 2);
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.taller .slide {
+    --slide-width: 100vw;
+    --slide-height: calc(var(--slide-width) / (var(--aspect-ratio)));
+    --slide-letterbox-height: calc(100vh - var(--slide-height));
+
+    height: var(--slide-height);
+    width: calc(var(--slide-width) - 2 * var(--side-margin));
+    border-top-width: calc(var(--slide-letterbox-height) / 2);
+    border-bottom-width: calc(var(--slide-letterbox-height) / 2);
+    border-left-width: 0;
+    border-right-width: 0;
+}
+
+.slide-number {
+    font-variant-numeric: tabular-nums lining-nums;
+    position: absolute;
+    margin-left: calc(var(--slide-width) - var(--side-margin) - 1rem);
+    margin-top: calc(var(--slide-height) - 1.8rem);
+    font-weight: normal;
+    font-size: 0.8rem;
+    color: #bbb;
+    height: 0;
+    width: 0;
+}
+
+#black {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: none;
+}
+
+.markdeepFooter {
+    display: none;
+}
+
+
+/* presenter notes */
+aside {
+    color: white;
+    background-color: rgba(0,0,0,0.67);
+    padding: 0.33rem;
+    font-family: "Iosevka Web";
+    display: var(--presenter-notes);
+    position: absolute;
+    right: 0;
+    text-shadow: 0 0 0.4rem black;
+    margin-left: calc(2 * var(--side-margin));
+    z-index: 1000;
+}
+aside:hover {
+    opacity: 0.2;
+}
+@media print {
+  aside {
+    display: none;
+  }
+}
+
+h1:before,
+h2:before {
+    content: '' !important;
+    margin: 0 !important;
+}
+
+
+/* important widths, margins and paddings */
+.md div.title, h1, h2 {
+    margin: 0;
+    padding: 0;
+}
+h1, h2, .outline li, hr {
+    width: calc(100% + 2 * var(--side-margin));
+    padding-left: var(--side-margin);
+    margin-left: calc(0rem - var(--side-margin));
+}
+p, .md pre.listing, .listing, div.title, ol, ul, .admonition, center, .fancyquote, .bib, table, .center {
+    width: 100%;
+}
+.center {
+    text-align: center;
+}
+body, .md div.title, h1, h2 {
+    font-family: var(--text-font) !important;
+}
+code, svg.diagram, .listing {
+    font-family: var(--code-font) !important;
+}
+
+
+/* basics */
+.md strong,
+.md b {
+    color: var(--accent-color);
+}
+.md a,
+.md a:link,
+.md a:visited {
+    color: var(--link-color);
+    font-family: var(--code-font);
+}
+.small {
+    font-size: 0.67rem;
+}
+.accent {
+    color: var(--accent-color);
+}
+
+
+/* title */
+.md div.title {
+    margin-top: 3rem;
+    font-weight: bold;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 2.5rem !important;
+}
+.md div.subtitle {
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 0.67rem;
+}
+.big {
+    font-size: 1.71em;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+.noise {
+    background-image: url(noise.png);
+    background-size: 0.4rem 0.4rem;
+    background-color: #fff;
+    color: transparent;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+}
+.deep {
+    color: transparent;
+    text-shadow: 0 calc(-3rem / 24) 0 #eee,
+                 0 calc(-2rem / 24) 0 #999,
+                 0 calc(-1rem / 24) 0 #888,
+                 0 calc(0rem / 24) 0 #777,
+                 0 calc(1rem / 24) 0 #666,
+                 0 calc(2rem / 24) 0 #555,
+                 0 calc(3rem / 24) 0 #444,
+                 0 calc(4rem / 24) 0 #333,
+                 0 calc(5rem / 24) calc(7rem / 24) #111;
+}
+.deep2 {
+    color: transparent;
+    text-shadow: 0 calc(0rem / 24) 0 white,
+                 0 calc(1rem / 24) 0 #777,
+                 0 calc(2rem / 24) 0 #666,
+                 0 calc(3rem / 24) 0 #555,
+                 0 calc(4rem / 24) 0 #444,
+                 0 calc(5rem / 24) 0 #333,
+                 0 calc(6rem / 24) calc(7rem / 24) #111;
+}
+
+
+/* headings */
+.md h1,
+.md h2 {
+    page-break-before: always;
+    text-align: left;
+    border: none !important;
+}
+.md h1 {
+    background: var(--accent-color2);
+    color: black;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-size: 1.5rem;
+    margin-top: 7rem;
+}
+.md h2 {
+    background: var(--accent-color);
+    color: #FFF;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-size: 1.25rem;
+}
+
+
+/* outline */
+ul.outline {
+    font-size: 1.5em;
+    margin-top: 1.9rem;
+}
+.outline li {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-indent: 0 !important;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+.outline li:before {
+    content: "";
+    padding: 0;
+}
+.outline li.active {
+    background-color: var(--accent-color2);
+    color: black;
+}
+.outline li.done {
+    color: var(--accent-color2);
+}
+
+
+/* diagrams */
+.md svg.diagram {
+    zoom: 130%;
+    margin-top: -1rem !important;
+    margin-bottom: -1rem !important;
+    stroke-width: 0.0625rem;
+}
+
+
+/* code */
+.md code {
+    font-size: 100%;
+}
+.md pre.listing, .md .listing {
+    font-size: 0.75rem;
+    border-top: 0.1rem solid #ccc;
+    border-bottom: 0.1rem solid #ccc;
+    background-color: #eee;
+    padding: 0.25rem 0.5rem;
+    line-height: 1rem;
+    resize: initial;
+}
+.md .listing p {
+    margin: 0.5rem 0;
+    line-height: 0.9rem;
+}
+.md .listing b {
+    color: inherit;
+}
+.md .listing .math {
+    height: 0.75rem;
+}
+
+
+/* admonitions */
+.md .admonition {
+    border-radius: 0;
+    border-left-width: 0.1rem !important;
+    padding: .25rem 0.4rem;
+}
+.md .admonition::before {
+    display: none !important;
+}
+.admonition,
+.admonition.blue {
+    border-left-color: rgba(68,138,255,.4) !important;
+    background-color: rgba(68,138,255,.2) !important;
+}
+.admonition.orange {
+    border-left-color: rgba(255,145,0,.4) !important;
+    background-color: rgba(255,145,0,.2) !important;
+}
+.admonition.red {
+    border-left-color: rgba(255,40,40,.4) !important;
+    background-color: rgba(255,40,40,.2) !important;
+}
+.admonition.green {
+    border-left-color: rgba(40,230,40,.4) !important;
+    background-color: rgba(40,230,40,.2) !important;
+}
+.admonition-title {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-bottom: -1rem !important;
+    border-width: 0 !important;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    color: #111;
+    mix-blend-mode: screen;
+}
+.admonition * {
+    max-width: 100%;
+}
+
+
+/* two-column tables (of admonitions) */
+table {
+    font: inherit;
+}
+table td:first-child {
+    padding-right: 0.33rem;
+    width: 50%;
+    vertical-align: top;
+}
+table td:last-child {
+    padding-left: 0.33rem;
+    width: 50%;
+    vertical-align: top;
+}
+table .admonition {
+    width: 100% !important;
+    margin: 0 !important;
+}
+table p, table ul, table ol {
+    width: 100% !important;
+}
+
+
+/* bibliography */
+.md .bib {
+    font-size: 0.6rem;
+    line-height: 1rem;
+    padding-left: 1.5rem;
+    text-indent: -1.5rem;
+}
+.md .bib b {
+    color: var(--link-color);
+    font-family: var(--code-font);
+    font-weight: initial;
+}
+sup.cite {
+    line-height: 0rem;
+    font-size: 0.67rem;
+}
+
+
+/* formula annotations */
+.fannotated {
+    padding: 1rem 0;
+}
+.fannotated .ann {
+    position: absolute;
+    font-size: 0.8em;
+    left: calc(var(--full-width) / 2 - var(--side-margin));  /* adjust position inline from center, not left => enables varying root font size without readjusting all annotations */
+    line-height: 1em;
+    text-align: center;
+}
+.fannotated .arr {
+    position: absolute;
+    letter-spacing: -0.1rem;
+    transform-origin: left;
+    left: calc(var(--full-width) / 2 - var(--side-margin));
+}
