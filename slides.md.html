@@ -37,6 +37,31 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+!!! blue
+    This is an admonition urging you to feel blue.
+
+---
+
+## Content that goes past the end of a slide is cut off, so be careful! TODO
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 ---
 
@@ -55,7 +80,12 @@ testing more
 code
 ```
 
-$$math$$
+$$
+d_f(p, q) = \frac{1}{|f|} \sum_{j = 1}^{|f|}
+\frac
+{||{\color{blue} f_{j,p}} - {\color{blue} f_{j,q}}||^2 - ({\color{green} \text{Var}_{j,p}} + \min({\color{green} \text{Var}_{j,p}}, {\color{green} \text{Var}_{j,q}}))}
+{k_f^2 \cdot \max(\tau, {\color{green} \text{Var}_{j,p}}, ||{\color{orange} \text{Grad}_{j,p}}||^2)}
+$$
 
 ---
 
@@ -64,6 +94,7 @@ more
 ---
 
 <link rel="stylesheet" type="text/css" href="markdeep-slides.css">
+<link rel="stylesheet" type="text/css" href="markdeep-slides-print.css" media="print">
 <link rel="stylesheet" type="text/css" href="slides-theme-simple.css">
 <script src="markdeep-slides.js"></script>
 <script>markdeepOptions={tocStyle:'none', onLoad: function() { initSlides(); }}</script>

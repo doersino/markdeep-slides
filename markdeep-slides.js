@@ -181,17 +181,21 @@ function toggleFullscreen() {
             root.msRequestFullscreen();
         }
     } else {
-        if (root.requestFullscreen) {
-            root.requestFullscreen();
-        } else if (root.mozRequestFullScreen) {
-            root.mozRequestFullScreen();
-        } else if (root.webkitRequestFullscreen) {
-            root.webkitRequestFullscreen();
-        } else if (root.msRequestFullscreen) {
-            root.msRequestFullscreen();
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
         }
     }
-    //scrollTo(currentSlide);
+
+    // fix for some browsers losing their place
+    setTimeout(function() {
+        scrollTo(currentSlideNum);
+    }, 500);
 }
 
 // turn the screen black or back again

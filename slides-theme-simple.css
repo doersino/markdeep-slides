@@ -73,49 +73,11 @@ code, svg.diagram, .listing {
     text-transform: uppercase;
     font-size: 0.67rem;
 }
-.big {
-    font-size: 1.71em;
-    display: inline-block;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
-}
-.noise {
-    background-image: url(noise.png);
-    background-size: 0.4rem 0.4rem;
-    background-color: #fff;
-    color: transparent;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-}
-.deep {
-    color: transparent;
-    text-shadow: 0 calc(-3rem / 24) 0 #eee,
-                 0 calc(-2rem / 24) 0 #999,
-                 0 calc(-1rem / 24) 0 #888,
-                 0 calc(0rem / 24) 0 #777,
-                 0 calc(1rem / 24) 0 #666,
-                 0 calc(2rem / 24) 0 #555,
-                 0 calc(3rem / 24) 0 #444,
-                 0 calc(4rem / 24) 0 #333,
-                 0 calc(5rem / 24) calc(7rem / 24) #111;
-}
-.deep2 {
-    color: transparent;
-    text-shadow: 0 calc(0rem / 24) 0 white,
-                 0 calc(1rem / 24) 0 #777,
-                 0 calc(2rem / 24) 0 #666,
-                 0 calc(3rem / 24) 0 #555,
-                 0 calc(4rem / 24) 0 #444,
-                 0 calc(5rem / 24) 0 #333,
-                 0 calc(6rem / 24) calc(7rem / 24) #111;
-}
 
 
 /* headings */
 .md h1,
 .md h2 {
-    page-break-before: always;
     text-align: left;
     border: none !important;
 }
@@ -125,7 +87,7 @@ code, svg.diagram, .listing {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     font-size: 1.5rem;
-    margin-top: 7rem;
+    margin-top: calc(var(--slide-height) / 2 - 4.5rem / 2);
 }
 .md h2 {
     background: var(--accent-color);
@@ -133,31 +95,6 @@ code, svg.diagram, .listing {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
     font-size: 1.25rem;
-}
-
-
-/* outline */
-ul.outline {
-    font-size: 1.5em;
-    margin-top: 1.9rem;
-}
-.outline li {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    text-indent: 0 !important;
-    color: var(--accent-color);
-    font-weight: bold;
-}
-.outline li:before {
-    content: "";
-    padding: 0;
-}
-.outline li.active {
-    background-color: var(--accent-color2);
-    color: black;
-}
-.outline li.done {
-    color: var(--accent-color2);
 }
 
 
@@ -174,7 +111,7 @@ ul.outline {
 .md code {
     font-size: 100%;
 }
-.md pre.listing, .md .listing {
+.md pre.listing {
     font-size: 0.75rem;
     border-top: 0.1rem solid #ccc;
     border-bottom: 0.1rem solid #ccc;
@@ -182,16 +119,6 @@ ul.outline {
     padding: 0.25rem 0.5rem;
     line-height: 1rem;
     resize: initial;
-}
-.md .listing p {
-    margin: 0.5rem 0;
-    line-height: 0.9rem;
-}
-.md .listing b {
-    color: inherit;
-}
-.md .listing .math {
-    height: 0.75rem;
 }
 
 
