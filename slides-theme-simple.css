@@ -3,131 +3,12 @@
     --accent-color: #666;
     --accent-color2: #ddd;
     --link-color: #38c;
-
-    --font-size: 1;
-
-    --slide-vertical-padding: 1rem;
-    --side-margin: 2rem;
-
-    --text-font: "Source Sans Pro";
-    --code-font: "Iosevka Web";
-
-    --aspect-ratio: 16 / 9;
+    --text-font: "Helvetica";
+    --code-font: "Courier";
 }
 
 * {
     box-sizing: border-box;
-}
-
-html {
-    width: 100%;
-}
-html.taller {
-    font-size: calc(var(--font-size) * 2.5vw);
-}
-html.wider {
-    font-size: calc(var(--font-size) * 2.5vh * (var(--aspect-ratio)));
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    max-width: 100%;
-    text-align: left;
-    color: var(--text-color);
-}
-
-.slide {
-    background-color: white;
-    padding: 0 var(--side-margin);
-    margin: 0;
-    border-style: solid;
-    border-color: black;
-    box-sizing: content-box;  /* exclude borders from width/height attribute */
-    overflow: hidden;  /* fix weird margin thing */
-}
-
-.draft .slide {
-    border: none !important;
-}
-
-.wider .slide {
-    --slide-height: 100vh;
-    --slide-width: calc(var(--slide-height) * (var(--aspect-ratio)));
-    --slide-letterbox-width: calc(100vw - var(--slide-width));
-
-    height: var(--slide-height);
-    width: calc(var(--slide-width) - 2 * var(--side-margin));
-    border-left-width: calc(var(--slide-letterbox-width) / 2);
-    border-right-width: calc(var(--slide-letterbox-width) / 2);
-    border-top-width: 0;
-    border-bottom-width: 0;
-}
-
-.taller .slide {
-    --slide-width: 100vw;
-    --slide-height: calc(var(--slide-width) / (var(--aspect-ratio)));
-    --slide-letterbox-height: calc(100vh - var(--slide-height));
-
-    height: var(--slide-height);
-    width: calc(var(--slide-width) - 2 * var(--side-margin));
-    border-top-width: calc(var(--slide-letterbox-height) / 2);
-    border-bottom-width: calc(var(--slide-letterbox-height) / 2);
-    border-left-width: 0;
-    border-right-width: 0;
-}
-
-.slide-number {
-    font-variant-numeric: tabular-nums lining-nums;
-    position: absolute;
-    margin-left: calc(var(--slide-width) - var(--side-margin) - 1rem);
-    margin-top: calc(var(--slide-height) - 1.8rem);
-    font-weight: normal;
-    font-size: 0.8rem;
-    color: #bbb;
-    height: 0;
-    width: 0;
-}
-
-.slide .presenter-notes {
-    display: none;
-}
-
-#black {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
-    display: none;
-}
-
-.markdeepFooter {
-    display: none;
-}
-
-
-/* presenter notes */
-aside {
-    color: white;
-    background-color: rgba(0,0,0,0.67);
-    padding: 0.33rem;
-    font-family: "Iosevka Web";
-    display: var(--presenter-notes);
-    position: absolute;
-    right: 0;
-    text-shadow: 0 0 0.4rem black;
-    margin-left: calc(2 * var(--side-margin));
-    z-index: 1000;
-}
-aside:hover {
-    opacity: 0.2;
-}
-@media print {
-  aside {
-    display: none;
-  }
 }
 
 h1:before,
@@ -135,7 +16,6 @@ h2:before {
     content: '' !important;
     margin: 0 !important;
 }
-
 
 /* important widths, margins and paddings */
 .md div.title, h1, h2 {
