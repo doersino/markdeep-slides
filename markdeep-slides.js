@@ -6,11 +6,17 @@ var presenterNotesWindow;
 // break rendered markdeep into slides on <hr> tags (unless the class
 // "ignore" is set). insert slide numbers too. kick off some other init
 // stuff as well. supply mode = "draft" to disable slide letterboxing.
-function initSlides(mode) {
-
-    if (mode == "draft") {
-        var root = document.documentElement;
-        root.classList.add('draft');
+function initSlides() {
+    if (markdeepSlidesOptions) {
+        if (markdeepSlidesOptions.mode) {
+            var root = document.documentElement;
+            root.classList.add(markdeepSlidesOptions.mode);
+        }
+        if (markdeepSlidesOptions.aspectRatio) {
+            var sheet = document.createElement('style');
+            sheet.innerHTML = "@page { size: 1000px " + 1000 / markdeepSlidesOptions.aspectRatio + "px; } :root {--aspect-ratio: " + markdeepSlidesOptions.aspectRatio + "}";
+            document.body.appendChild(sheet);
+        }
     }
 
     var md = document.querySelector("body > .md");
@@ -168,9 +174,9 @@ function prevSlide() {
 
 function toggleFullscreen() {
     var root = document.documentElement;
-    var goFullscreen = !(window.fullScreen || (window.innerHeight == screen.height && window.innerWidth == screen.width));
+    var isFullscreen = window.fullScreen || (window.innerHeight == screen.height && window.innerWidth == screen.width);
 
-    if (goFullscreen) {
+    if (!isFullscreen) {
         if (root.requestFullscreen) {
             root.requestFullscreen();
         } else if (root.mozRequestFullScreen) {

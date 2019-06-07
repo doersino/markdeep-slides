@@ -25,6 +25,7 @@ body {
     border-color: black;
     box-sizing: content-box;  /* exclude borders from width/height attribute */
     overflow: hidden;
+    display: inline-block;
 }
 
 .draft .slide {
