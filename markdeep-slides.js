@@ -142,8 +142,9 @@ function processHash() {
 }
 
 // scroll to slide n
+// TODO chrome has a bug where on first load, it jumps to the top of the content area of the current slide...
 function scrollTo(slideNum) {
-    document.getElementById("slide" + slideNum).scrollIntoView(true);
+    document.getElementById("slide" + slideNum).scrollIntoView({block: "center"});
     history.replaceState({}, '', '#' + "slide" + slideNum);
     currentSlideNum = slideNum;
 
