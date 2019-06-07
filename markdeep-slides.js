@@ -159,11 +159,7 @@ function updatePresenterNotes(slideNum) {
         presenterNotes = presenterNotesElement.innerHTML;
     }
     if (presenterNotesWindow) {
-        with (presenterNotesWindow.document) {
-            open("text/html", "replace");
-            write("<html><head><title>Presenter Notes</title></head><body>" + presenterNotes + "</body></html>");
-            close();
-        }
+        presenterNotesWindow.document.getElementById("presenter-notes").innerHTML = presenterNotes;
     }
 }
 
@@ -206,6 +202,7 @@ function toggleFullscreen() {
     }
 
     // fix for some browsers losing their place
+    // TODO improve this
     setTimeout(function() {
         scrollTo(currentSlideNum);
     }, 500);
@@ -223,7 +220,8 @@ function toggleBlack() {
 
 // keyboard/presenter controls (these map well to my logitech r400
 // presenter, others may vary)
-document.body.onkeydown = function(event) {
+document.body.onkeydown = keyPress
+function keyPress(event) {
     switch (event.keyCode) {
       case 39:  // left
       case 40:  // down
@@ -272,9 +270,39 @@ document.body.onmousemove = function() {
 // TODO open a second view with the presenter notes (collect them in makeSlides()?)
 function openPresenterNotes() {
     presenterNotesWindow = window.open("", "presenternotes", "");
+
+    if (presenterNotesWindow) {
+        with (presenterNotesWindow.document) {
+            var stylesheetURL = document.URL.substr(0,document.URL.lastIndexOf('/')) + "/markdeep-slides-presenter-notes.css";
+            open("text/html", "replace");
+            write(`
+<html>
+<head>
+    <title>Presenter Notes</title>
+    <link rel="stylesheet" href="${stylesheetURL}">
+</head>
+<body>
+    <div id="time"></div>
+    <div id="presenter-notes"></div>
+    <script>
+        document.body.onkeydown = function(event) {
+            opener.keyPress(event);
+        }
+        setInterval(function () {
+            var time = new Date();
+            time = ("0" + time.getHours()).slice(-2)   + ":" +
+                   ("0" + time.getMinutes()).slice(-2) + ":" +
+                   ("0" + time.getSeconds()).slice(-2);
+            document.getElementById("time").innerHTML = time;
+        }, 1000)
+    </script>
+</body>
+</html>`);
+            close();
+        }
+    }
+
     updatePresenterNotes(currentSlideNum);
 }
 
 // TODO when scrolling, update slide id slug? https://stackoverflow.com/questions/11760898/find-element-thats-on-the-middle-of-the-visible-screen-viewport-on-scroll
-
-// TODO use local mathjax (might not have an internet connection where presentations are given)
