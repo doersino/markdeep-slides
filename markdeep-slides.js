@@ -119,6 +119,12 @@ function addLetterboxing() {
         root.classList.remove('taller');
         root.classList.add('taller');
     }
+
+    // keep current slide in view during resizing
+    // TODO improve this
+    if (currentSlideNum) {
+        scrollTo(currentSlideNum);
+    }
 }
 window.addEventListener('resize', addLetterboxing);
 
