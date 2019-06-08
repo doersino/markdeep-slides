@@ -1,5 +1,4 @@
 <meta charset="utf-8" lang="en">
-<!-- print settings (chrome): margins none, background graphics yes -->
 
 **Building presentation slides with markdeep**
     PowerPoint? I hardly know her!
@@ -164,8 +163,10 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 <link rel="stylesheet" type="text/css" href="markdeep-slides.css">
 <link rel="stylesheet" type="text/css" href="markdeep-slides-print.css" media="print">
 <link rel="stylesheet" type="text/css" href="slides-theme-simple.css">
-<script src="markdeep-slides.js"></script>
 <script>markdeepSlidesOptions = {mode: 'draft', aspectRatio: 16 / 9}</script>
 <script>markdeepOptions={tocStyle:'none', onLoad: function() { initSlides(); }}</script>
-<style class="fallback">body{visibility:hidden}</style>
-<script src="markdeep.js"></script>
+<script src="markdeep-slides.js"></script>
+
+<style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style>
+<script src="https://casual-effects.com/markdeep/latest/markdeep.min.js" charset="utf-8"></script>
+<script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
