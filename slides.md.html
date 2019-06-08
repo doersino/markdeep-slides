@@ -1,117 +1,165 @@
 <meta charset="utf-8" lang="en">
 <!-- print settings (chrome): margins none, background graphics yes -->
 
-**Novel propulsion systems for human-rated spacecraft**
-    Let's rock'n'roll!
+**Building presentation slides with markdeep**
+    PowerPoint? I hardly know her!
 
-Zefram Cochrane
-
-*April 5, 2063*
+Your name here<br>
+<span class="small accent">June 8, 2019</span>
 
 ---
 
->>> presenter notes
+>>> Presenter notes
 >>>
->>> * look like this
->>> * or like this
+>>> * look like this...
+>>> * or this.
+>>>
+>>> Your can use *arbitrary* Markdeep stuff in here!
 
-# testing this massive headline testing this massive headline testing this massive headline testing this massive headline testing this massive headline
-
----
-
-## Test
-
-need to make sure that all font sizes, margins, paddings, widths and heights are defined in terms of %, rem or em so that they scale properly
-
-press n to open window with presenter notes (might open as a tab in the background), define them using three nested blockquotes. they update as you move between slides
-
-i recommend using only local resources (images, fonts, a local copy of mathjax) unless you're absolutely sure you'll have connectivity where you'll be holding your presentation. to download fonts from google fonts, use https://google-webfonts-helper.herokuapp.com/fonts.
-
-TODO talk about options
+# This an `h1`.
 
 ---
 
-alternatively, you can generate a pdf version of your presentation by simply printing it to pdf using your browser's built-in tools – in my experience, this works best in chrome since it respect the `@page` CSS selector properly. set margines to none and make sure to keep the background graphics option enabled.
+## If you make your own theme
+
+Here are some helpful tips:
+
+* Make sure that all font sizes, margins, paddings, widths and heights are defined in terms of `rem` or `em`.
+* This enables your elements to scale properly depending on screen size.
+
+---
+
+## Shortcuts
+
+Press...
+
+* <kbd>space</kbd>, <kbd>↓</kbd>, <kbd>→</kbd> or <kbd>PgDn</kbd> to go to the next slide,
+* <kbd>↑</kbd>, <kbd>←</kbd> or <kbd>PgUp</kbd> to go to the next slide,
+* <kbd>F</kbd>, <kbd>F5</kbd> or <kbd>Esc</kbd> to enter or exit fullscreen presentation mode and
+* <kbd>.</kbd> to turn the screen black (and back again).
+
+---
+
+## Presenter notes
+
+Press <kbd>n</kbd> to open a **window with the presenter notes**. They will update as you move between slides. All **shortcuts work** even when the presenter notes window is focused.
+
+Presenter notes **support Markdeep** and can be **defined using three nested blockquotes**, like so:
+
+```markdown
+>>> Don't just read what's *on* the slides out loud, ya loon.
+>>> Here's some additional information:
+>>>
+>>> * Cats are cute.
+```
+
+---
+
+## Tips
+
+I recommend using only local resources (images, fonts, a local copy of mathjax) unless you're absolutely sure you'll have internet connectivity where you'll be holding your presentation.
+
+* To download fonts from Google fonts, use https://google-webfonts-helper.herokuapp.com/fonts.
+* A guide on running MathJax locally can be found at http://docs.mathjax.org/en/latest/installation.html. Note that you'll have to add `detectMath: false` to your Markdeep config then.
+
+---
+
+## Options
+
+There are two options:
+
+* `mode` should be either `draft` or `presentation`.
+* `aspectRatio` defines the aspect ratio of your slides.
 
 ```
->>> presenter notes
+<script>
+markdeepSlidesOptions = {
+    mode: 'draft',
+    aspectRatio: 16 / 9
+};
+</script>
 ```
 
----
-
-## This paper...
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Define your options *before* including Markdeep.
 
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+## Printing to PDF
 
-!!! blue
-    This is an admonition urging you to feel blue.
+You can **export a PDF version** of your slides by simply **printing it to a PDF file** using your browser's built-in tools – in my experience, this **works best in Chrome** as  it respect the `@page` CSS selector properly.
+
+In the print modal, set "Margins" to "None" and make sure to keep the "Background graphics" option enabled.
 
 ---
 
-## Content that goes past the end of a slide is cut off, so be careful! TODO
+## Some Markdeep features
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
----
-
-1. aon
-2. two
-
----
-
-testing more
-testing more
-testing more
-
-testing more
-
-```
-code
-```
+MathJax:
 
 $$
-d_f(p, q) = \frac{1}{|f|} \sum_{j = 1}^{|f|}
-\frac
-{||{\color{blue} f_{j,p}} - {\color{blue} f_{j,q}}||^2 - ({\color{green} \text{Var}_{j,p}} + \min({\color{green} \text{Var}_{j,p}}, {\color{green} \text{Var}_{j,q}}))}
-{k_f^2 \cdot \max(\tau, {\color{green} \text{Var}_{j,p}}, ||{\color{orange} \text{Grad}_{j,p}}||^2)}
+{\color{blue} \hat O_p} = \frac 1 {\color{green} C_p} \sum_{{\color{brown} q \in \mathcal N_p}} {\color{orange} w(p, q)} {\color{purple} O_q}
 $$
 
+Drawings:
+
+*************************************************************************************************
+*                 A      1      2     4                        8                                *
+*                  *----->o<---->o<----o-----------.            ◍                               *
+*                                ^     ^            |           ^                               *
+*                                |     |            |           |                               *
+*                                v     |            v           |                               *
+*                                ◌<--->*<---->o---->*---->o---->o<---->*                        *
+*                               3     B      5     C     6     7      D                         *
+*************************************************************************************************
+
 ---
 
-more
+Quotes, endnotes[^test] and citations:
+
+> "We make our world significant by the courage of our questions and by the depth of our answers."
+>
+>      -- Carl Sagan [#Sagan80]
+
+Admonitions:
+
+!!!
+    This is an admonition
+
+!!! red: Red admonition
+    Another one, but it's red. Must be danger ahead!
 
 ---
+
+## Notes and references
+
+[#Sagan80]: Sagan, C. (1980). Cosmos.
+
+Notes:
+
+[^test]: This is an endnote.
+
+---
+
+## Content that goes past the end of a slide is cut off, so be careful!
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 <link rel="stylesheet" type="text/css" href="markdeep-slides.css">
 <link rel="stylesheet" type="text/css" href="markdeep-slides-print.css" media="print">

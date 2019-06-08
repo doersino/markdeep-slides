@@ -246,7 +246,7 @@ function keyPress(event) {
       case 39:  // left
       case 40:  // down
       case 32:  // space
-      case 34:  // pgdown
+      case 34:  // pgdn
         nextSlide();
         return false;
       case 37:  // right
