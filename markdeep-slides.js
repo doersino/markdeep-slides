@@ -27,7 +27,7 @@ function initSlides() {
     for (var i = 0; i < es.length; i++) {
         var e = es[i];
 
-        // create new slide on hr or end of input
+        // create new slide when enountering <hr> or end of input
         if (e.tagName == "HR" && e.className != 'ignore' || i == es.length - 1) {
             var slide = document.createElement('div');
             slide.className = "slide";
@@ -68,10 +68,10 @@ function initSlides() {
             currentPresenterNotes = [];
         } else {
             if (e.tagName == "BLOCKQUOTE"
-                && e.children[0].tagName == "BLOCKQUOTE"
-                && e.children[0].children[0].tagName == "BLOCKQUOTE") {
+                && e.children[0] && e.children[0].tagName == "BLOCKQUOTE"
+                && e.children[0].children[0] && e.children[0].children[0].tagName == "BLOCKQUOTE") {
 
-                // extract presenter notes from three nested blockquotes, in source ">>>"
+                // extract presenter notes from three nested blockquotes (in source: ">>>")
                 currentPresenterNotes.push(e.children[0].children[0].innerHTML);
 
             } else {
