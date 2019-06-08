@@ -4,14 +4,13 @@ var slideCount = 0;
 var presenterNotesWindow;
 
 // break rendered markdeep into slides on <hr> tags (unless the class
-// "ignore" is set). insert slide numbers too. kick off some other init
-// stuff as well. supply mode = "draft" to disable slide letterboxing.
+// "ignore" is set). collect presenter notes and insert slide numbers too. kick
+// off some other init tasks as well
 function initSlides() {
+    var root = document.documentElement;
+    root.classList.add("draft");
+
     if (markdeepSlidesOptions) {
-        if (markdeepSlidesOptions.mode) {
-            var root = document.documentElement;
-            root.classList.add(markdeepSlidesOptions.mode);
-        }
         if (markdeepSlidesOptions.aspectRatio) {
             var sheet = document.createElement('style');
             sheet.innerHTML = "@page { size: 1000px " + 1000 / markdeepSlidesOptions.aspectRatio + "px; } :root {--aspect-ratio: " + markdeepSlidesOptions.aspectRatio + "}";
@@ -22,13 +21,11 @@ function initSlides() {
     var md = document.querySelector("body > .md");
     var es = Array.from(md.childNodes);
 
-    //var slideCount = 0;  // it's global
     var slides = [];
     var currentSlide = [];
     var currentPresenterNotes = [];
     for (var i = 0; i < es.length; i++) {
         var e = es[i];
-        //console.log(e);
 
         // create new slide on hr or end of input
         if (e.tagName == "HR" && e.className != 'ignore' || i == es.length - 1) {
@@ -83,7 +80,7 @@ function initSlides() {
         }
     }
 
-    // replace content with slides
+    // replace .md content with slides
     md.innerHTML = '';
     md.innerHTML = '<div id="black"></div>';  // insert black element
     for (var j = 0; j < slides.length; j++) {
@@ -93,14 +90,15 @@ function initSlides() {
 
     // further initialization steps
     addLetterboxing();
-    processHash();
+    processLocationHash();
 };
 
-// depending on whether your viewport is wider or taller than the aspect
-// ratio of your slides, add a corresponding class to the root <html>
-// element. based on this, letterboxing is added to keep your slides
-// centered on a non-matching screen. until max() or min() or clamp() are
+// depending on whether your viewport is wider or taller than the aspect ratio
+// of your slides, add a corresponding class to the root <html> element. based
+// on this, in presentation mode, letterboxing is added to keep your slides
+// centered on a non-matching screen. until max() (or min(), or clamp()) is
 // available in css, this bit of javascript is required. :(
+// TODO rename
 function addLetterboxing() {
     var aspectRatio = eval(getComputedStyle(document.documentElement).getPropertyValue('--aspect-ratio'));
 
@@ -124,7 +122,7 @@ window.addEventListener('resize', addLetterboxing);
 
 // check if a slide is set via the location hash – if so, load it, else
 // write the first slide to it. either way, go to that slide
-function processHash() {
+function processLocationHash() {
     var slideNum;
     if (window.location.hash) {
         var slide = window.location.hash.substring(1);
@@ -135,10 +133,16 @@ function processHash() {
     showSlide(slideNum);
 }
 
-// when scrolling, update hash (and presenter notes etc.) based on which slide
-// is visible right now. only makes sense in draft mode
-function updateHash() {
-    if (document.documentElement.classList.contains("presentation")) {
+// some browsers (lookin' at you, safari) may fire scroll events as they're
+// leaving fullscreen. this makes it impossible to switch to the current slide
+// when coming out of presentation mode before updateOnScroll() resets the
+// location hash to the value it was before entering fullscreen
+var enableScroll = true;
+
+// when scrolling, update location hash (and presenter notes etc.) based on
+// which slide is visible right now. only makes sense in draft mode
+function updateOnScroll() {
+    if (!enableScroll || document.documentElement.classList.contains("presentation")) {
         return;
     }
 
@@ -148,27 +152,31 @@ function updateHash() {
     for (var i = 0; i < slides.length; i++) {
         var slide = slides[i];
         var bcr = slide.getBoundingClientRect();
+
+        // TODO check if *middle* of slide is closest to *middle* of viewport instead?
         if (bcr.top >= 0 && (bcr.top < minTop || minTop == -1)) {
             minTop = bcr.top;
-            // TODO check if middle of slide is closest to middle of viewport instead?
             minSlideNum = parseInt(slide.id.substring(5), 10);
         }
     }
+
     if (minSlideNum != currentSlideNum) {
         history.replaceState({}, '', '#' + "slide" + minSlideNum);
         currentSlideNum = minSlideNum;
         updatePresenterNotes(minSlideNum);
     }
 }
-window.addEventListener('scroll', updateHash);
+window.addEventListener('scroll', updateOnScroll);
 
-// show slide n
+// switch to slide n
 function showSlide(slideNum) {
     if (document.documentElement.classList.contains("draft")) {
-        return;
+        Array.from(document.getElementsByClassName("slide")).map(e => e.style.display = "inline-block");
+        document.getElementById("slide" + slideNum).scrollIntoView();
+    } else if (document.documentElement.classList.contains("presentation")) {
+        Array.from(document.getElementsByClassName("slide")).map(e => e.style.display = "none");
+        document.getElementById("slide" + slideNum).style.display = "inline-block";
     }
-    Array.from(document.getElementsByClassName("slide")).map(e => e.style.display = "none");
-    document.getElementById("slide" + slideNum).style.display = "inline-block";
     history.replaceState({}, '', '#' + "slide" + slideNum);
     currentSlideNum = slideNum;
 
@@ -177,44 +185,50 @@ function showSlide(slideNum) {
 
 // load presenter notes for slide n into presenter notes window
 function updatePresenterNotes(slideNum) {
-    var presenterNotesElement = document.getElementById("slide" + slideNum).querySelector(".presenter-notes");
     var presenterNotes = "";
+
+    var presenterNotesElement = document.getElementById("slide" + slideNum).querySelector(".presenter-notes");
     if (presenterNotesElement) {
         presenterNotes = presenterNotesElement.innerHTML;
     }
+
     if (presenterNotesWindow) {
         presenterNotesWindow.document.getElementById("slide-number").innerHTML = slideNum + "/" + (slideCount - 1);
         presenterNotesWindow.document.getElementById("presenter-notes").innerHTML = presenterNotes;
     }
 }
 
+// ->
 function nextSlide() {
     if (currentSlideNum < slideCount - 1) {
         showSlide(currentSlideNum + 1);
     }
 }
 
+// <-
 function prevSlide() {
     if (currentSlideNum > 0) {
         showSlide(currentSlideNum - 1);
     }
 }
 
+// my best shot at a works-everywhere "fullscreen?" predicate, which will
+// invariably break in the future. web development is great!
+function isFullscreen() {
+    return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement ||
+              window.fullScreen ||
+              (window.innerHeight == screen.height && window.innerWidth == screen.width));
+}
+
+// toggles fullscreen mode, upon which the fullscreenchange event is fired
+// (which is *also* fired when a user leaves fullscreen via the Esc key, so we
+// *do* need to rely on it), so there's no need to call fullscreenActions()
+// directly in here
 function toggleFullscreen() {
     var root = document.documentElement;
-    var isFullscreen = window.fullScreen || (window.innerHeight == screen.height && window.innerWidth == screen.width);
+    var fullscreen = isFullscreen();
 
-    if (!isFullscreen) {
-        if (root.requestFullscreen) {
-            root.requestFullscreen();
-        } else if (root.mozRequestFullScreen) {
-            root.mozRequestFullScreen();
-        } else if (root.webkitRequestFullscreen) {
-            root.webkitRequestFullscreen();
-        } else if (root.msRequestFullscreen) {
-            root.msRequestFullscreen();
-        }
-    } else {
+    if (fullscreen) {
         if (document.exitFullscreen) {
             document.exitFullscreen();
         } else if (document.webkitExitFullscreen) {
@@ -224,8 +238,42 @@ function toggleFullscreen() {
         } else if (document.msExitFullscreen) {
             document.msExitFullscreen();
         }
+    } else {
+        if (root.requestFullscreen) {
+            root.requestFullscreen();
+        } else if (root.mozRequestFullScreen) {
+            root.mozRequestFullScreen();
+        } else if (root.webkitRequestFullscreen) {
+            root.webkitRequestFullscreen();
+        } else if (root.msRequestFullscreen) {
+            root.msRequestFullscreen();
+        }
     }
 }
+
+function fullscreenActions() {
+    enableScroll = false;
+
+    var fullscreen = isFullscreen();
+    var root = document.documentElement;
+    if (fullscreen) {
+        root.classList.remove("draft");
+        root.classList.add("presentation");
+    } else {
+        root.classList.remove("presentation");
+        root.classList.add("draft");
+    }
+
+    // allow some time for getting into or out of fullscreen
+    setTimeout(function () {
+        showSlide(currentSlideNum);
+        enableScroll = true;
+    }, 100);
+}
+document.addEventListener("fullscreenchange", fullscreenActions);
+document.addEventListener("mozfullscreenchange", fullscreenActions);
+document.addEventListener("webkitfullscreenchange", fullscreenActions);
+document.addEventListener("msfullscreenchange", fullscreenActions);
 
 // turn the screen black or back again
 // TODO only in presentation (or: fullscreen) mode?
@@ -270,8 +318,7 @@ function keyPress(event) {
     }
 };
 
-// make cursor disappear after two seconds
-// TODO only in fullscreen mode
+// make cursor disappear after two seconds in presentation mode
 var cursorTimeout;
 document.body.onmousemove = function() {
     if (document.body.style.cursor != "none") {
@@ -283,6 +330,10 @@ document.body.onmousemove = function() {
     }
 
     cursorTimeout = setTimeout(function() {
+        if (document.documentElement.classList.contains("draft")) {
+            return;
+        }
+
         document.body.style.cursor = "none";
     }, 2000);
 };

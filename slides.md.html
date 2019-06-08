@@ -91,21 +91,19 @@ In the print modal, set "Margins" to "None" and make sure to keep the "Backgroun
 
 ## Options
 
-There are two options:
+There are TODO options:
 
-* `mode` should be either `draft` or `presentation`.
 * `aspectRatio` defines the aspect ratio of your slides.
 
 ```
 <script>
 markdeepSlidesOptions = {
-    mode: 'draft',
     aspectRatio: 16 / 9
 };
 </script>
 ```
 
-Define your options *before* including Markdeep.
+Make sure to define your options *before* loading Markdeep.
 
 ---
 
@@ -125,6 +123,19 @@ If your want to make your own theme, here are some helpful tips:
 * Make sure that all font sizes, margins, paddings, widths and heights are defined in terms of `rem` or `em`.
 * This enables your elements to scale properly depending on screen size.
 
+---
+
+# Contributing
+
+Please file an issue or send a pull request.
+
+---
+
+## Known issues
+
+* When resizing the window in Safari in draft mode, the font size is not scaled accordingly. No idea why – it's defined in terms of `vw` units, so it *should* scale as viewport width changes.
+* When leaving fullscreen mode in Firefix using <kbd>Esc</kbd>, presentation mode persists. No idea why – leaving it through <kbd>f</kbd> fires the same event, so the same stuff *should* happen. 🤷‍♂️
+
 
 ---
 
@@ -140,15 +151,15 @@ $$
 
 Drawings:
 
-*************************************************************************************************
-*                 A      1      2     4                        8                                *
-*                  *----->o<---->o<----o-----------.            ◍                               *
-*                                ^     ^            |           ^                               *
-*                                |     |            |           |                               *
-*                                v     |            v           |                               *
-*                                ◌<--->*<---->o---->*---->o---->o<---->*                        *
-*                               3     B      5     C     6     7      D                         *
-*************************************************************************************************
+************************************************************
+*  A      1      2     4                        8          *
+*   *----->o<---->o<----o-----------.            ◍         *
+*                 ^     ^            |           ^         *
+*                 |     |            |           |         *
+*                 v     |            v           |         *
+*                 ◌<--->*<---->o---->*---->o---->o<---->*  *
+*                3     B      5     C     6     7      D   *
+************************************************************
 
 ---
 
@@ -201,7 +212,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 <link rel="stylesheet" type="text/css" href="markdeep-slides.css">
 <link rel="stylesheet" type="text/css" href="slides-theme-simple.css">
-<script>markdeepSlidesOptions = {mode: 'draft', aspectRatio: 16 / 9}</script>
+<script>markdeepSlidesOptions = {aspectRatio: 16 / 9}</script>
 <script>markdeepOptions={tocStyle:'none', onLoad: function() { initSlides(); }}</script>
 <script src="markdeep-slides.js"></script>
 <style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style>
