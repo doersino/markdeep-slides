@@ -10,8 +10,8 @@
     size: 1000px 562px;
 }
 
-html.presentation.taller,
-html.draft {
+html.draft,
+html.presentation.taller {
     font-size: calc(var(--font-size) * 0.1vw);
 }
 html.presentation.wider {
@@ -44,7 +44,7 @@ body {
     height: var(--slide-height);
     border: none !important;
     margin-bottom: 0.5rem;
-    box-shadow: 0 0 0.3rem gray,
+    box-shadow: 0 0.05rem 0.3rem gray,
                 0 0.5rem 0 #eee;
     display: inline-block;
 }
