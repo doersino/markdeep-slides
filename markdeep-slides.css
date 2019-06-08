@@ -74,13 +74,14 @@ body {
 .slide-number {
     font-variant-numeric: tabular-nums lining-nums;  /* doin' a better job than whoever build the macos menu bar clock */
     position: absolute;
-    margin-left: calc(var(--slide-width) - var(--side-margin) - 1rem);
+    margin-left: calc(var(--slide-width) - var(--side-margin) - 2.5rem);
     margin-top: calc(var(--slide-height) - 1.8rem);
     font-weight: normal;
     font-size: 0.8rem;
     color: var(--slide-number-color);
     height: 0;
-    width: 0;
+    width: 2rem;
+    text-align: right;
 }
 
 .slide .presenter-notes {
