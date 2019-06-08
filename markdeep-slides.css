@@ -6,10 +6,11 @@
     --slide-number-color: #bbb;
 }
 
-html.taller {
+html.presentation.taller,
+html.draft {
     font-size: calc(var(--font-size) * 0.1vw);
 }
-html.wider {
+html.presentation.wider {
     font-size: calc(var(--font-size) * 0.1vh * (var(--aspect-ratio)));
 }
 
@@ -21,18 +22,43 @@ body {
 .slide {
     padding: 0 var(--side-margin);
     margin: 0;
-    border-style: solid;
-    border-color: black;
     box-sizing: content-box;  /* exclude borders from width/height attribute */
     overflow: hidden;
-    display: inline-block;
+}
+
+.presentation .slide {
+    display: none;
+    border-style: solid;
+    border-color: black;
 }
 
 .draft .slide {
+    --slide-width: 100vw;
+    --slide-height: calc(var(--slide-width) / (var(--aspect-ratio)));
+
+    width: calc(var(--slide-width) - 2 * var(--side-margin));
+    height: var(--slide-height);
     border: none !important;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 0 0.3rem gray,
+                0 0.5rem 0 #eee;
+    display: inline-block;
 }
 
-.wider .slide {
+.presentation.taller .slide {
+    --slide-width: 100vw;
+    --slide-height: calc(var(--slide-width) / (var(--aspect-ratio)));
+    --slide-letterbox-height: calc(100vh - var(--slide-height));
+
+    width: calc(var(--slide-width) - 2 * var(--side-margin));
+    height: var(--slide-height);
+    border-top-width: calc(var(--slide-letterbox-height) / 2);
+    border-bottom-width: calc(var(--slide-letterbox-height) / 2);
+    border-left-width: 0;
+    border-right-width: 0;
+}
+
+.presentation.wider .slide {
     --slide-height: 100vh;
     --slide-width: calc(var(--slide-height) * (var(--aspect-ratio)));
     --slide-letterbox-width: calc(100vw - var(--slide-width));
@@ -43,19 +69,6 @@ body {
     border-right-width: calc(var(--slide-letterbox-width) / 2);
     border-top-width: 0;
     border-bottom-width: 0;
-}
-
-.taller .slide {
-    --slide-width: 100vw;
-    --slide-height: calc(var(--slide-width) / (var(--aspect-ratio)));
-    --slide-letterbox-height: calc(100vh - var(--slide-height));
-
-    height: var(--slide-height);
-    width: calc(var(--slide-width) - 2 * var(--side-margin));
-    border-top-width: calc(var(--slide-letterbox-height) / 2);
-    border-bottom-width: calc(var(--slide-letterbox-height) / 2);
-    border-left-width: 0;
-    border-right-width: 0;
 }
 
 .slide-number {
@@ -71,7 +84,7 @@ body {
 }
 
 .slide .presenter-notes {
-    display: none;
+    display: none;  /* will be shown in separate window */
 }
 
 #black {
@@ -87,4 +100,8 @@ body {
 
 .markdeepFooter {
     text-align: left;
+}
+
+.presentation .markdeepFooter {
+    display: none;  /* sorry morgan */
 }

@@ -2,11 +2,18 @@
     size: 1600px 900px;  /* 16 : 9 aspect ratio */
 }
 
-.slide {
+.slide, .draft .slide, .presentation .slide {
     border: none !important;
+    margin-bottom: 0 !important;
+    box-shadow: none !important;
     page-break-before: always;
+    display: inline-block !important;
 
     /* fix for margin collapse */
     /*margin-top: 0.1px;
     height: calc(var(--slide-height) - 0.1px) !important;*/
+}
+
+.markdeepFooter {
+    display: none;  /* again, sorry morgan */
 }

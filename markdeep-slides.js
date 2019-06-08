@@ -119,12 +119,6 @@ function addLetterboxing() {
         root.classList.remove('taller');
         root.classList.add('taller');
     }
-
-    // keep current slide in view during resizing
-    // TODO improve this
-    if (currentSlideNum) {
-        scrollTo(currentSlideNum);
-    }
 }
 window.addEventListener('resize', addLetterboxing);
 
@@ -138,13 +132,20 @@ function processHash() {
     } else {
         var slideNum = 0;
     }
-    scrollTo(slideNum);
+    showSlide(slideNum);
 }
 
 // scroll to slide n
 // TODO chrome has a bug where on first load, it jumps to the top of the content area of the current slide...
 function scrollTo(slideNum) {
     document.getElementById("slide" + slideNum).scrollIntoView({block: "center"});
+// show slide n
+function showSlide(slideNum) {
+    if (document.documentElement.classList.contains("draft")) {
+        return;
+    }
+    Array.from(document.getElementsByClassName("slide")).map(e => e.style.display = "none");
+    document.getElementById("slide" + slideNum).style.display = "inline-block";
     history.replaceState({}, '', '#' + "slide" + slideNum);
     currentSlideNum = slideNum;
 
@@ -165,13 +166,13 @@ function updatePresenterNotes(slideNum) {
 
 function nextSlide() {
     if (currentSlideNum < slideCount - 1) {
-        scrollTo(currentSlideNum + 1);
+        showSlide(currentSlideNum + 1);
     }
 }
 
 function prevSlide() {
     if (currentSlideNum > 0) {
-        scrollTo(currentSlideNum - 1);
+        showSlide(currentSlideNum - 1);
     }
 }
 
@@ -200,15 +201,10 @@ function toggleFullscreen() {
             document.msExitFullscreen();
         }
     }
-
-    // fix for some browsers losing their place
-    // TODO improve this
-    setTimeout(function() {
-        scrollTo(currentSlideNum);
-    }, 500);
 }
 
 // turn the screen black or back again
+// TODO only in production?
 function toggleBlack() {
     var black = document.getElementById("black");
     if (black.style.display === "none") {

@@ -27,6 +27,8 @@ press n to open window with presenter notes (might open as a tab in the backgrou
 
 i recommend using only local resources (images, fonts, a local copy of mathjax) unless you're absolutely sure you'll have connectivity where you'll be holding your presentation. to download fonts from google fonts, use https://google-webfonts-helper.herokuapp.com/fonts.
 
+TODO talk about options
+
 ---
 
 alternatively, you can generate a pdf version of your presentation by simply printing it to pdf using your browser's built-in tools – in my experience, this works best in chrome since it respect the `@page` CSS selector properly. set margines to none and make sure to keep the background graphics option enabled.
@@ -115,7 +117,7 @@ more
 <link rel="stylesheet" type="text/css" href="markdeep-slides-print.css" media="print">
 <link rel="stylesheet" type="text/css" href="slides-theme-simple.css">
 <script src="markdeep-slides.js"></script>
-<script>markdeepSlidesOptions = {mode: 'prod', aspectRatio: 16 / 9}</script>
+<script>markdeepSlidesOptions = {mode: 'draft', aspectRatio: 16 / 9}</script>
 <script>markdeepOptions={tocStyle:'none', onLoad: function() { initSlides(); }}</script>
 <style class="fallback">body{visibility:hidden}</style>
 <script src="markdeep.js"></script>
