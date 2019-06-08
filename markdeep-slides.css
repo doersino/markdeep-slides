@@ -6,6 +6,10 @@
     --slide-number-color: #bbb;
 }
 
+@page {
+    size: 1000px 562px;
+}
+
 html.presentation.taller,
 html.draft {
     font-size: calc(var(--font-size) * 0.1vw);
@@ -105,4 +109,22 @@ body {
 
 .presentation .markdeepFooter {
     display: none;  /* sorry morgan */
+}
+
+@media print {
+    .slide, .draft .slide, .presentation .slide {
+        border: none !important;
+        margin-bottom: 0 !important;
+        box-shadow: none !important;
+        page-break-before: always;
+        display: inline-block !important;
+
+        /* fix for margin collapse */
+        /*margin-top: 0.1px;
+        height: calc(var(--slide-height) - 0.1px) !important;*/
+    }
+
+    .markdeepFooter {
+        display: none;  /* again, sorry morgan */
+    }
 }
