@@ -183,7 +183,7 @@ function updatePresenterNotes(slideNum) {
         presenterNotes = presenterNotesElement.innerHTML;
     }
     if (presenterNotesWindow) {
-        presenterNotesWindow.document.getElementById("slide-number").innerHTML = currentSlideNum + "/" + (slideCount - 1);
+        presenterNotesWindow.document.getElementById("slide-number").innerHTML = slideNum + "/" + (slideCount - 1);
         presenterNotesWindow.document.getElementById("presenter-notes").innerHTML = presenterNotes;
     }
 }
