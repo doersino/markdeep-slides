@@ -30,7 +30,7 @@ h2:before {
     padding: 0;
 }
 h1, h2, .outline li {
-    width: calc(100% + 2 * var(--side-margin));
+    width: calc(var(--slide-width) + 2 * var(--side-margin));
     padding-left: var(--side-margin);
     margin-left: calc(0rem - var(--side-margin));
 }
