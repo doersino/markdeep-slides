@@ -135,10 +135,33 @@ function processHash() {
     showSlide(slideNum);
 }
 
-// scroll to slide n
-// TODO chrome has a bug where on first load, it jumps to the top of the content area of the current slide...
-function scrollTo(slideNum) {
-    document.getElementById("slide" + slideNum).scrollIntoView({block: "center"});
+// when scrolling, update hash (and presenter notes etc.) based on which slide
+// is visible right now. only makes sense in draft mode
+function updateHash() {
+    if (document.documentElement.classList.contains("presentation")) {
+        return;
+    }
+
+    var slides = document.getElementsByClassName("slide");
+    var minTop = -1;
+    var minSlideNum = 0;
+    for (var i = 0; i < slides.length; i++) {
+        var slide = slides[i];
+        var bcr = slide.getBoundingClientRect();
+        if (bcr.top > 0 && (bcr.top < minTop || minTop == -1)) {
+            minTop = bcr.top;
+            // TODO check if middle of slide is closest to middle of viewport instead?
+            minSlideNum = parseInt(slide.id.substring(5), 10);
+        }
+    }
+    if (minSlideNum != currentSlideNum) {
+        history.replaceState({}, '', '#' + "slide" + minSlideNum);
+        currentSlideNum = minSlideNum;
+        updatePresenterNotes(minSlideNum);
+    }
+}
+window.addEventListener('scroll', updateHash);
+
 // show slide n
 function showSlide(slideNum) {
     if (document.documentElement.classList.contains("draft")) {
