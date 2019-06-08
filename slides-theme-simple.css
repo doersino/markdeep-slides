@@ -34,7 +34,7 @@ h1, h2, .outline li {
     padding-left: var(--side-margin);
     margin-left: calc(0rem - var(--side-margin));
 }
-p, .md pre.listing, .listing, div.title, ol, ul, .admonition, center, .fancyquote, .bib, table, .center {
+p, .md pre.listing, .listing, div.title, ol, ul, .admonition, center, .fancyquote, .bib, table, .center, blockquote {
     width: 100%;
 }
 .center {
@@ -114,9 +114,40 @@ kbd {
 
 
 /* horizontal lines */
-hr.ignore {
+.md hr.ignore {
     border: 0;
     border-bottom: 0.1rem solid var(--accent-color2);
+}
+
+
+/* quotes */
+.md blockquote {
+    background-color: #eee;
+    padding: .25rem 0.4rem;
+    margin: 0;
+}
+.md blockquote.fancyquote {
+    background: transparent;
+    padding: 0;
+    margin: 1rem 0;
+}
+.md blockquote.fancyquote:before,
+.md span.fancyquote:after {
+    content: "“";
+    color: #ddd;
+    font-family: Times;
+    font-size: 2rem;
+    line-height: 0;
+    margin-right: 0.3rem;
+    vertical-align: -0.5rem;
+}
+.md span.fancyquote {
+    font-size: 1.2rem;
+    color: #777;
+    font-style: italic;
+}
+.md blockquote.fancyquote .author {
+    margin-top: 0.2rem;
 }
 
 
@@ -147,7 +178,7 @@ hr.ignore {
 /* admonitions */
 .md .admonition {
     border-radius: 0;
-    border-left-width: 0.1rem !important;
+    border-left-width: 0.2rem !important;
     padding: .25rem 0.4rem;
 }
 .md .admonition::before {
