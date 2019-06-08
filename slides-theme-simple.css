@@ -29,7 +29,7 @@ h2:before {
     margin: 0;
     padding: 0;
 }
-h1, h2, .outline li, hr {
+h1, h2, .outline li {
     width: calc(100% + 2 * var(--side-margin));
     padding-left: var(--side-margin);
     margin-left: calc(0rem - var(--side-margin));
@@ -64,6 +64,14 @@ code, svg.diagram, .listing {
 }
 .accent {
     color: var(--accent-color);
+}
+kbd {
+    background-color: #ddd;
+    border: 0.05em solid #aaa;
+    padding: 0 0.2em 0.1em;
+    border-radius: 0.2em;
+    box-shadow: 0 0.05em 0.1em   rgba(0, 0, 0, .2),
+                0 0.05em 0     0 rgba(255, 255, 255, .7) inset;
 }
 
 
@@ -102,6 +110,13 @@ code, svg.diagram, .listing {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
     font-size: 1.25rem;
+}
+
+
+/* horizontal lines */
+hr.ignore {
+    border: 0;
+    border-bottom: 0.1rem solid var(--accent-color2);
 }
 
 
@@ -162,8 +177,7 @@ code, svg.diagram, .listing {
     border-width: 0 !important;
     text-transform: uppercase;
     font-size: 0.8em;
-    color: #111;
-    mix-blend-mode: screen;
+    color: rgba(0,0,0,0.6);
 }
 .admonition * {
     max-width: 100%;

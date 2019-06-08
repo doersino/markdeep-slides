@@ -8,23 +8,39 @@ Your name here<br>
 
 ---
 
->>> Presenter notes
->>>
->>> * look like this...
->>> * or this.
->>>
->>> Your can use *arbitrary* Markdeep stuff in here!
-
-# This an `h1`.
+# Quick start
 
 ---
 
-## If you make your own theme
+## Setup
 
-Here are some helpful tips:
+1. Clone this repository.
 
-* Make sure that all font sizes, margins, paddings, widths and heights are defined in terms of `rem` or `em`.
-* This enables your elements to scale properly depending on screen size.
+    ```php
+    $ git clone https://github.com/doersino/markdeep-slides
+    ```
+
+2. Replace the contents of this file with your slide contents – keep the first line and the final lines intact; they're where the magic happens!
+
+---
+
+## Formatting
+
+Use **horizontal lines to begin a new slide**:
+
+```
+slide 1
+---
+slide 2
+---
+slide 3
+```
+
+If you want to use a horizontal line *on* one of your slides, write `<hr class="ignore">`.
+
+<hr class="ignore">
+
+See? 💯
 
 ---
 
@@ -38,6 +54,13 @@ Press...
 * <kbd>.</kbd> to turn the screen black (and back again).
 
 ---
+
+>>> Presenter notes
+>>>
+>>> * look like this...
+>>> * or this.
+>>>
+>>> Your can use *arbitrary* Markdeep stuff in here!
 
 ## Presenter notes
 
@@ -54,12 +77,15 @@ Presenter notes **support Markdeep** and can be **defined using three nested blo
 
 ---
 
-## Tips
+## Printing to PDF
 
-I recommend using only local resources (images, fonts, a local copy of mathjax) unless you're absolutely sure you'll have internet connectivity where you'll be holding your presentation.
+You can **export a PDF version** of your slides by simply **printing it to a PDF file** using your browser's built-in tools – in my experience, this **works best in Chrome** as  it respect the `@page` CSS selector properly.
 
-* To download fonts from Google fonts, use https://google-webfonts-helper.herokuapp.com/fonts.
-* A guide on running MathJax locally can be found at http://docs.mathjax.org/en/latest/installation.html. Note that you'll have to add `detectMath: false` to your Markdeep config then.
+In the print modal, set "Margins" to "None" and make sure to keep the "Background graphics" option enabled.
+
+---
+
+# Details
 
 ---
 
@@ -83,20 +109,33 @@ Define your options *before* including Markdeep.
 
 ---
 
-## Printing to PDF
+## Tips
 
-You can **export a PDF version** of your slides by simply **printing it to a PDF file** using your browser's built-in tools – in my experience, this **works best in Chrome** as  it respect the `@page` CSS selector properly.
+I recommend using only local resources (images, fonts, a local copy of mathjax) unless you're absolutely sure you'll have internet connectivity where you'll be holding your presentation.
 
-In the print modal, set "Margins" to "None" and make sure to keep the "Background graphics" option enabled.
+* To download fonts from Google fonts, use https://google-webfonts-helper.herokuapp.com/fonts.
+* A guide on running MathJax locally can be found at http://docs.mathjax.org/en/latest/installation.html. Note that you'll have to add `detectMath: false` to your Markdeep config then. This has the added benefit of being able to configure MathJax to your liking.
 
 ---
 
-## Some Markdeep features
+## Themeing
+
+If your want to make your own theme, here are some helpful tips:
+
+* Make sure that all font sizes, margins, paddings, widths and heights are defined in terms of `rem` or `em`.
+* This enables your elements to scale properly depending on screen size.
+
+
+---
+
+# Some neat Markdeep features
+
+---
 
 MathJax:
 
 $$
-{\color{blue} \hat O_p} = \frac 1 {\color{green} C_p} \sum_{{\color{brown} q \in \mathcal N_p}} {\color{orange} w(p, q)} {\color{purple} O_q}
+{\hat O_p} = \frac 1 {C_p} \sum_{{q \in \mathcal N_p}} {w(p, q)} {O_q}
 $$
 
 Drawings:
@@ -161,12 +200,10 @@ cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 <link rel="stylesheet" type="text/css" href="markdeep-slides.css">
-<link rel="stylesheet" type="text/css" href="markdeep-slides-print.css" media="print">
 <link rel="stylesheet" type="text/css" href="slides-theme-simple.css">
 <script>markdeepSlidesOptions = {mode: 'draft', aspectRatio: 16 / 9}</script>
 <script>markdeepOptions={tocStyle:'none', onLoad: function() { initSlides(); }}</script>
 <script src="markdeep-slides.js"></script>
-
 <style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style>
 <script src="https://casual-effects.com/markdeep/latest/markdeep.min.js" charset="utf-8"></script>
 <script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
