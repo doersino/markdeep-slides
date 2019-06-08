@@ -1,4 +1,4 @@
-var currentSlideNum;
+var currentSlideNum = 0;
 var slideCount = 0;
 
 var presenterNotesWindow;
@@ -148,7 +148,7 @@ function updateHash() {
     for (var i = 0; i < slides.length; i++) {
         var slide = slides[i];
         var bcr = slide.getBoundingClientRect();
-        if (bcr.top > 0 && (bcr.top < minTop || minTop == -1)) {
+        if (bcr.top >= 0 && (bcr.top < minTop || minTop == -1)) {
             minTop = bcr.top;
             // TODO check if middle of slide is closest to middle of viewport instead?
             minSlideNum = parseInt(slide.id.substring(5), 10);
@@ -183,6 +183,7 @@ function updatePresenterNotes(slideNum) {
         presenterNotes = presenterNotesElement.innerHTML;
     }
     if (presenterNotesWindow) {
+        presenterNotesWindow.document.getElementById("slide-number").innerHTML = currentSlideNum + "/" + (slideCount - 1);
         presenterNotesWindow.document.getElementById("presenter-notes").innerHTML = presenterNotes;
     }
 }
@@ -301,7 +302,10 @@ function openPresenterNotes() {
     <link rel="stylesheet" href="${stylesheetURL}">
 </head>
 <body>
-    <div id="time"></div>
+    <div class="meta">
+        <div id="time"></div>
+        <div id="slide-number">${currentSlideNum + "/" + (slideCount - 1)}</div>
+    </div>
     <div id="presenter-notes"></div>
     <script>
         document.body.onkeydown = function(event) {

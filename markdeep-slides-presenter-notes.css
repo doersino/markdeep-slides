@@ -1,79 +1,29 @@
 html {
-    font-size: 2vw;
+    font-size: 4vw;
 }
 
 body {
     margin: 0;
-    padding: 0;
-}
-
-.slide {
-    padding: 0 var(--side-margin);
-    margin: 0;
-    border-style: solid;
-    border-color: black;
-    box-sizing: content-box;  /* exclude borders from width/height attribute */
-    overflow: hidden;
-    display: inline-block;
-}
-
-.draft .slide {
-    border: none !important;
-}
-
-.wider .slide {
-    --slide-height: 100vh;
-    --slide-width: calc(var(--slide-height) * (var(--aspect-ratio)));
-    --slide-letterbox-width: calc(100vw - var(--slide-width));
-
-    height: var(--slide-height);
-    width: calc(var(--slide-width) - 2 * var(--side-margin));
-    border-left-width: calc(var(--slide-letterbox-width) / 2);
-    border-right-width: calc(var(--slide-letterbox-width) / 2);
-    border-top-width: 0;
-    border-bottom-width: 0;
-}
-
-.taller .slide {
-    --slide-width: 100vw;
-    --slide-height: calc(var(--slide-width) / (var(--aspect-ratio)));
-    --slide-letterbox-height: calc(100vh - var(--slide-height));
-
-    height: var(--slide-height);
-    width: calc(var(--slide-width) - 2 * var(--side-margin));
-    border-top-width: calc(var(--slide-letterbox-height) / 2);
-    border-bottom-width: calc(var(--slide-letterbox-height) / 2);
-    border-left-width: 0;
-    border-right-width: 0;
-}
-
-.slide-number {
-    font-variant-numeric: tabular-nums lining-nums;  /* doin' a better job than whoever build the macos menu bar clock */
-    position: absolute;
-    margin-left: calc(var(--slide-width) - var(--side-margin) - 1rem);
-    margin-top: calc(var(--slide-height) - 1.8rem);
-    font-weight: normal;
-    font-size: 0.8rem;
-    color: var(--slide-number-color);
-    height: 0;
-    width: 0;
-}
-
-.slide .presenter-notes {
-    display: none;
-}
-
-#black {
-    position: fixed;
-    z-index: 9001;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
     background-color: black;
-    display: none;
+    color: white;
+    font-family: sans-serif;
 }
 
-.markdeepFooter {
-    text-align: left;
+.meta {
+    font-size: 1.5rem;
+    background-color: #333;
+    padding: 0.2em 1rem 0.3em;
+    height: 1em;
+}
+
+#time {
+    float: left;
+}
+
+#slide-number {
+    float: right;
+}
+
+#presenter-notes {
+    margin: 1rem;
 }
