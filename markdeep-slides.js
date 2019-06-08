@@ -13,7 +13,7 @@ function initSlides() {
     if (markdeepSlidesOptions) {
         if (markdeepSlidesOptions.aspectRatio) {
             var sheet = document.createElement('style');
-            sheet.innerHTML = "@page { size: 1000px " + 1000 / markdeepSlidesOptions.aspectRatio + "px; } :root {--aspect-ratio: " + markdeepSlidesOptions.aspectRatio + "}";
+            sheet.innerHTML = "@page { size: 1000px " + (1 + 1000 / markdeepSlidesOptions.aspectRatio) + "px; } :root {--aspect-ratio: " + markdeepSlidesOptions.aspectRatio + "}";
             document.body.appendChild(sheet);
         }
     }
