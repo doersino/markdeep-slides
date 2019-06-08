@@ -53,6 +53,8 @@ Press...
 * <kbd>F</kbd>, <kbd>F5</kbd> or <kbd>Esc</kbd> to enter or exit fullscreen presentation mode and
 * <kbd>.</kbd> to turn the screen black (and back again).
 
+These little presenter clicker thingies should work no problem.
+
 ---
 
 >>> Presenter notes
@@ -131,10 +133,19 @@ Please file an issue or send a pull request.
 
 ---
 
+## Terminology
+
+When going fullscreen, you switch from **draft mode** into **presentation mode**.
+
+---
+
 ## Known issues
 
-* When resizing the window in Safari in draft mode, the font size is not scaled accordingly. No idea why – it's defined in terms of `vw` units, so it *should* scale as viewport width changes.
-* When leaving fullscreen mode in Firefix using <kbd>Esc</kbd>, presentation mode persists. No idea why – leaving it through <kbd>f</kbd> fires the same event, so the same stuff *should* happen. 🤷‍♂️
+* When resizing the window in Safari in draft mode, the font size is not scaled accordingly. No idea why – it's defined in terms of `vw` units, so it *should* scale as viewport width changes. 🤷‍♂️
+* Switching slides in Chrome using the arrow keys in draft mode sometimes skips over slides or requires two presses to get to the next slide. Scrolling works fine, the arrow keys work fine in presentation mode, and it works fine in other browsers. 🤷‍♂️
+* When leaving fullscreen mode in Firefox using <kbd>Esc</kbd>, presentation mode sometimes persists. No idea why – leaving it through <kbd>f</kbd> fires the same event, so the same stuff *should* happen. 🤷‍♂️
+
+TL;DR: Every browser is its own flavor of terrible.
 
 
 ---
