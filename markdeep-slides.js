@@ -228,7 +228,7 @@ function toggleFullscreen() {
 }
 
 // turn the screen black or back again
-// TODO only in production?
+// TODO only in presentation (or: fullscreen) mode?
 function toggleBlack() {
     var black = document.getElementById("black");
     if (black.style.display === "none") {
@@ -287,19 +287,43 @@ document.body.onmousemove = function() {
     }, 2000);
 };
 
-// TODO open a second view with the presenter notes (collect them in makeSlides()?)
+// open presenter notes window
 function openPresenterNotes() {
     presenterNotesWindow = window.open("", "presenternotes", "");
 
     if (presenterNotesWindow) {
         with (presenterNotesWindow.document) {
-            var stylesheetURL = document.URL.substr(0,document.URL.lastIndexOf('/')) + "/markdeep-slides-presenter-notes.css";
             open("text/html", "replace");
             write(`
 <html>
 <head>
     <title>Presenter Notes</title>
-    <link rel="stylesheet" href="${stylesheetURL}">
+    <style>
+        html {
+            font-size: 4vw;
+        }
+        body {
+            margin: 0;
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+        }
+        .meta {
+            font-size: 1.5rem;
+            background-color: #333;
+            padding: 0.2em 1rem 0.3em;
+            height: 1em;
+        }
+        #time {
+            float: left;
+        }
+        #slide-number {
+            float: right;
+        }
+        #presenter-notes {
+            margin: 1rem;
+        }
+    </style>
 </head>
 <body>
     <div class="meta">
@@ -310,14 +334,14 @@ function openPresenterNotes() {
     <script>
         document.body.onkeydown = function(event) {
             opener.keyPress(event);
-        }
+        };
         setInterval(function () {
             var time = new Date();
             time = ("0" + time.getHours()).slice(-2)   + ":" +
                    ("0" + time.getMinutes()).slice(-2) + ":" +
                    ("0" + time.getSeconds()).slice(-2);
             document.getElementById("time").innerHTML = time;
-        }, 1000)
+        }, 1000);
     </script>
 </body>
 </html>`);
@@ -327,5 +351,3 @@ function openPresenterNotes() {
 
     updatePresenterNotes(currentSlideNum);
 }
-
-// TODO when scrolling, update slide id slug? https://stackoverflow.com/questions/11760898/find-element-thats-on-the-middle-of-the-visible-screen-viewport-on-scroll
