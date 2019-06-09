@@ -133,7 +133,7 @@ kbd {
 }
 .md blockquote.fancyquote:before,
 .md span.fancyquote:after {
-    content: "“";
+    /*content: "“";*/  /* inherit from markdeep css */
     color: #ddd;
     font-family: Times;
     font-size: 2rem;
