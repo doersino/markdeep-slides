@@ -45,25 +45,29 @@ function initSlides() {
                 slide.appendChild(sn);
             }
 
-            // presenter notes (if any)
-            if (currentPresenterNotes.length > 0) {
-                var pn = document.createElement('div');
-                pn.className = "presenter-notes";
-                for (var j = 0; j < currentPresenterNotes.length; j++) {
-                    pn.innerHTML += "<p>" + currentPresenterNotes[j] + "</p>";
-                }
-                slide.appendChild(pn);
-            }
-
-            // insert elements
+            // slide content
+            var sc = document.createElement('div');
+            sc.className = "slide-content";
             for (var j = 0; j < currentSlide.length; j++) {
                 var se = currentSlide[j];
 
                 if (se.tagName == "P" && se.innerHTML.trim().length == 0) {
-                    // skip it
+                    // skip empty paragraphs
                 } else {
-                    slide.appendChild(se);
+                    sc.appendChild(se);
                 }
+            }
+            slide.appendChild(sc);
+
+            // presenter notes (if any)
+            if (currentPresenterNotes.length > 0) {
+                var spn = document.createElement('div');
+                spn.className = "slide-presenter-notes";
+                for (var j = 0; j < currentPresenterNotes.length; j++) {
+                    spn.innerHTML += "<p>" + currentPresenterNotes[j] + "</p>";
+                    // TOOD is <p> really correct here?
+                }
+                slide.appendChild(spn);
             }
 
             slides.push(slide);
@@ -192,7 +196,7 @@ function showSlide(slideNum) {
 function updatePresenterNotes(slideNum) {
     var presenterNotes = "";
 
-    var presenterNotesElement = document.getElementById("slide" + slideNum).querySelector(".presenter-notes");
+    var presenterNotesElement = document.getElementById("slide" + slideNum).querySelector(".slide-presenter-notes");
     if (presenterNotesElement) {
         presenterNotes = presenterNotesElement.innerHTML;
     }

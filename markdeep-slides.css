@@ -24,71 +24,90 @@ body {
 }
 
 .slide {
-    padding: 0 var(--side-margin);
-    margin: 0;
-    box-sizing: content-box;  /* exclude borders from width/height attribute */
-    overflow: hidden;
+    --slide-width: 100vw;
+    --slide-height: calc(var(--slide-width) / (var(--aspect-ratio)));
 }
-
-.presentation .slide {
-    display: none;
-    border-style: solid;
-    border-color: black;
+.presentation.taller .slide {
+    --slide-letterbox-height: calc(100vh - var(--slide-height));
+}
+.presentation.wider .slide {
+    --slide-height: 100vh;
+    --slide-width: calc(var(--slide-height) * (var(--aspect-ratio)));
+    --slide-letterbox-width: calc(100vw - var(--slide-width));
 }
 
 .draft .slide {
-    --slide-width: 100vw;
-    --slide-height: calc(var(--slide-width) / (var(--aspect-ratio)));
-
-    width: calc(var(--slide-width) - 2 * var(--side-margin));
-    height: var(--slide-height);
-    border: none !important;
     margin-bottom: 0.5rem;
     box-shadow: 0 0.05rem 0.3rem gray,
                 0 0.5rem 0 #eee;
     display: inline-block;
 }
+.presentation .slide {
+    display: none;
+}
 
-.presentation.taller .slide {
-    --slide-width: 100vw;
-    --slide-height: calc(var(--slide-width) / (var(--aspect-ratio)));
-    --slide-letterbox-height: calc(100vh - var(--slide-height));
+.slide-content {
+    padding: 0 var(--side-margin);
+    margin: 0;
+    box-sizing: content-box;  /* exclude borders from width/height attribute */
+    overflow: hidden;
+    border-width: 0;
+}
 
+.draft .slide-content {
+    width: calc(var(--slide-width) - 2 * var(--side-margin));
+    height: var(--slide-height);
+}
+
+.presentation .slide-content {
+    border-style: solid;
+    border-color: black;
+}
+.presentation.taller .slide-content {
     width: calc(var(--slide-width) - 2 * var(--side-margin));
     height: var(--slide-height);
     border-top-width: calc(var(--slide-letterbox-height) / 2);
     border-bottom-width: calc(var(--slide-letterbox-height) / 2);
-    border-left-width: 0;
-    border-right-width: 0;
 }
-
-.presentation.wider .slide {
-    --slide-height: 100vh;
-    --slide-width: calc(var(--slide-height) * (var(--aspect-ratio)));
-    --slide-letterbox-width: calc(100vw - var(--slide-width));
-
+.presentation.wider .slide-content {
     height: var(--slide-height);
     width: calc(var(--slide-width) - 2 * var(--side-margin));
     border-left-width: calc(var(--slide-letterbox-width) / 2);
     border-right-width: calc(var(--slide-letterbox-width) / 2);
-    border-top-width: 0;
-    border-bottom-width: 0;
 }
 
 .slide-number {
     font-variant-numeric: tabular-nums lining-nums;  /* doin' a better job than whoever build the macos menu bar clock */
     position: absolute;
-    margin-left: calc(var(--slide-width) - var(--side-margin) - 2.5rem);
-    margin-top: calc(var(--slide-height) - 1.8rem);
     font-weight: normal;
     font-size: 0.8rem;
+    margin-top: calc(var(--slide-height) - 1.75rem);
+    margin-left: calc(var(--slide-width) - 2.5rem);
     color: var(--slide-number-color);
     height: 0;
     width: 2rem;
     text-align: right;
 }
 
-.slide .presenter-notes {
+.presentation.taller .slide-number {
+    margin-top: calc(var(--slide-height) + var(--slide-letterbox-height) / 2 - 1.75rem);
+}
+.presentation.wider .slide-number {
+    margin-left: calc(var(--slide-width) + var(--slide-letterbox-width) / 2 - 2.5rem);
+}
+
+.slide-presenter-notes {
+    display: block;
+    overflow: hidden;
+    background-color: black;
+    color: white;
+    font-size: 0.8rem;
+    line-height: 1.2em;
+    padding: 0 1em;
+    /*background-image: linear-gradient(#111, #333 0.4rem, #333 calc(100% - 0.4rem), #333 0.4rem, #222);*/
+    background-image: linear-gradient(#000, #333 0.3rem, #333);
+}
+.presentation .slide-presenter-notes {
     display: none;  /* will be shown in separate window */
 }
 
@@ -113,15 +132,18 @@ body {
 
 @media print {
     .slide, .draft .slide, .presentation .slide {
-        border: none !important;
+        page-break-before: always;
         margin-bottom: 0 !important;
         box-shadow: none !important;
-        page-break-before: always;
         display: inline-block !important;
+    }
 
-        /* fix for margin collapse */
-        /*margin-top: 0.1px;
-        height: calc(var(--slide-height) - 0.1px) !important;*/
+    .slide-content, .draft .slide-content, .presentation .slide-content {
+        border-width: 0 !important;
+    }
+
+    .slide-presenter-notes {
+        display: none;
     }
 
     .markdeepFooter {
