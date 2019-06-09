@@ -7,14 +7,18 @@ var presenterNotesWindow;
 // "ignore" is set). collect presenter notes and insert slide numbers too. kick
 // off some other init tasks as well
 function initSlides() {
-    var root = document.documentElement;
-    root.classList.add("draft");
-
     if (markdeepSlidesOptions) {
         if (markdeepSlidesOptions.aspectRatio) {
             var sheet = document.createElement('style');
-            sheet.innerHTML = "@page { size: 1000px " + (1 + 1000 / markdeepSlidesOptions.aspectRatio) + "px; } :root {--aspect-ratio: " + markdeepSlidesOptions.aspectRatio + "}";
+            sheet.innerHTML = "@page { size: 640px " + (1 + 640 / markdeepSlidesOptions.aspectRatio) + "px; };";
             document.body.appendChild(sheet);
+            document.documentElement.style.setProperty('--aspect-ratio', markdeepSlidesOptions.aspectRatio);
+        }
+        if (markdeepSlidesOptions.fontSize) {
+            document.documentElement.style.setProperty('--font-size', markdeepSlidesOptions.fontSize);
+        }
+        if (markdeepSlidesOptions.slideNumberColor) {
+            document.documentElement.style.setProperty('--slide-number-color', markdeepSlidesOptions.slideNumberColor);
         }
     }
 
