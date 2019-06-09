@@ -141,9 +141,13 @@ When going fullscreen, you switch from **draft mode** into **presentation mode**
 
 ## Known issues
 
-* When resizing the window in Safari in draft mode, the font size is not scaled accordingly. No idea why – it's defined in terms of `vw` units, so it *should* scale as viewport width changes. 🤷‍♂️
+* When resizing the window in Safari in draft mode, the font size is not scaled accordingly. No idea why – it's defined in terms of `vw` units in CSS, so it *should* scale as viewport width changes. 🤷‍♂️
 * Switching slides in Chrome using the arrow keys in draft mode sometimes skips over slides or requires two presses to get to the next slide. Scrolling works fine, the arrow keys work fine in presentation mode, and it works fine in other browsers. 🤷‍♂️
 * When leaving fullscreen mode in Firefox using <kbd>Esc</kbd>, presentation mode sometimes persists. No idea why – leaving it through <kbd>f</kbd> fires the same event, so the same stuff *should* happen. 🤷‍♂️
+
+---
+
+* After refreshing while in fullscreen in Safari, the only way to exit fullscreen mode is clicking the green button – and even after that, presentation mode persists because the `webkitfullscreenchange` event does not fire in this situation. Other browsers exit fullscreen mode upon refresh, making this a non-issue there. 🤷‍♂️
 
 TL;DR: Every browser is its own flavor of terrible.
 

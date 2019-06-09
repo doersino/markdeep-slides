@@ -91,6 +91,7 @@ function initSlides() {
     // further initialization steps
     addLetterboxing();
     processLocationHash();
+    fullscreenActions();
 };
 
 // depending on whether your viewport is wider or taller than the aspect ratio
