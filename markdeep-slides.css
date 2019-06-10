@@ -104,8 +104,7 @@ body {
     font-size: 0.8rem;
     line-height: 1.2em;
     padding: 0 1em;
-    /*background-image: linear-gradient(#111, #333 0.4rem, #333 calc(100% - 0.4rem), #333 0.4rem, #222);*/
-    background-image: linear-gradient(#000, #333 0.3rem, #333);
+    background-image: linear-gradient(#111, #333 0.4rem, #222);
 }
 .presentation .slide-presenter-notes {
     display: none;  /* will be shown in separate window */
