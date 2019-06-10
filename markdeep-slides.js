@@ -100,6 +100,26 @@ function initSlides() {
     addLetterboxing();
     processLocationHash();
     fullscreenActions();
+
+    // make diagrams resize properly: markdeep diagrams have their width and
+    // height attributes set to absoulute pixel values, which don't scale. so we
+    // need to move this width and height information into a new viewbox
+    // attribute, then we can set a relative width and height in css based on
+    // baseRem defined below, which would be the rem if the document was 640px
+    // wide (just to have a baseline value independent of window size on load;
+    // this also matches width in print mode, which doesn't bring any advantages
+    // but whatever)
+    var baseRem = 17.92; // parseFloat(getComputedStyle(document.documentElement).fontSize) * (640 / window.innerWidth);
+    document.querySelectorAll("svg").forEach(function(diag) {
+        var w = diag.getAttribute("width"),
+            h = diag.getAttribute("height");
+
+        diag.removeAttribute("width");
+        diag.removeAttribute("height");
+        diag.setAttribute("viewBox", "0 0 " + w + " " + h);
+        diag.style.width  = (w / baseRem) + "rem";
+        diag.style.height = (h / baseRem) + "rem";
+    });
 };
 
 // depending on whether your viewport is wider or taller than the aspect ratio

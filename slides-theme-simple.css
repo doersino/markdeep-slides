@@ -153,10 +153,7 @@ kbd {
 
 /* diagrams */
 .md svg.diagram {
-    zoom: 130%;
-    margin-top: -1rem !important;
-    margin-bottom: -1rem !important;
-    stroke-width: 0.0625rem;
+    stroke-width: 0.05rem;
 }
 
 
