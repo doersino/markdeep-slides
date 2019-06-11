@@ -4,7 +4,7 @@ conversion: Npx => calc(Nrem/var(--rf)), % values remain unchanged. based on
 markdeep 1.04 */
 
 :root {
-    --rf: 17.92;  /* 28 * (0.1 * (640px / 100)), see markdeep-slides.css and markdeep-slides.js */
+    --rf: 16;
 }
 
 /* reset "BODY_STYLESHEET" */
@@ -83,10 +83,11 @@ h6,
     padding: calc(15rem / var(--rf)) 0 calc(3rem / var(--rf));
 }
 
-.md svg.diagram {
-    font-size: calc(13.43rem / var(--rf));  /* actually: codeFontSize */
-    stroke-width: calc(2rem / var(--rf));  /* actually: STROKE_WIDTH */
-}
+/* diagrams are scaled differently */
+/* .md svg.diagram {
+    font-size: calc(13.43rem / var(--rf));  /* actually: codeFontSize
+    stroke-width: calc(2rem / var(--rf));  /* actually: STROKE_WIDTH
+} */
 
 .md h1,
 .md .tocHeader,
@@ -210,4 +211,16 @@ div.title {
 }
 div.afterTitles {
     height: calc(15rem / var(--rf));
+}
+
+
+/* "Creates a style sheet containing elements like:" */
+
+.md h1::before,
+.md h2::before,
+.md h3::before,
+.md h4::before,
+.md h5::before,
+.md h6::before {
+    margin-right: calc(10rem / var(--rf));
 }
