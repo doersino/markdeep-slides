@@ -1,0 +1,213 @@
+/* "relativizes" sizes, i.e. replaces absolute px lengths from the default
+markdeep stylesheet with rem lengths. based on a base font size of 18px,
+conversion: Npx => calc(Nrem/var(--rf)), % values remain unchanged. based on
+markdeep 1.04 */
+
+:root {
+    --rf: 17.92;  /* 28 * (0.1 * (640px / 100)), see markdeep-slides.css and markdeep-slides.js */
+}
+
+/* reset "BODY_STYLESHEET" */
+body {
+    padding: calc(20rem / var(--rf));
+}
+
+
+/* reset "STYLESHEET" */
+.md code,
+.md pre {
+    font-size: calc(13.43rem / var(--rf));  /* actually: codeFontSize */
+}
+
+.md div.title {
+    font-size: calc(26rem / var(--rf));
+}
+
+.md div.afterTitles {
+    height:calc(10rem / var(--rf));
+}
+
+.md pre.listing .linenumbers span.line:before{
+    width:calc(30rem / var(--rf));
+    margin-left:calc(-28rem / var(--rf));
+    padding-right:calc(13rem / var(--rf));
+    margin-right:calc(8rem / var(--rf));
+}
+
+.md div.tilde {
+    margin:calc(20rem / var(--rf)) 0 calc(-10rem / var(--rf));
+}
+
+md div.imagecaption,
+.md div.tablecaption,
+.md div.listingcaption {
+    margin: calc(7rem / var(--rf)) calc(5rem / var(--rf)) calc(12rem / var(--rf));
+}
+
+.md blockquote.fancyquote {
+    margin: calc(25rem / var(--rf)) 0 calc(25rem / var(--rf));
+}
+
+.md blockquote.fancyquote::before {
+    font-size: calc(45rem / var(--rf));
+    margin-right: calc(6rem / var(--rf));
+}
+
+.md span.fancyquote::after {
+    font-size: calc(45rem / var(--rf));
+    margin-left: calc(6rem / var(--rf));
+}
+
+.md blockquote.fancyquote .author {
+    margin-top: calc(10rem / var(--rf));
+}
+
+.md div.title,
+contents,
+.md .tocHeader,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.md .shortTOC,
+.md .mediumTOC,
+.nonumberh1,
+.nonumberh2,
+.nonumberh3,
+.nonumberh4,
+.nonumberh5,
+.nonumberh6 {
+    margin: calc(13.4rem / var(--rf)) 0 calc(13.4rem / var(--rf));
+    padding: calc(15rem / var(--rf)) 0 calc(3rem / var(--rf));
+}
+
+.md svg.diagram {
+    font-size: calc(13.43rem / var(--rf));  /* actually: codeFontSize */
+    stroke-width: calc(2rem / var(--rf));  /* actually: STROKE_WIDTH */
+}
+
+.md h1,
+.md .tocHeader,
+.md .nonumberh1 {
+    border-bottom-width: calc(3rem / var(--rf));
+    font-size: calc(20rem / var(--rf));
+}
+
+.md h2,
+.md .nonumberh2{
+    border-bottom-width: calc(2rem / var(--rf));
+    font-size: calc(18rem / var(--rf));
+}
+
+.md h3,
+.md h4,
+.md h5,
+.md h6,
+.md .nonumberh3,
+.md .nonumberh4,
+.md .nonumberh5,
+.md .nonumberh6 {
+    font-size: calc(16rem / var(--rf));
+}
+
+.md div.table {
+    margin: calc(16rem / var(--rf)) 0 calc(16rem / var(--rf)) 0;
+}
+
+.md table.calendar{
+    font-size:calc(11rem / var(--rf));
+}
+
+.md table.calendar th {
+    font-size: calc(16rem / var(--rf));
+}
+
+.md table.table th {
+    border-width: calc(1rem / var(--rf));
+    padding: calc(8rem / var(--rf)) calc(15rem / var(--rf)) calc(8rem / var(--rf)) calc(15rem / var(--rf));
+}
+
+.md table.table td {
+    padding: calc(5rem / var(--rf)) calc(15rem / var(--rf)) calc(5rem / var(--rf)) calc(15rem / var(--rf));
+    border-width: calc(1rem / var(--rf));
+}
+
+.md pre.tilde {
+    border-top-width: calc(1rem / var(--rf));
+    border-bottom-width: calc(1rem / var(--rf));
+    padding: calc(5rem / var(--rf)) 0 calc(5rem / var(--rf)) calc(20rem / var(--rf));
+}
+
+.md dl > dd {
+    margin-top: calc(-8rem / var(--rf));
+    margin-bottom: calc(8rem / var(--rf))
+}
+
+.md dl > table {
+    margin: calc(35rem / var(--rf)) 0 calc(30rem / var(--rf));
+}
+
+.md .endnote {
+    font-size: calc(13rem / var(--rf));
+    line-height: calc(15rem / var(--rf));
+    padding-left: calc(10rem / var(--rf));
+    text-indent: calc(-10rem / var(--rf))
+}
+
+.md .bib {
+    padding-left: calc(80rem / var(--rf));
+    text-indent: calc(-80rem / var(--rf));
+}
+
+.markdeepFooter {
+    font-size: calc(9rem / var(--rf));
+    padding-top: calc(80rem / var(--rf));
+}
+
+.md .mediumTOC {
+    font-size: calc(12rem / var(--rf));
+    line-height: calc(15rem / var(--rf));
+    border-left-width: calc(1rem / var(--rf));
+    padding-left: calc(15rem / var(--rf));
+    margin: calc(15rem / var(--rf)) calc(0rem / var(--rf)) calc(15rem / var(--rf)) calc(25rem / var(--rf));
+}
+
+.md .longTOC .level1 {
+    padding-top: calc(12rem / var(--rf));
+    margin: 0 0 calc(-20rem / var(--rf));
+}
+
+.md .shortTOC {
+    margin-top: calc(15rem / var(--rf));
+    font-size: calc(14rem / var(--rf));
+}
+
+.md .admonition-title {
+    border-bottom-width: calc(1rem / var(--rf));
+    padding-bottom: calc(4rem / var(--rf));
+    margin-bottom: calc(4rem / var(--rf));
+}
+
+.md .admonition.tip::before {
+    top: calc(3rem / var(--rf));
+}
+
+.md .admonition.warn::before,
+.md .admonition.warning::before {
+    top: calc(2rem / var(--rf));
+}
+
+.md .admonition.error::before {
+    top: calc(2rem / var(--rf));
+}
+
+
+/* "Add more spacing before the title in a long document" */
+div.title {
+    padding-top: calc(40rem / var(--rf));
+}
+div.afterTitles {
+    height: calc(15rem / var(--rf));
+}
