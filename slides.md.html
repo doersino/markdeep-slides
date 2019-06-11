@@ -3,7 +3,7 @@
 **Building presentation slides with markdeep**
     Acrobat Reader? I hardly know her!
 
-Your name here<br>
+Noah Doersing<br>
 <span class="small accent">June 8, 2019</span>
 
 ---
@@ -63,7 +63,8 @@ These little presenter clicker thingies should work no problem.
 >>> * look like this...
 >>> * or this.
 >>>
->>> Your can use *arbitrary* Markdeep stuff in here!
+>>> You can use *arbitrary* Markdeep stuff in here (as long as it's allowed in blockquotes)!
+
 
 ## Presenter notes
 
@@ -160,13 +161,13 @@ TL;DR: Every browser is its own flavor of terrible.
 
 ---
 
-MathJax:
+### MathJax:
 
 $$
 {\hat O_p} = \frac 1 {C_p} \sum_{{q \in \mathcal N_p}} {w(p, q)} {O_q}
 $$
 
-Drawings:
+### Drawings:
 
 ************************************************************
 *  A      1      2     4                        8          *
@@ -180,18 +181,18 @@ Drawings:
 
 ---
 
-Quotes, endnotes[^test] and citations:
+### Quotes, endnotes[^test] and citations:
 
-> "We make our world significant by the courage of our questions and by the depth of our answers."
+> "We make our world significant[^moretest] by the courage of our questions and by the depth of our answers."
 >
 >      -- Carl Sagan [#Sagan80]
 
-Admonitions:
+### Admonitions:
 
 !!!
     This is an admonition
 
-!!! red: Red admonition
+!!! error: Red admonition
     Another one, but it's red. Must be danger ahead!
 
 ---
@@ -204,28 +205,13 @@ Notes:
 
 [^test]: This is an endnote.
 
+[^moretest]: This is another endnote. It contains a lot of words: *Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.*
+
 ---
 
 ## Content that goes past the end of a slide is cut off, so be careful!
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 <link rel="stylesheet" type="text/css" href="markdeep-slides-reset.css">
 <link rel="stylesheet" type="text/css" href="markdeep-slides.css">

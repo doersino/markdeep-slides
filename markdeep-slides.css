@@ -43,12 +43,11 @@ body {
     display: inline-block;
 }
 .presentation .slide {
-    display: none;
+    display: none;  /* will be overwritten for the currently active slide */
 }
 
 .slide-content {
     padding: 0 var(--side-margin);
-    margin: 0;
     box-sizing: content-box;  /* exclude borders from width/height attribute */
     overflow: hidden;
     border-width: 0;
@@ -98,13 +97,14 @@ body {
 
 .slide-presenter-notes {
     display: block;
-    overflow: hidden;
-    background-color: black;
-    color: white;
+    overflow: hidden;  /* prevent margin collapse */
     font-size: 0.8rem;
     line-height: 1.2em;
     padding: 0 1em;
+    color: white;
     background-image: linear-gradient(#111, #333 0.4rem, #222);
+    /*background-image: linear-gradient(#eee, #ccc 0.4rem, #ddd);
+    filter: invert(1); */
 }
 .presentation .slide-presenter-notes {
     display: none;  /* will be shown in separate window */
@@ -124,7 +124,6 @@ body {
 .markdeepFooter {
     text-align: left;
 }
-
 .presentation .markdeepFooter {
     display: none;  /* sorry morgan */
 }

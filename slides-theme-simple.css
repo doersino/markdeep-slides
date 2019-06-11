@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i&display=swap');
-/* TODO add iosevka once it's on google fonts */
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono&display=swap');  /* i really prefer iosevka, but that's not on google fonts yet: https://github.com/google/fonts/issues/559 */
 
 :root {
     --text-color: black;
@@ -7,7 +7,7 @@
     --accent-color2: #ddd;
     --link-color: #38c;
     --text-font: "Source Sans Pro";
-    --code-font: "Courier";
+    --code-font: "Fira Mono";
 }
 
 * {
@@ -15,12 +15,22 @@
 }
 
 body {
-    text-align: left;
+    text-align: left;  /* not: justify */
+    color: var(--text-color);
+}
+
+/* fonts */
+body, .md div.title, h1, h2, h3 {
+    font-family: var(--text-font) !important;
+}
+code, svg.diagram {
+    font-family: var(--code-font) !important;
 }
 
 h1:before,
-h2:before {
-    content: '' !important;
+h2:before,
+h3:before {
+    content: '' !important;  /* hide section numbering */
     margin: 0 !important;
 }
 
@@ -29,22 +39,16 @@ h2:before {
     margin: 0;
     padding: 0;
 }
-h1, h2, .outline li {
+h3 {
+    margin: 1rem 0;
+}
+h1, h2 {
     width: calc(var(--slide-width) + 2 * var(--side-margin));
     padding-left: var(--side-margin);
     margin-left: calc(0rem - var(--side-margin));
 }
 p, .md pre.listing, .listing, div.title, ol, ul, .admonition, center, .fancyquote, .bib, table, .center, blockquote {
     width: 100%;
-}
-.center {
-    text-align: center;
-}
-body, .md div.title, h1, h2 {
-    font-family: var(--text-font) !important;
-}
-code, svg.diagram, .listing {
-    font-family: var(--code-font) !important;
 }
 
 
@@ -58,30 +62,29 @@ code, svg.diagram, .listing {
 .md a:visited {
     color: var(--link-color);
     font-family: var(--code-font);
-}
-.small {
-    font-size: 0.67rem;
-}
-.accent {
-    color: var(--accent-color);
+    font-size: 0.93em;
+    letter-spacing: -0.05em;
 }
 kbd {
     background-color: #ddd;
     border: 0.05em solid #aaa;
     padding: 0 0.2em 0.1em;
     border-radius: 0.2em;
-    box-shadow: 0 0.05em 0.1em   rgba(0, 0, 0, .2),
-                0 0.05em 0     0 rgba(255, 255, 255, .7) inset;
+    box-shadow: 0 0.05em 0.1em rgba(0, 0, 0, .2),
+                0 0.05em 0     rgba(255, 255, 255, .7) inset;
+}
+.accent {
+    color: var(--accent-color);
 }
 
 
 /* title */
 .md div.title {
-    margin-top: 3rem;
     font-weight: bold;
     text-align: left;
     text-transform: uppercase;
     font-size: 2.5rem !important;
+    margin-top: calc(var(--slide-height) / 2 - 12rem / 2);
 }
 .md div.subtitle {
     text-align: left;
@@ -98,7 +101,6 @@ kbd {
 }
 .md h1 {
     background: var(--accent-color2);
-    color: black;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     font-size: 1.5rem;
@@ -110,6 +112,11 @@ kbd {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
     font-size: 1.25rem;
+}
+.md h3 {
+    color: inherit;
+    font-size: 1rem;
+    padding: 0;
 }
 
 
@@ -131,21 +138,6 @@ kbd {
     padding: 0;
     margin: 1rem 0;
 }
-.md blockquote.fancyquote:before,
-.md span.fancyquote:after {
-    /*content: "“";*/  /* inherit from markdeep css */
-    color: #ddd;
-    font-family: Times;
-    font-size: 2rem;
-    line-height: 0;
-    margin-right: 0.3rem;
-    vertical-align: -0.5rem;
-}
-.md span.fancyquote {
-    font-size: 1.2rem;
-    color: #777;
-    font-style: italic;
-}
 .md blockquote.fancyquote .author {
     margin-top: 0.2rem;
 }
@@ -159,7 +151,8 @@ kbd {
 
 /* code */
 .md code {
-    font-size: 100%;
+    font-size: 0.93em;
+    letter-spacing: -0.02em;
 }
 .md pre.listing {
     font-size: 0.75rem;
@@ -181,22 +174,22 @@ kbd {
 .md .admonition::before {
     display: none !important;
 }
-.admonition,
-.admonition.blue {
+.admonition {
     border-left-color: rgba(68,138,255,.4) !important;
     background-color: rgba(68,138,255,.2) !important;
 }
-.admonition.orange {
+.admonition.tip {
+    border-left-color: rgba(40,230,40,.4) !important;
+    background-color: rgba(40,230,40,.2) !important;
+}
+.admonition.warn,
+.admonition.warning {
     border-left-color: rgba(255,145,0,.4) !important;
     background-color: rgba(255,145,0,.2) !important;
 }
-.admonition.red {
+.admonition.error {
     border-left-color: rgba(255,40,40,.4) !important;
     background-color: rgba(255,40,40,.2) !important;
-}
-.admonition.green {
-    border-left-color: rgba(40,230,40,.4) !important;
-    background-color: rgba(40,230,40,.2) !important;
 }
 .admonition-title {
     margin: 0 !important;
@@ -207,38 +200,20 @@ kbd {
     font-size: 0.8em;
     color: rgba(0,0,0,0.6);
 }
-.admonition * {
-    max-width: 100%;
-}
 
 
-/* two-column tables (of admonitions) */
-table {
-    font: inherit;
-}
-table td:first-child {
-    padding-right: 0.33rem;
-    width: 50%;
-    vertical-align: top;
-}
-table td:last-child {
-    padding-left: 0.33rem;
-    width: 50%;
-    vertical-align: top;
-}
-table .admonition {
-    width: 100% !important;
-    margin: 0 !important;
-}
-table p, table ul, table ol {
-    width: 100% !important;
-}
-
-
-/* bibliography */
+/* endnotes and bibliography */
+.md .endnote,
 .md .bib {
     font-size: 0.6rem;
     line-height: 1rem;
+}
+.md .endnote {
+    padding-left: 0.38rem;
+    text-indent: -0.38rem;
+}
+.md .bib {
+    margin: 1rem 0;
     padding-left: 1.5rem;
     text-indent: -1.5rem;
 }
@@ -246,27 +221,4 @@ table p, table ul, table ol {
     color: var(--link-color);
     font-family: var(--code-font);
     font-weight: initial;
-}
-sup.cite {
-    line-height: 0rem;
-    font-size: 0.67rem;
-}
-
-
-/* formula annotations */
-.fannotated {
-    padding: 1rem 0;
-}
-.fannotated .ann {
-    position: absolute;
-    font-size: 0.8em;
-    left: calc(var(--full-width) / 2 - var(--side-margin));  /* adjust position inline from center, not left => enables varying root font size without readjusting all annotations */
-    line-height: 1em;
-    text-align: center;
-}
-.fannotated .arr {
-    position: absolute;
-    letter-spacing: -0.1rem;
-    transform-origin: left;
-    left: calc(var(--full-width) / 2 - var(--side-margin));
 }
