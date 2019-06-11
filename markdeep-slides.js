@@ -364,7 +364,7 @@ function keyPress(event) {
         toggleBlack();
         return false;
       case 78:  // n
-        openPresenterNotes();
+        togglePresenterNotes();
         return false;
       default:
         break;
@@ -391,8 +391,14 @@ document.body.onmousemove = function() {
     }, 2000);
 };
 
-// open presenter notes window
-function openPresenterNotes() {
+// open or close presenter notes window
+function togglePresenterNotes() {
+    if (presenterNotesWindow) {
+        presenterNotesWindow.close();
+        presenterNotesWindow = null;
+        return;
+    }
+
     presenterNotesWindow = window.open("", "presenternotes", "");
 
     if (presenterNotesWindow) {
