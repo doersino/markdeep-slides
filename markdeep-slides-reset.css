@@ -37,7 +37,7 @@ body {
     margin:calc(20rem / var(--rf)) 0 calc(-10rem / var(--rf));
 }
 
-md div.imagecaption,
+.md div.imagecaption,
 .md div.tablecaption,
 .md div.listingcaption {
     margin: calc(7rem / var(--rf)) calc(5rem / var(--rf)) calc(12rem / var(--rf));
