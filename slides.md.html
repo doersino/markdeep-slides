@@ -3,8 +3,8 @@
 **Building presentation slides with markdeep**
     Acrobat Reader? I hardly know her!
 
-Noah Doersing<br>
-<span class="small accent">June 8, 2019</span>
+<small><em>June 8, 2019</em></small><br>
+Noah Doersing
 
 ---
 
@@ -78,6 +78,8 @@ These little presenter clicker thingies should work no problem.
 >>> * or this.
 >>>
 >>> You can use *arbitrary* Markdeep stuff in here (as long as it's allowed in blockquotes)!
+>>>
+>>> ![](http://placekitten.com/400/120 style="width: 10rem")
 
 
 ## Presenter notes
@@ -266,12 +268,25 @@ It's possible to reference listing [hask].
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-<link rel="stylesheet" type="text/css" href="markdeep-slides-reset.css">
-<link rel="stylesheet" type="text/css" href="markdeep-slides.css">
-<link rel="stylesheet" type="text/css" href="slides-theme-simple.css">
-<script>markdeepSlidesOptions = {aspectRatio: 16 / 9, fontSize: 28, slideNumberColor: "#bbb", diagramZoom: 1.0}</script>
-<script>markdeepOptions={tocStyle:'none', onLoad: function() { initSlides(); }}</script>
+
+
+<!-- Markdeep slides stuff -->
+<link rel="stylesheet" src="markdeep-slides-reset.css">
+<link rel="stylesheet" src="markdeep-slides.css">
+<link rel="stylesheet" src="markdeep-slides-theme-simple.css">
+<script>
+    markdeepSlidesOptions = {
+        aspectRatio: 16 / 9,
+        theme: 'simple',
+        fontSize: 28,
+        slideNumberColor: "#bbb",
+        diagramZoom: 1.0
+    }
+</script>
 <script src="markdeep-slides.js"></script>
+
+<!-- Markdeep stuff -->
+<script>markdeepOptions={tocStyle:'none', onLoad: function() { initSlides(); }}</script>
 <style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style>
 <script src="https://casual-effects.com/markdeep/latest/markdeep.min.js" charset="utf-8"></script>
 <script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

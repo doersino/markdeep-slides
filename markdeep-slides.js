@@ -10,10 +10,10 @@ function initSlides() {
     var diagramZoom = 1.0;
     if (markdeepSlidesOptions) {
         if (markdeepSlidesOptions.aspectRatio) {
+            document.documentElement.style.setProperty('--aspect-ratio', markdeepSlidesOptions.aspectRatio);
             var sheet = document.createElement('style');
             sheet.innerHTML = "@page { size: 640px " + (1 + 640 / markdeepSlidesOptions.aspectRatio) + "px; };";
             document.body.appendChild(sheet);
-            document.documentElement.style.setProperty('--aspect-ratio', markdeepSlidesOptions.aspectRatio);
         }
         if (markdeepSlidesOptions.fontSize) {
             document.documentElement.style.setProperty('--font-size', markdeepSlidesOptions.fontSize);
