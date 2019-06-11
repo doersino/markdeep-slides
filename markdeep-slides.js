@@ -7,6 +7,7 @@ var presenterNotesWindow;
 // "ignore" is set). collect presenter notes and insert slide numbers too. kick
 // off some other init tasks as well
 function initSlides() {
+    var diagramZoom = 1.0;
     if (markdeepSlidesOptions) {
         if (markdeepSlidesOptions.aspectRatio) {
             var sheet = document.createElement('style');
@@ -19,6 +20,9 @@ function initSlides() {
         }
         if (markdeepSlidesOptions.slideNumberColor) {
             document.documentElement.style.setProperty('--slide-number-color', markdeepSlidesOptions.slideNumberColor);
+        }
+        if (markdeepSlidesOptions.diagramZoom) {
+            diagramZoom = markdeepSlidesOptions.diagramZoom;
         }
     }
 
@@ -100,7 +104,7 @@ function initSlides() {
     addLetterboxing();
     processLocationHash();
     fullscreenActions();
-    reletivizeDiagrams();
+    reletivizeDiagrams(diagramZoom);
 };
 
 // depending on whether your viewport is wider or taller than the aspect ratio
@@ -151,7 +155,7 @@ function processLocationHash() {
 // wide (just to have a baseline value independent of window size on load;
 // this also matches width in print mode, which doesn't bring any advantages
 // but whatever)
-function reletivizeDiagrams() {
+function reletivizeDiagrams(diagramZoom) {
     var baseRem = 17.92;// parseFloat(getComputedStyle(document.documentElement).fontSize) * (640 / window.innerWidth);
     document.querySelectorAll("svg").forEach(function(diag) {
         function toRem(px) {
@@ -164,8 +168,8 @@ function reletivizeDiagrams() {
         diag.removeAttribute("width");
         diag.removeAttribute("height");
         diag.setAttribute("viewBox", "0 0 " + w + " " + h);
-        diag.style.width  = toRem(w);
-        diag.style.height = toRem(h);
+        diag.style.width  = toRem(w * diagramZoom);
+        diag.style.height = toRem(h * diagramZoom);
 
         if (diag.style.marginTop) {
             diag.style.marginTop = toRem(diag.style.marginTop);
