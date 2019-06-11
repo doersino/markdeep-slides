@@ -1,7 +1,6 @@
 /* "relativizes" sizes, i.e. replaces absolute px lengths from the default
-markdeep stylesheet with rem lengths. based on a base font size of 18px,
-conversion: Npx => calc(Nrem/var(--rf)), % values remain unchanged. based on
-markdeep 1.04 */
+markdeep stylesheet with rem lengths. conversion: Npx => calc(Nrem/var(--rf)).
+based on markdeep 1.04 */
 
 :root {
     --rf: 16;
