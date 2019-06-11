@@ -14,7 +14,9 @@ Noah Doersing<br>
 
 ## Setup
 
-1. Clone this repository.
+To start building your own slides with the help of Markdeep:
+
+1. Dowload a release at TODO (recommended) or clone this repository.
 
     ```php
     $ git clone https://github.com/doersino/markdeep-slides
@@ -41,6 +43,18 @@ If you want to use a horizontal line *on* one of your slides, write `<hr class="
 <hr class="ignore">
 
 See? 💯
+
+---
+
+## Media
+
+Images should always be given a width, height, or both in `rem`:
+
+```
+![](path/to/image.jpg style="height: 12rem")
+```
+
+Embedded videos can receive the same parameters.
 
 ---
 
@@ -197,11 +211,50 @@ $$
 
 ---
 
-## Notes and references
+### Code with line numbers and a caption:
+
+```Haskell linenumbers
+cgenExpr l (K.TElemR e1 e2 ty) = do
+    a <- cgenExpr l e1
+    b <- cgenExpr l e2
+    liput l b $ Right e2
+    b' <- toVoidPtr (K.typeOf e2) b
+    c <- callCbits voidPtr "kltollvm_row_elemr" [a, toOperand $ tyValueToC $ K.typeOf e2, b']
+
+    -- Make sure to return the correct value (previous function call returns a
+    -- void pointer).
+    fromVoidPtr ty c
+```
+[Listing [hask]: An out-of context piece of Haskell code.]
+
+It's possible to reference listing [hask].
+
+---
+
+### Nested lists:
+
+* You can...
+    * ...arbitrarily...
+        - ...nest...
+        - ...lists.
+    * This...
+      1. ...works with numbered...
+      2. ...lists...
+          1. ...too!
+    * You can also use pluses:
+        + See!
+
+---
+
+### Videos (images work too):
+
+![Figure [fig:dave]: Better than any podcast.](https://www.youtube.com/watch?v=ij9KXgiyDAc)
+
+---
+
+### Notes and references (defined further up):
 
 [#Sagan80]: Sagan, C. (1980). Cosmos.
-
-Notes:
 
 [^test]: This is an endnote.
 
