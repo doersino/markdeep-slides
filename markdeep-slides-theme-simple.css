@@ -187,7 +187,6 @@ body, .md div.title, .md h1, .md h2, .md h3 {
 .md div.imagecaption,
 .md div.tablecaption,
 .md div.listingcaption {
-    margin: 0.5rem 0 0;
     text-align: center;
 }
 

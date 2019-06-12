@@ -52,3 +52,55 @@ hr {
     border: none;
     border-bottom: 0.05rem solid black;
 }
+
+.fancyquote {
+    font-size: 1.25rem;
+    display: none;
+}
+.md blockquote.fancyquote::before,
+.md span.fancyquote::after {
+    font-family: inherit;
+    font-size: 4rem;
+    vertical-align: -0.4em;
+}
+.md blockquote.fancyquote .author {
+    font-family: "Vollkorn SC";
+    font-size: 0.8rem;
+    margin-top: 0;
+}
+
+
+
+.md .admonition {
+    border-radius: 0;
+    padding: .25rem 0.4rem;
+    border-left-width: 0.2rem !important;
+    border-left-color: rgba(68,138,255,.4) !important;
+    background-color: rgba(68,138,255,.2) !important;
+}
+.md .admonition::before {
+    display: none !important;
+}
+.md .admonition.tip {
+    border-left-color: rgba(40,230,40,.4) !important;
+    background-color: rgba(40,230,40,.2) !important;
+}
+.md .admonition.warn,
+.md .admonition.warning {
+    border-left-color: rgba(255,145,0,.4) !important;
+    background-color: rgba(255,145,0,.2) !important;
+}
+.md .admonition.error {
+    border-left-color: rgba(255,40,40,.4) !important;
+    background-color: rgba(255,40,40,.2) !important;
+}
+.md .admonition-title {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-bottom: -1.2rem !important;
+    border-width: 0 !important;
+    font-family: Vollkorn;
+    font-size: 0.7em;
+    font-weight: 900;
+    text-transform: uppercase;
+}

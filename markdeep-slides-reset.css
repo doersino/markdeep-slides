@@ -307,3 +307,9 @@ still work just fine */
 .md pre.listing {
     resize: none;
 }
+
+.md div.imagecaption,
+.md div.tablecaption,
+.md div.listingcaption {
+    margin: 0.5rem 0 0;
+}
