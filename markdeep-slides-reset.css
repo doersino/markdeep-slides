@@ -1,18 +1,49 @@
-/* "relativizes" sizes, i.e. replaces absolute px lengths from the default
-markdeep stylesheet with rem lengths. conversion: Npx => calc(Nrem/var(--rf)).
-based on markdeep 1.04 */
+/*
+
+THE FIRST PART of this stylesheet "relativizes" sizes, i.e. replaces
+sizes/lengths defined in terms of `px` in the stylesheets that are automatically
+applied by Markdeep with lenghts defined in terms of `rem`. This enables scaling
+the entire document just by adjusting the <html> root element's font size –
+exactly what's required to enable fullscreen presentations.
+
+The conversion rule is simple: `<N>px` => `calc(<N>rem/var(--rf))`, where `--rf`
+is the base font size the original `px` measurements are assumed to be relative
+to. `--rf` is the browser default, `16px`.
+
+This first part, when applied to a standard Markdeep document, is designed *not
+to effect any visual changes* (until you increase the root font size, that is).
+
+Note: I would've liked to define `--rf: calc(1rem / 16px)` and then use it like
+      `calc(<N>px * var(--rf))`, but `calc` understandably, yet disappointingly,
+      can't deal with "rem per pixel" units.
+
+Note: This is based on Markdeep 1.04 and will need adjustments for newer
+      Markdeep versions.
+
+********************************************************************************
+
+THE SECOND PART sets some sensibe defaults for slides-related stuff that most
+every theme would otherwise have to set individually.
+
+*/
 
 :root {
     --rf: 16;
 }
 
-/* reset "BODY_STYLESHEET" */
+/********************************/
+/* Relativize "BODY_STYLESHEET" */
+/********************************/
+
 body {
     padding: calc(20rem / var(--rf));
 }
 
 
-/* reset "STYLESHEET" */
+/***************************/
+/* Relativize "STYLESHEET" */
+/***************************/
+
 .md code,
 .md pre {
     font-size: calc(13.43rem / var(--rf));  /* actually: codeFontSize */
@@ -204,16 +235,22 @@ h6,
 }
 
 
-/* "Add more spacing before the title in a long document" */
+/*********************************************************************/
+/* Relativize "Add more spacing before the title in a long document" */
+/*********************************************************************/
+
 div.title {
     padding-top: calc(40rem / var(--rf));
 }
+
 div.afterTitles {
     height: calc(15rem / var(--rf));
 }
 
 
-/* "Creates a style sheet containing elements like:" */
+/***************************************************************/
+/* Relativize "Creates a style sheet containing elements like" */
+/***************************************************************/
 
 .md h1::before,
 .md h2::before,
@@ -222,4 +259,51 @@ div.afterTitles {
 .md h5::before,
 .md h6::before {
     margin-right: calc(10rem / var(--rf));
+}
+
+
+/******************************************************************************/
+/******************************************************************************/
+/******************************************************************************/
+
+* {
+    box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+
+/* definitely in: */
+
+body {
+    text-align: left;  /* not: justify */
+}
+
+.md table {
+    font-size: inherit;  /* not sure why it doesn't automatically inherit the body's font size */
+}
+
+/* hide section numbering and the associated margins */
+.md h1:before,
+.md h2:before,
+.md h3:before {
+    content: '' !important;
+    margin: 0 !important;
+}
+
+/* enable margin collapse: imagine a paragraph and a headline (both margin: 1rem
+0), with the headline's a.target between them. jumping to the target should
+still work just fine */
+.md a.target {
+    position: absolute;
+}
+
+/* remove resizability indicator from listings */
+.md pre.listing {
+    resize: none;
 }

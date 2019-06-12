@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Vollkorn+SC:600|Vollkorn:400,400i,700,700i,900&display=swap');
+
+body {
+    font-family: Vollkorn;
+}
+
+.md div.title {
+    font-family: "Vollkorn SC";
+    float: left;
+    text-align: right;
+    width: 50%;
+    border-right: 0.05rem solid black;
+    margin: 4rem 2rem 4rem 0;
+    padding: 1rem 2rem 1rem 0;
+}
+
+.md div.subtitle {
+    margin-top: 7.75rem;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.md h1, .md h2, .md h3 {
+    text-align: center;
+    font-family: Vollkorn;
+    border: 0;
+    color: black;
+}
+
+.md h1 {
+    font-size: 3rem;
+    font-style: italic;
+    line-height: 1em;
+    transform: rotate(-10deg);
+    width: var(--slide-width);
+    height: calc(var(--slide-height) - 1rem);
+    display: table-cell;
+    vertical-align: middle;
+    font-weight: normal;
+}
+
+.md h2 {
+    font-size: 1.5rem;
+}
+
+.md h3 {
+    font-family: "Vollkorn SC";
+    font-size: 1rem;
+}
+
+hr {
+    border: none;
+    border-bottom: 0.05rem solid black;
+}

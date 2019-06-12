@@ -15,23 +15,15 @@
 }
 
 body {
-    text-align: left;  /* not: justify */
     color: var(--text-color);
 }
 
 /* fonts */
-body, .md div.title, h1, h2, h3 {
-    font-family: var(--text-font) !important;
+body, .md div.title, .md h1, .md h2, .md h3 {
+    font-family: var(--text-font);
 }
-code, svg.diagram {
-    font-family: var(--code-font) !important;
-}
-
-h1:before,
-h2:before,
-h3:before {
-    content: '' !important;  /* hide section numbering */
-    margin: 0 !important;
+.md code, .md pre, .md svg.diagram, .md kbd {
+    font-family: var(--code-font);
 }
 
 
@@ -48,7 +40,9 @@ h3:before {
     font-size: 0.93em;
     letter-spacing: -0.05em;
 }
-kbd {
+.md kbd {
+    font-size: 0.93em;
+    letter-spacing: -0.02em;
     background-color: #ddd;
     border: 0.05em solid #aaa;
     padding: 0 0.2em 0.1em;
@@ -56,10 +50,7 @@ kbd {
     box-shadow: 0 0.05em 0.1em rgba(0, 0, 0, .2),
                 0 0.05em 0     rgba(255, 255, 255, .7) inset;
 }
-table {
-    font-size: inherit;
-}
-center {
+.md center {
     margin: 1rem 0;
 }
 .accent {
@@ -73,7 +64,7 @@ center {
     text-align: left;
     text-transform: uppercase;
     font-size: 2.5rem !important;
-    margin: calc(var(--slide-height) / 2 - 12rem / 2) 0 0 0;
+    margin: calc(var(--slide-height) / 2 - 12rem / 2) 0 0 0;  /* center vertically, assuming two lines of text */
     padding: 0;
 }
 .md div.subtitle {
@@ -87,7 +78,7 @@ center {
 .md h1,
 .md h2 {
     text-align: left;
-    border: none !important;
+    border: none;
     width: calc(var(--slide-width) + 2 * var(--side-margin));
     padding-left: var(--side-margin);
     margin: 0 0 0 calc(0rem - var(--side-margin));
@@ -97,7 +88,7 @@ center {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     font-size: 1.5rem;
-    margin-top: calc(var(--slide-height) / 2 - 4.5rem / 2);
+    margin-top: calc(var(--slide-height) / 2 - 4.5rem / 2);  /* center vertically, assuming one line of text */
 }
 .md h2 {
     background: var(--accent-color);
@@ -122,29 +113,29 @@ center {
 
 
 /* lists */
-ol {
+.md ol {
     padding-left: 1.3rem;
 }
-ul {
+.md ul {
     list-style: none;
     padding: 0;
 }
-ul > li.plus:before {
+.md ul > li.plus:before {
     content: "+";
     padding-right: 0.7em;
 }
-ul > li.minus:before {
+.md ul > li.minus:before {
     content: "–";
     padding-right: 0.7em;
 }
-ul > li.asterisk:before {
+.md ul > li.asterisk:before {
     content: "●";
     font-size: 0.9em;
     padding-right: 0.7em;
 }
-ul > li {
+.md ul > li {
     padding-left: 1.2em;
-    text-indent: -1.2em !important;
+    text-indent: -1.2em;
 }
 
 
@@ -182,7 +173,6 @@ ul > li {
     background-color: #eee;
     padding: 0.25rem 0.5rem;
     line-height: 1rem;
-    resize: initial;
 }
 .md pre.listing .linenumbers span.line:before {
     color: var(--accent-color);
@@ -205,30 +195,28 @@ ul > li {
 /* admonitions */
 .md .admonition {
     border-radius: 0;
-    border-left-width: 0.2rem !important;
     padding: .25rem 0.4rem;
+    border-left-width: 0.2rem !important;
+    border-left-color: rgba(68,138,255,.4) !important;
+    background-color: rgba(68,138,255,.2) !important;
 }
 .md .admonition::before {
     display: none !important;
 }
-.admonition {
-    border-left-color: rgba(68,138,255,.4) !important;
-    background-color: rgba(68,138,255,.2) !important;
-}
-.admonition.tip {
+.md .admonition.tip {
     border-left-color: rgba(40,230,40,.4) !important;
     background-color: rgba(40,230,40,.2) !important;
 }
-.admonition.warn,
-.admonition.warning {
+.md .admonition.warn,
+.md .admonition.warning {
     border-left-color: rgba(255,145,0,.4) !important;
     background-color: rgba(255,145,0,.2) !important;
 }
-.admonition.error {
+.md .admonition.error {
     border-left-color: rgba(255,40,40,.4) !important;
     background-color: rgba(255,40,40,.2) !important;
 }
-.admonition-title {
+.md .admonition-title {
     margin: 0 !important;
     padding: 0 !important;
     margin-bottom: -1rem !important;
@@ -271,16 +259,15 @@ ul > li {
 /* media */
 
 /* TODO should this go into the reset stylesheet? */
-/* TODO also for native videos, and IMAGES! */
-img {
+.md img {
     max-width: 100%;
     max-height: calc(var(--slide-height) - 2rem);
 }
-video {
+.md video {
     width: 21.33rem;
 }
-iframe[src^="https://www.youtube"],
-iframe[src^="https://player.vimeo"] {
+.md iframe[src^="https://www.youtube"],
+.md iframe[src^="https://player.vimeo"] {
     width: 21.33rem;
     height: 12rem;
 }
@@ -295,8 +282,3 @@ center img[full] {
     max-width: var(--slide-width);
 }
 */
-
-/* TODO move this (and some other stuff) into reset stylesheet? */
-a.target {
-    position: absolute;  /* enable margin collapse: image a paragraph and a headline (both margin: 1rem 0), with the headline's a.target between them. should still work just fine */
-}

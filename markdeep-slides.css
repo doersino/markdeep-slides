@@ -48,7 +48,7 @@ body {
 
 .slide-content {
     padding: 0 var(--side-margin);
-    box-sizing: content-box;  /* exclude borders from width/height attribute */
+    box-sizing: content-box;  /* make sure to exclude borders from width/height attribute */
     overflow: hidden;
     border-width: 0;
 }
@@ -122,7 +122,7 @@ body {
 }
 
 .markdeepFooter {
-    text-align: left;
+    text-align: left;  /* the default creates a horizontal scrollbar */
 }
 .presentation .markdeepFooter {
     display: none;  /* sorry morgan */
