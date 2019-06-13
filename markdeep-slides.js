@@ -105,6 +105,7 @@ function initSlides() {
     processLocationHash();
     fullscreenActions();
     reletivizeDiagrams(diagramZoom);
+    pauseVideos();
 };
 
 // depending on whether your viewport is wider or taller than the aspect ratio
@@ -221,6 +222,29 @@ function updateOnScroll() {
 }
 window.addEventListener('scroll', updateOnScroll);
 
+// pause all videos and store their "autoplay" attribute for later
+function pauseVideos() {
+    Array.from(document.getElementsByTagName("video")).forEach(function (video) {
+        if (!video.hasAttribute("data-autoplay")) {
+            video.setAttribute("data-autoplay", video.autoplay);
+        }
+        video.preload = "auto";  // preload video, if possible
+        video.autoplay = false;  // set autoplay to false
+        video.load();            // reload it to reset position to zero
+    });
+}
+
+// play videos of the current slides which have been designated as "autoplay"
+function playAutoplayingVideos(slideNum) {
+    var slide = document.getElementById("slide" + slideNum);
+    Array.from(slide.getElementsByTagName("video")).forEach(function (video) {
+        video.autoplay = video.getAttribute("data-autoplay");
+        if (video.autoplay) {
+            video.play();
+        }
+    });
+}
+
 // switch to slide n
 function showSlide(slideNum) {
     if (document.documentElement.classList.contains("draft")) {
@@ -229,6 +253,9 @@ function showSlide(slideNum) {
     } else if (document.documentElement.classList.contains("presentation")) {
         Array.from(document.getElementsByClassName("slide")).map(e => e.style.display = "none");
         document.getElementById("slide" + slideNum).style.display = "inline-block";
+
+        pauseVideos();
+        playAutoplayingVideos(slideNum);
     }
     history.replaceState({}, '', '#' + "slide" + slideNum);
     currentSlideNum = slideNum;
