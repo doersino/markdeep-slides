@@ -282,6 +282,7 @@ div.afterTitles {
 
 body {
     text-align: left;  /* not: justify */
+    max-width: 100%;
 }
 
 .md table {
