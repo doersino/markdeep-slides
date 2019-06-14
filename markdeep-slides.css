@@ -95,6 +95,21 @@ body {
     margin-left: calc(var(--slide-width) + var(--slide-letterbox-width) / 2 - 2.5rem);
 }
 
+.slide-progress {
+    position: absolute;
+    /*width: calc(attr(data-progress) * var(--slide-width));*/  /* sadly, attr() outside of "content" is not supported by any browsers even though the spec provides for this use. the width is thus set explicitly using js – which works, but is less flexible */
+    margin-top: 0;
+    margin-left: 0;
+    display: none;
+}
+
+.presentation.taller .slide-progress {
+    margin-top: calc(var(--slide-letterbox-height) / 2);
+}
+.presentation.wider .slide-progress {
+    margin-left: calc(var(--slide-letterbox-width) / 2);
+}
+
 .slide-presenter-notes {
     display: block;
     overflow: hidden;  /* prevent margin collapse */

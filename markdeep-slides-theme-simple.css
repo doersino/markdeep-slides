@@ -18,6 +18,12 @@ body {
     color: var(--text-color);
 }
 
+.slide-progress {
+    display: block;
+    background-color: rgba(170,170,170,.5);
+    height: 0.2rem;
+}
+
 /* fonts */
 body, .md div.title, .md h1, .md h2, .md h3 {
     font-family: var(--text-font);

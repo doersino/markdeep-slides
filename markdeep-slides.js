@@ -29,6 +29,13 @@ function initSlides() {
     var md = document.querySelector("body > .md");
     var es = Array.from(md.childNodes);
 
+    function isSlideBreak(e) {
+        return e.tagName == "HR" && e.className != 'ignore';
+    }
+
+    // slide count used for progress bar
+    var totalSlideCount = 1 + es.map(isSlideBreak).reduce((acc, curr) => curr ? acc + 1 : acc, 0);
+
     var slides = [];
     var currentSlide = [];
     var currentPresenterNotes = [];
@@ -36,7 +43,7 @@ function initSlides() {
         var e = es[i];
 
         // create new slide when enountering <hr> or end of input
-        if (e.tagName == "HR" && e.className != 'ignore' || i == es.length - 1) {
+        if (isSlideBreak(e) || i == es.length - 1) {
             var slide = document.createElement('div');
             slide.className = "slide";
             slide.id = "slide" + slideCount;
@@ -47,6 +54,15 @@ function initSlides() {
                 sn.className = "slide-number";
                 sn.innerHTML = slideCount;
                 slide.appendChild(sn);
+            }
+
+            // slide progress bar
+            if (slideCount != 0) {
+                var sp = document.createElement('div');
+                sp.className = "slide-progress";
+                //sp.setAttribute("data-progress", slideCount / totalSlideCount);  // see commend in markdeep-slides.css
+                sp.setAttribute("style", "width: calc(" + slideCount / (totalSlideCount - 1) + " * var(--slide-width));");
+                slide.appendChild(sp);
             }
 
             // slide content
