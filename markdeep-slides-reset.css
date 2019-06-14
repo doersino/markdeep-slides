@@ -313,3 +313,9 @@ still work just fine */
 .md div.listingcaption {
     margin: 0.5rem 0 0;
 }
+
+@media print {
+    .md .listing code {
+        white-space: pre;
+    }
+}
