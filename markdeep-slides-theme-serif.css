@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css?family=Vollkorn+SC:600|Vollkorn:400,400i,700,700i,900|Fira+Mono&display=swap');
+
+:root {
+    --text-color: black;
+    --link-color: #38c;
+    --text-font: "Vollkorn";
+    --accent-font: "Vollkorn SC";
+    --code-font: "Fira Mono";
+    --hairline-width: 0.05rem;
+
+    --slide-number-color: var(--text-color);
+}
+
+body {
+    color: var(--text-color);
+}
+
+.slide-progress {
+    display: block;
+    height: 0.1rem;
+    background-color: var(--text-color);
+}
+
+
+/* fonts */
+body, .md h1, .md h2 {
+    font-family: var(--text-font);
+}
+.md div.title, .md h3, .md blockquote.fancyquote .author, .admonition-title, .md .bib b {
+    font-family: var(--accent-font);
+}
+a[href^="#citation-"] {
+    font-family: var(--accent-font) !important;
+}
+.md a, .md a:link, .md a:visited, .md code, .md pre, .md svg.diagram, .md kbd {
+    font-family: var(--code-font);
+}
+
+/* basics */
+.md a,
+.md a:link,
+.md a:visited {
+    color: var(--link-color);
+}
+a[href^="#citation-"] {
+    color: inherit !important;
+    font-size: 1em !important;
+    letter-spacing: initial !important;
+}
+.md hr {
+    border: none;
+    border-bottom: var(--hairline-width) solid var(--text-color);
+}
+
+
+/* title */
+.md div.title {
+    float: left;
+    text-align: right;
+    width: 50%;
+    border-right: var(--hairline-width) solid var(--text-color);
+    margin: 4rem 2rem 4rem 0;
+    padding: 1rem 2rem 1rem 0;
+}
+.md div.subtitle {
+    margin-top: 7.75rem;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+
+/* headings */
+.md h1, .md h2, .md h3 {
+    text-align: center;
+    border: 0;
+}
+.md h1 {
+    font-size: 3rem;
+    font-style: italic;
+    line-height: 1em;
+    transform: rotate(-10deg);
+    width: var(--slide-width);
+    height: calc(var(--slide-height) - 1rem);
+    display: table-cell;
+    vertical-align: middle;
+    font-weight: normal;
+}
+.md h2 {
+    font-size: 1.5rem;
+    position: relative;
+}
+.md h2:after {
+    content:"";
+    background: var(--text-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: 40%;
+    width: 20%;
+    height: var(--hairline-width);
+}
+.md h3 {
+    font-size: 1rem;
+}
+
+
+/* lists */
+TODO {
+
+}
+
+
+/* quotes */
+.md blockquote {
+    border-left: var(--hairline-width) solid var(--text-color);
+    padding-left: 0.4rem;
+    margin: 0;
+}
+.md blockquote.fancyquote {
+    border: 0;
+    padding: 0;
+}
+.md span.fancyquote {
+    font-size: 1.25rem;
+}
+.md blockquote.fancyquote::before,
+.md span.fancyquote::after {
+    font-family: inherit;
+    font-size: 4rem;
+    vertical-align: -0.4em;
+}
+.md blockquote.fancyquote .author {
+    font-size: 0.8rem;
+    margin-top: 0;
+}
+
+
+/* code */
+.md a,
+.md a:link,
+.md a:visited,
+.md kbd,
+.md code {
+    font-size: 0.93em;  /* em! */
+    letter-spacing: -0.03em;
+}
+.md pre.listing {
+    font-size: 0.75em;
+    border: var(--hairline-width) solid var(--text-color);
+    padding: 0.25rem 0.5rem;
+    line-height: 1rem;
+}
+.md pre.listing .linenumbers {
+    padding-left: 0;
+}
+.md pre.listing .linenumbers span.line:before {
+    color: var(--accent-color);
+}
+
+
+/* admonitions */
+.md .admonition {
+    border-radius: 0;
+    padding: .25rem 0.4rem;
+    border: 0.05rem solid !important;
+    border-color: rgba(68,138,255,.4) !important;
+    background-color: rgba(68,138,255,.2) !important;
+}
+.md .admonition::before {
+    display: none !important;
+}
+.md .admonition.tip {
+    border-color: rgba(40,230,40,.4) !important;
+    background-color: rgba(40,230,40,.2) !important;
+}
+.md .admonition.warn,
+.md .admonition.warning {
+    border-color: rgba(255,145,0,.4) !important;
+    background-color: rgba(255,145,0,.2) !important;
+}
+.md .admonition.error {
+    border-color: rgba(255,40,40,.4) !important;
+    background-color: rgba(255,40,40,.2) !important;
+}
+.md .admonition-title {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: -0.15rem !important;
+    margin-bottom: -1.1rem !important;
+    border-width: 0 !important;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+
+/* endnotes and bibliography */
+.md .endnote,
+.md .bib {
+    line-height: 1rem;
+}
+.md .endnote {
+    font-size: 0.6rem;
+    padding-left: 0.38rem;
+    text-indent: -0.38rem;
+}
+.md .bib {
+    font-size: 0.8rem;
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    text-indent: -1.5rem;
+}

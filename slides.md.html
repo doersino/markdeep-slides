@@ -177,13 +177,13 @@ TL;DR: Every browser is its own flavor of terrible.
 
 ---
 
-### MathJax:
+### Math:
 
 $$
 {\hat O_p} = \frac 1 {C_p} \sum_{{q \in \mathcal N_p}} {w(p, q)} {O_q}
 $$
 
-### Drawings:
+### Diagrams:
 
 ************************************************************
 *  A      1      2     4                        8          *
@@ -197,11 +197,42 @@ $$
 
 ---
 
+***************************************************************************
+*                    ____                      *                          *
+*                   |    |_____.---.           |                          *
+*                   o     _____|    )----------)-------.                  *
+*                  / \   |     '---'           |     __|__                *
+*                 /___\  |                     |     \   /                *
+*                   |    '-------------.       |      \ /                 *
+* A ----------------'                  |       |       o                  *
+*      .-------------------.     o-----)-------'       |                  *
+*      |                   |___.---.   |               |___.---.          *
+* B ---*---.__.---.         ___|    )--*--.__..---.     ____)   )----- Y  *
+*           __|    o----*--'   '---'    ______))   )---'   '---'          *
+* C -------'  '---'     |              |     ''---'                       *
+*                       |              o                                  *
+*                       |             / \                                 *
+*                       |            /___\                                *
+*                       |              |                                  *
+*                       '--------------'                                  *
+***************************************************************************
+
+Take a look at the Markdeep docs for more example diagrams.
+
+---
+
 ### Quotes, endnotes[^test] and citations:
+
+> This is a blockquote. It ain't much, but what did you expect? It's just a blockquote. Nothing more, nothing less.
+>
+
+If you wrap quotation marks around quotes, they get real fancy:
 
 > "We make our world significant[^moretest] by the courage of our questions and by the depth of our answers."
 >
 >      -- Carl Sagan [#Sagan80]
+
+---
 
 ### Admonitions:
 
@@ -210,6 +241,14 @@ $$
 
 !!! error: Red admonition
     Another one, but it's red. Must be danger ahead!
+
+!!! warning: This is ~~America~~ a warning
+    Yellowish. Not quite as much danger, I guess.
+
+!!! tip: Green
+    Now the 🚦 is complete.
+
+
 
 ---
 
@@ -274,8 +313,9 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 <link rel="stylesheet" href="markdeep-slides-reset.css">
 <link rel="stylesheet" href="markdeep-slides.css">
 <!--<link rel="stylesheet" href="markdeep-slides-theme-simple.css">-->
-<!--<link rel="stylesheet" href="markdeep-slides-theme-vollkorn.css">-->
-<link rel="stylesheet" href="markdeep-slides-theme-deepsea.css">
+<!--<link rel="stylesheet" href="markdeep-slides-theme-serif.css">-->
+<!--<link rel="stylesheet" href="markdeep-slides-theme-deepsea.css">-->
+<link rel="stylesheet" href="markdeep-slides-theme-serif.css">
 <script>
     markdeepSlidesOptions = {
         aspectRatio: 16 / 9,

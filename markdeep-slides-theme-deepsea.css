@@ -1,20 +1,72 @@
 /*TODO mariana, but bluer – invert code to make highlighting work out more or less well? */
 
-@import url('https://fonts.googleapis.com/css?family=Libre+Franklin:700,700i,900|Source+Serif+Pro:400,400i,700,700i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Libre+Franklin:700,700i,900|Source+Serif+Pro:400,400i,700,700i|Fira+Mono&display=swap');
 
 :root {
-    --slide-number-color: #6881a5;
-    --slide-number-font: "Libre Franklin";
+    --text-color: white;
+    --background-color: #2f3c4f;
+    --accent-color: #6881a5;
+    --link-color: #9bacc4;
+    --text-font: "Source Serif Pro";
+    --accent-font: "Libre Franklin";
+    --code-font: "Fira Mono";
+
+    --slide-number-color: var(--accent-color);
+    --slide-number-font: var(--accent-font);
 }
 
 body {
-    background-color: #2f3c4f;
-    color: white;
-    font-family: "Source Serif Pro";
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
+.slide-progress {
+    display: block;
+    background-color: var(--accent-color);
+    margin-top: calc(var(--slide-height) - 0.2rem);
+    height: 0.2rem;
+}
+.presentation.taller .slide-progress {
+    margin-top: calc(var(--slide-height) - 0.2rem + var(--slide-letterbox-height) / 2);
+}
+
+
+/* fonts */
+body {
+    font-family: var(--text-font);
+}
+.md div.title, .md h1, .md h2, .md h3, .md .admonition-title, .fancyquote span.fancyquote, .md blockquote.fancyquote::before, .md span.fancyquote::after {
+    font-family: var(--accent-font);
+}
+.md a, .md a:link, .md a:visited, .md code, .md pre, .md svg.diagram, .md kbd {
+    font-family: var(--code-font);
+}
+
+
+/* basics */
+.md a,
+.md a:link,
+.md a:visited {
+    color: var(--link-color);
+}
+.md kbd {
+    background-color: var(--accent-color);
+    border: 0.05em solid rgba(255,255,255,0.4);
+    padding: 0 0.2em 0.1em;
+    border-radius: 0.2em;
+    box-shadow: 0 0.05em 0.1em rgba(0, 0, 0, .4),
+                0 0.05em 0     rgba(255, 255, 255, .2) inset;
+}
+hr {
+    border: 0;
+    height: 0.3rem;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 0.15rem;
+}
+
+
+/* title */
 .md div.title {
-    font-family: "Libre Franklin";
     font-weight: 900;
     text-transform: uppercase;
     font-size: 3rem;
@@ -32,93 +84,165 @@ body {
     text-align: right;
 }
 
+
+/* headings */
 .md h1, .md h2, .md h3 {
-    font-family: "Libre Franklin";
     font-weight: 700;
     border: 0 !important;
-    color: white;
     padding: 0;
     margin: 1rem 0;
 }
 
 .md h1 {
+    font-weight: 900;
     font-size: 4rem;
     text-transform: uppercase;
     line-height: 1em;
-    transform: skew(1deg) rotate(1deg);
     width: var(--slide-width);
     height: calc(var(--slide-height) - 1rem);
     display: table-cell;
     vertical-align: middle;
-    font-weight: normal;
 }
 
 .md h2 {
     font-size: 1.5rem;
+    margin-top: 1.5rem;
+    text-transform: uppercase;
 }
 
-hr {
-    border: 0;
-    border-bottom: 0.3rem solid rgba(0,0,0,0.3);
+
+/* lists */
+TODO {
+
 }
 
-code, .linenumbers {
-    color: black;
-    filter: invert();
-}
 
-.md .admonition {
-    border-radius: 0;
+/* quotes */
+.md blockquote {
+    background-color: rgba(0,0,0,0.2);
     padding: .25rem 0.4rem;
-    border-left-width: 0.2rem !important;
-    border-left-color: rgba(68,138,255,.4) !important;
-    background-color: rgba(68,138,255,.3) !important;
+    margin: 0;
+    border-radius: 0.15rem;
+}
+.md blockquote.fancyquote {
+    background-color: transparent;
+}
+.md span.fancyquote {
+    color: rgba(255,255,255,0.8) !important;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+.md blockquote.fancyquote::before,
+.md span.fancyquote::after {
+    font-size: 3rem;
+    vertical-align: -0.3em;
+    color: var(--text-color);
+    opacity: 0.3;
+}
+.md blockquote.fancyquote .author {
+    font-size: 0.8rem;
+}
+
+
+/* diagrams */
+.md svg.diagram {
+  stroke: var(--text-color);
+  fill: var(--text-color);
+}
+.md svg.diagram .dotteddot {
+    stroke: var(--text-color);
+}
+.md svg.diagram .shadeddot {
+    fill: var(--accent-color);
+}
+
+
+/* code */
+.md a,
+.md a:link,
+.md a:visited,
+.md kbd,
+.md code {
+    font-size: 0.93em;  /* em! */
+    letter-spacing: -0.03em;
+}
+.md code, .md pre.listing .linenumbers {
+    color: black;
+    filter: invert(100%);
+}
+.md pre.listing {
+    font-size: 0.75em;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 0.15rem;
+    padding: 0.25rem 0.5rem;
+    line-height: 1rem;
+}
+.md pre.listing .linenumbers {
+    padding-left: 0;
+}
+.md pre.listing .linenumbers span.line:before {
+    color: var(--accent-color);
+    filter: invert(100%); /* to counteract the other invert filter */
+}
+
+/* admonitions */
+.md .admonition {
+    border-radius: 0.15rem;
+    padding: .25rem 0.4rem;
+    border-left-width: 0 !important;
+    background-color: rgba(255,255,255,.2) !important;
 }
 .md .admonition::before {
     display: none !important;
 }
 .md .admonition.tip {
-    border-left-color: rgba(40,230,40,.4) !important;
-    background-color: rgba(40,230,40,.3) !important;
+    background-color: rgba(40,230,40,.25) !important;
+}
+.md .admonition.tip .admonition-title {
+    background-color: rgba(40,230,40,.15) !important;
 }
 .md .admonition.warn,
 .md .admonition.warning {
-    border-left-color: rgba(255,145,0,.4) !important;
-    background-color: rgba(255,145,0,.3) !important;
+    background-color: rgba(255,145,0,.25) !important;
+}
+.md .admonition.warn .admonition-title,
+.md .admonition.warning .admonition-title {
+    background-color: rgba(255,145,0,.15) !important;
 }
 .md .admonition.error {
-    border-left-color: rgba(255,40,40,.4) !important;
-    background-color: rgba(255,40,40,.3) !important;
+    background-color: rgba(255,40,40,.25) !important;
+}
+.md .admonition.error .admonition-title {
+    background-color: rgba(255,40,40,.15) !important;
 }
 .md .admonition-title {
-    font-family: "Libre Franklin";
-    margin: 0 !important;
-    padding: 0 !important;
-    margin-bottom: -1rem !important;
-    border-width: 0 !important;
+    font-family: var(--accent-font);
+    border-radius: 0.15rem 0.15rem 0 0;
+    margin: -.25rem -.4rem -0.75rem -.4rem;
+    padding: .1rem 0.4rem;
+    border-width: 0;
     text-transform: uppercase;
     font-size: 0.7em;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.8);
+    background-color: red;
 }
 
-
-.fancyquote {
-    font-size: 1.2rem;
-    color: white !important;
-    opacity: 0.9;
+/* endnotes and bibliography */
+.md .endnote,
+.md .bib {
+    line-height: 1rem;
 }
-.fancyquote span.fancyquote {
-    font-family: "Libre Franklin";
+.md .endnote {
+    font-size: 0.6rem;
+    padding-left: 0.38rem;
+    text-indent: -0.38rem;
 }
-.md blockquote.fancyquote::before,
-.md span.fancyquote::after {
-    font-family: "Libre Franklin";
-    font-size: 3rem;
-    vertical-align: -0.3em;
-    color: white;
-    opacity: 0.5;
-}
-.md blockquote.fancyquote .author {
+.md .bib {
     font-size: 0.8rem;
-    margin-top: 0;
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    text-indent: -1.5rem;
+}
+.md .bib b {
+    font-weight: initial;
 }

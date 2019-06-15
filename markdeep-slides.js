@@ -117,7 +117,7 @@ function initSlides() {
     addLetterboxing();
     processLocationHash();
     fullscreenActions();
-    reletivizeDiagrams(diagramZoom);
+    relativizeDiagrams(diagramZoom);
     pauseVideos();
 };
 
@@ -169,8 +169,12 @@ function processLocationHash() {
 // wide (just to have a baseline value independent of window size on load;
 // this also matches width in print mode, which doesn't bring any advantages
 // but whatever)
-function reletivizeDiagrams(diagramZoom) {
+function relativizeDiagrams(diagramZoom) {
     var baseRem = 17.92;// parseFloat(getComputedStyle(document.documentElement).fontSize) * (640 / window.innerWidth);
+
+    // this factor works well
+    var zoom = 0.9 * diagramZoom;
+
     document.querySelectorAll("svg").forEach(function(diag) {
         function toRem(px) {
             return (parseFloat(px) / baseRem) + "rem";
@@ -182,8 +186,8 @@ function reletivizeDiagrams(diagramZoom) {
         diag.removeAttribute("width");
         diag.removeAttribute("height");
         diag.setAttribute("viewBox", "0 0 " + w + " " + h);
-        diag.style.width  = toRem(w * diagramZoom);
-        diag.style.height = toRem(h * diagramZoom);
+        diag.style.width  = toRem(w * zoom);
+        diag.style.height = toRem(h * zoom);
 
         if (diag.style.marginTop) {
             diag.style.marginTop = toRem(diag.style.marginTop);

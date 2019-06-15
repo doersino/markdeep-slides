@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Fira+Mono&display=swap');  /* i really prefer iosevka, but that's not on google fonts yet: https://github.com/google/fonts/issues/559 */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Fira+Mono&display=swap');  /* i really prefer iosevka, but that's not on google fonts yet: https://github.com/google/fonts/issues/559 */
 
 :root {
     --text-color: black;
@@ -8,10 +7,6 @@
     --link-color: #38c;
     --text-font: "Source Sans Pro";
     --code-font: "Fira Mono";
-}
-
-* {
-    box-sizing: border-box;
 }
 
 body {
@@ -24,11 +19,12 @@ body {
     height: 0.2rem;
 }
 
+
 /* fonts */
 body, .md div.title, .md h1, .md h2, .md h3 {
     font-family: var(--text-font);
 }
-.md code, .md pre, .md svg.diagram, .md kbd {
+.md a, .md a:link, .md a:visited, .md code, .md pre, .md svg.diagram, .md kbd {
     font-family: var(--code-font);
 }
 
@@ -42,13 +38,8 @@ body, .md div.title, .md h1, .md h2, .md h3 {
 .md a:link,
 .md a:visited {
     color: var(--link-color);
-    font-family: var(--code-font);
-    font-size: 0.93em;
-    letter-spacing: -0.05em;
 }
 .md kbd {
-    font-size: 0.93em;
-    letter-spacing: -0.02em;
     background-color: #ddd;
     border: 0.05em solid #aaa;
     padding: 0 0.2em 0.1em;
@@ -56,11 +47,9 @@ body, .md div.title, .md h1, .md h2, .md h3 {
     box-shadow: 0 0.05em 0.1em rgba(0, 0, 0, .2),
                 0 0.05em 0     rgba(255, 255, 255, .7) inset;
 }
-.md center {
-    margin: 1rem 0;
-}
-.accent {
-    color: var(--accent-color);
+.md hr {
+    border: 0;
+    border-bottom: 0.1rem solid var(--accent-color2);
 }
 
 
@@ -98,7 +87,7 @@ body, .md div.title, .md h1, .md h2, .md h3 {
 }
 .md h2 {
     background: var(--accent-color);
-    color: #FFF;
+    color: white;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
     font-size: 1.25rem;
@@ -111,40 +100,6 @@ body, .md div.title, .md h1, .md h2, .md h3 {
 }
 
 
-/* horizontal lines */
-.md hr.ignore {
-    border: 0;
-    border-bottom: 0.1rem solid var(--accent-color2);
-}
-
-
-/* lists */
-.md ol {
-    padding-left: 1.3rem;
-}
-.md ul {
-    list-style: none;
-    padding: 0;
-}
-.md ul > li.plus:before {
-    content: "+";
-    padding-right: 0.7em;
-}
-.md ul > li.minus:before {
-    content: "–";
-    padding-right: 0.7em;
-}
-.md ul > li.asterisk:before {
-    content: "●";
-    font-size: 0.9em;
-    padding-right: 0.7em;
-}
-.md ul > li {
-    padding-left: 1.2em;
-    text-indent: -1.2em;
-}
-
-
 /* quotes */
 .md blockquote {
     background-color: #eee;
@@ -153,39 +108,34 @@ body, .md div.title, .md h1, .md h2, .md h3 {
 }
 .md blockquote.fancyquote {
     background: transparent;
-    padding: 0;
-    margin: 1rem 0;
 }
 .md blockquote.fancyquote .author {
     margin-top: 0.2rem;
 }
 
 
-/* diagrams */
-.md svg.diagram {
-    /*stroke-width: 0.05rem;*/  /* should be defined in px – diagrams are scaled differently */
-}
-
-
 /* code */
+.md a,
+.md a:link,
+.md a:visited,
+.md kbd,
 .md code {
-    font-size: 0.93em;
-    letter-spacing: -0.02em;
+    font-size: 0.93em;  /* em! */
+    letter-spacing: -0.03em;
 }
 .md pre.listing {
-    font-size: 0.75rem;
+    font-size: 0.75em;
     border-top: 0.1rem solid #ccc;
     border-bottom: 0.1rem solid #ccc;
     background-color: #eee;
     padding: 0.25rem 0.5rem;
     line-height: 1rem;
 }
+.md pre.listing .linenumbers {
+    padding-left: 0;
+}
 .md pre.listing .linenumbers span.line:before {
     color: var(--accent-color);
-    width: 1rem;
-    margin-left: -0.5rem;
-    margin-right: 1rem;
-    padding: 0;
 }
 
 
@@ -222,20 +172,13 @@ body, .md div.title, .md h1, .md h2, .md h3 {
     background-color: rgba(255,40,40,.2) !important;
 }
 .md .admonition-title {
-    margin: 0 !important;
-    padding: 0 !important;
-    margin-bottom: -1rem !important;
-    border-width: 0 !important;
+    margin: 0;
+    padding: 0;
+    margin-bottom: -1rem;
+    border-width: 0;
     text-transform: uppercase;
     font-size: 0.8em;
     color: rgba(0,0,0,0.6);
-}
-
-
-/* calendars & schedules */
-.md table.calendar {
-    font-size: 0.6rem;
-    font-family: inherit;
 }
 
 
@@ -259,31 +202,3 @@ body, .md div.title, .md h1, .md h2, .md h3 {
     font-family: var(--code-font);
     font-weight: initial;
 }
-
-
-/* media */
-
-/* TODO should this go into the reset stylesheet? */
-.md img {
-    max-width: 100%;
-    max-height: calc(var(--slide-height) - 2rem);
-}
-.md video {
-    width: 21.33rem;
-}
-.md iframe[src^="https://www.youtube"],
-.md iframe[src^="https://player.vimeo"] {
-    width: 21.33rem;
-    height: 12rem;
-}
-/*center img[full],
-center video[full],
-center iframe[full] {
-    margin-top: -1rem;  /* counteract center top margin
-    margin-left: -2rem;  /* counteract side margin
-}
-center img[full] {
-    max-height: var(--slide-height);
-    max-width: var(--slide-width);
-}
-*/

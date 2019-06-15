@@ -1,14 +1,14 @@
 :root {
-    --font-size: 28;       /* unit-less – just tweak it to your liking */
-    --side-margin: 2rem;   /* left and right margin of each slide */
-    --aspect-ratio: 16 / 9;
+    --font-size: 28;         /* unit-less – just tweak it to your liking */
+    --side-margin: 2rem;     /* left and right margin of each slide */
+    --aspect-ratio: 16 / 9;  /* can be overridden via js */
 
     --slide-number-color: #bbb;
     --slide-number-font: inherit;
 }
 
 @page {
-    size: 640px 360px;
+    size: 640px 360px;  /* can be overridden via js */
 }
 
 html.draft,

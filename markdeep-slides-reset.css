@@ -270,23 +270,13 @@ div.afterTitles {
     box-sizing: border-box;
 }
 
-
-
-
-
-
-
-
-
-/* definitely in: */
-
 body {
     text-align: left;  /* not: justify */
     max-width: 100%;
 }
 
-.md table {
-    font-size: inherit;  /* not sure why it doesn't automatically inherit the body's font size */
+.md h1, .md h2, .md h3 {
+    color: inherit;
 }
 
 /* hide section numbering and the associated margins */
@@ -297,6 +287,11 @@ body {
     margin: 0 !important;
 }
 
+.md center,
+.md blockquote.fancyquote {
+    margin: 1rem 0;
+}
+
 /* enable margin collapse: imagine a paragraph and a headline (both margin: 1rem
 0), with the headline's a.target between them. jumping to the target should
 still work just fine */
@@ -304,19 +299,116 @@ still work just fine */
     position: absolute;
 }
 
-/* remove resizability indicator from listings */
+
+/* tables */
+.md table {
+    font-size: inherit;  /* not sure why it doesn't automatically inherit the body's font size */
+}
+.md table.calendar {
+    font-size: 0.6rem;
+    font-family: inherit;
+}
+
+
+/* make diagram lines a bit thinner (should be defined in px – diagrams are scaled differently than the rest) */
+.md svg.diagram {
+    stroke-width: 1.5px;
+}
+
+
+/* quotes */
+.md blockquote.fancyquote {
+    padding: 0;
+}
+.md blockquote.fancyquote .author {
+    margin-top: 0.25rem;
+}
+
+
+/* code */
+.md pre {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
 .md pre.listing {
-    resize: none;
+    resize: none;  /* remove resizability indicator from listings */
 }
-
-.md div.imagecaption,
-.md div.tablecaption,
-.md div.listingcaption {
-    margin: 0.5rem 0 0;
+.md pre.listing .linenumbers {
+    padding-left: 0.3rem;
 }
-
+.md pre.listing .linenumbers span.line:before {
+    width: 1rem;
+    margin-left: -0.5rem;
+    margin-right: 1rem;
+    padding: 0;
+}
 @media print {
     .md .listing code {
         white-space: pre;
     }
 }
+
+
+/* lists (with pluses, minuses or dots as item signifiers) */
+.md ol {
+    padding-left: 1.3rem;  /* this is otherwise defined in terms of px by the browser.*/
+}
+.md ul {
+    list-style: none;
+    padding: 0;
+}
+.md ul > li.plus:before {
+    content: "+";
+    padding-right: 0.7em;
+}
+.md ul > li.minus:before {
+    content: "–";
+    padding-right: 0.7em;
+}
+.md ul > li.asterisk:before {
+    content: "●";
+    font-size: 0.9em;
+    padding-right: 0.7em;
+}
+.md ul > li {
+    padding-left: 1.2em;
+    text-indent: -1.2em;
+}
+
+
+/* media */
+.md div.imagecaption,
+.md div.tablecaption,
+.md div.listingcaption {
+    margin: 0.5rem 0 0;
+}
+.md img {
+    max-width: 100%;
+    max-height: calc(var(--slide-height) - 2rem);
+}
+.md video {
+    width: 21.33rem;
+}
+.md iframe[src^="https://www.youtube"],
+.md iframe[src^="https://player.vimeo"] {
+    width: 21.33rem;
+    height: 12rem;
+}
+
+
+/*
+
+TODO images and videos that fill the slide completely, perhaps with black background if aspect ratio doesn't match?
+
+center img[full],
+center video[full],
+center iframe[full] {
+    margin-top: -1rem;  /* counteract center top margin
+    margin-left: -2rem;  /* counteract side margin
+}
+center img[full] {
+    max-height: var(--slide-height);
+    max-width: var(--slide-width);
+}
+
+*/
