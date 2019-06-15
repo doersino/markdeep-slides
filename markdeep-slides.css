@@ -4,6 +4,7 @@
     --aspect-ratio: 16 / 9;
 
     --slide-number-color: #bbb;
+    --slide-number-font: inherit;
 }
 
 @page {
@@ -76,6 +77,7 @@ body {
 }
 
 .slide-number {
+    font-family: var(--slide-number-font);
     font-variant-numeric: tabular-nums lining-nums;  /* doin' a better job than whoever build the macos menu bar clock */
     position: absolute;
     font-weight: normal;

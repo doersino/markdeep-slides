@@ -18,9 +18,6 @@ function initSlides() {
         if (markdeepSlidesOptions.fontSize) {
             document.documentElement.style.setProperty('--font-size', markdeepSlidesOptions.fontSize);
         }
-        if (markdeepSlidesOptions.slideNumberColor) {
-            document.documentElement.style.setProperty('--slide-number-color', markdeepSlidesOptions.slideNumberColor);
-        }
         if (markdeepSlidesOptions.diagramZoom) {
             diagramZoom = markdeepSlidesOptions.diagramZoom;
         }

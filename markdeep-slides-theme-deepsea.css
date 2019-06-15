@@ -2,8 +2,13 @@
 
 @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:700,700i,900|Source+Serif+Pro:400,400i,700,700i&display=swap');
 
+:root {
+    --slide-number-color: #6881a5;
+    --slide-number-font: "Libre Franklin";
+}
+
 body {
-    background-color: #2f3c4a;
+    background-color: #2f3c4f;
     color: white;
     font-family: "Source Serif Pro";
 }
@@ -39,17 +44,8 @@ body {
 .md h1 {
     font-size: 4rem;
     text-transform: uppercase;
-    text-shadow: 1px 1px 0px #eee,
-                 2px 2px 0px #ddd,
-                 3px 4px 0px #ccc,
-                 4px 5px 0px #bbb,
-                 5px 5px 0px #aaa,
-                 6px 7px 0px #999,
-                 7px 8px 0px #888,
-                 8px 10px 0px #777,
-                 9px 10px 0px #666;
     line-height: 1em;
-    /*transform: skew(10deg) rotate(10deg);*/
+    transform: skew(1deg) rotate(1deg);
     width: var(--slide-width);
     height: calc(var(--slide-height) - 1rem);
     display: table-cell;
@@ -66,7 +62,63 @@ hr {
     border-bottom: 0.3rem solid rgba(0,0,0,0.3);
 }
 
-code {
+code, .linenumbers {
     color: black;
     filter: invert();
+}
+
+.md .admonition {
+    border-radius: 0;
+    padding: .25rem 0.4rem;
+    border-left-width: 0.2rem !important;
+    border-left-color: rgba(68,138,255,.4) !important;
+    background-color: rgba(68,138,255,.3) !important;
+}
+.md .admonition::before {
+    display: none !important;
+}
+.md .admonition.tip {
+    border-left-color: rgba(40,230,40,.4) !important;
+    background-color: rgba(40,230,40,.3) !important;
+}
+.md .admonition.warn,
+.md .admonition.warning {
+    border-left-color: rgba(255,145,0,.4) !important;
+    background-color: rgba(255,145,0,.3) !important;
+}
+.md .admonition.error {
+    border-left-color: rgba(255,40,40,.4) !important;
+    background-color: rgba(255,40,40,.3) !important;
+}
+.md .admonition-title {
+    font-family: "Libre Franklin";
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-bottom: -1rem !important;
+    border-width: 0 !important;
+    text-transform: uppercase;
+    font-size: 0.7em;
+    color: rgba(255,255,255,0.6);
+}
+
+
+.fancyquote {
+    font-size: 1.2rem;
+    color: white !important;
+    opacity: 0.9;
+}
+.fancyquote span.fancyquote {
+    font-family: "Libre Franklin";
+}
+.md blockquote.fancyquote::before,
+.md span.fancyquote::after {
+    font-family: "Libre Franklin";
+    font-size: 3rem;
+    vertical-align: -0.3em;
+    color: white;
+    opacity: 0.5;
+}
+.md blockquote.fancyquote .author {
+    font-size: 0.8rem;
+    margin-top: 0;
 }
