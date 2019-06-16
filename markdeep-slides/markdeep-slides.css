@@ -1,3 +1,5 @@
+@import url('reset.css');
+
 :root {
     --font-size: 28;         /* unit-less – just tweak it to your liking */
     --side-margin: 2rem;     /* left and right margin of each slide */

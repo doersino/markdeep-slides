@@ -3,10 +3,11 @@ var slideCount = 0;
 
 var presenterNotesWindow;
 
-// break rendered markdeep into slides on <hr> tags (unless the class
-// "ignore" is set). collect presenter notes and insert slide numbers too. kick
-// off some other init tasks as well
+// process options, break rendered markdeep into slides on <hr> tags (unless the
+// class "ignore" is set), kick off some other init tasks as well
 function initSlides() {
+
+    // process options
     var diagramZoom = 1.0;
     if (markdeepSlidesOptions) {
         if (markdeepSlidesOptions.aspectRatio) {
@@ -14,6 +15,12 @@ function initSlides() {
             var sheet = document.createElement('style');
             sheet.innerHTML = "@page { size: 640px " + (1 + 640 / markdeepSlidesOptions.aspectRatio) + "px; };";
             document.body.appendChild(sheet);
+        }
+        if (markdeepSlidesOptions.theme) {
+            var link = document.createElement('link');
+            link.setAttribute("rel", "stylesheet");
+            link.setAttribute("href", "markdeep-slides/themes/" + markdeepSlidesOptions.theme + ".css");
+            document.body.appendChild(link);
         }
         if (markdeepSlidesOptions.fontSize) {
             document.documentElement.style.setProperty('--font-size', markdeepSlidesOptions.fontSize);
@@ -23,6 +30,7 @@ function initSlides() {
         }
     }
 
+    // break document into slides
     var md = document.querySelector("body > .md");
     var es = Array.from(md.childNodes);
 
