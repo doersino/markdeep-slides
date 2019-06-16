@@ -1,0 +1,26 @@
+@font-face{
+    font-family: 'Libre Franklin';
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    src: url('OTF/LibreFranklin-Bold.otf') format('opentype'),
+         url('TTF/LibreFranklin-Bold.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Libre Franklin';
+    font-weight: 700;
+    font-style: italic;
+    font-stretch: normal;
+    src: url('OTF/LibreFranklin-BoldItalic.otf') format('opentype'),
+         url('TTF/LibreFranklin-BoldItalic.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Libre Franklin';
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: normal;
+    src: url('OTF/LibreFranklin-Black.otf') format('opentype'),
+         url('TTF/LibreFranklin-Black.ttf') format('truetype');
+}

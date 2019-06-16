@@ -1,0 +1,43 @@
+@font-face{
+    font-family: 'Source Sans Pro';
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    src: url('WOFF2/TTF/SourceSansPro-Regular.ttf.woff2') format('woff2'),
+         url('WOFF/OTF/SourceSansPro-Regular.otf.woff') format('woff'),
+         url('OTF/SourceSansPro-Regular.otf') format('opentype'),
+         url('TTF/SourceSansPro-Regular.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Source Sans Pro';
+    font-weight: 400;
+    font-style: italic;
+    font-stretch: normal;
+    src: url('WOFF2/TTF/SourceSansPro-It.ttf.woff2') format('woff2'),
+         url('WOFF/OTF/SourceSansPro-It.otf.woff') format('woff'),
+         url('OTF/SourceSansPro-It.otf') format('opentype'),
+         url('TTF/SourceSansPro-It.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Source Sans Pro';
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    src: url('WOFF2/TTF/SourceSansPro-Bold.ttf.woff2') format('woff2'),
+         url('WOFF/OTF/SourceSansPro-Bold.otf.woff') format('woff'),
+         url('OTF/SourceSansPro-Bold.otf') format('opentype'),
+         url('TTF/SourceSansPro-Bold.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Source Sans Pro';
+    font-weight: 700;
+    font-style: italic;
+    font-stretch: normal;
+    src: url('WOFF2/TTF/SourceSansPro-BoldIt.ttf.woff2') format('woff2'),
+         url('WOFF/OTF/SourceSansPro-BoldIt.otf.woff') format('woff'),
+         url('OTF/SourceSansPro-BoldIt.otf') format('opentype'),
+         url('TTF/SourceSansPro-BoldIt.ttf') format('truetype');
+}

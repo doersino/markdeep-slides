@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Vollkorn+SC:600|Vollkorn:400,400i,700,700i|Fira+Mono&display=swap');
+@import url('../lib/webfonts/vollkorn/4.105/webfont.css');
+@import url('../lib/webfonts/ibm-plex-mono/2.0.0/webfont.css');
 
 :root {
     --text-color: black;
     --link-color: #38c;
     --text-font: "Vollkorn";
-    --accent-font: "Vollkorn SC";
-    --code-font: "Fira Mono";
+    --code-font: "IBM Plex Mono";
     --hairline-width: 0.05rem;
 
     --slide-number-color: var(--text-color);
@@ -27,7 +27,8 @@ body, .md h1, .md h2 {
     font-family: var(--text-font);
 }
 .md div.title, .md h3, .md blockquote.fancyquote .author, .admonition-title, .md .bib b {
-    font-family: var(--accent-font);
+    font-family: var(--text-font);
+    font-variant: small-caps;
 }
 a[href^="#citation-"] {
     font-family: var(--accent-font) !important;

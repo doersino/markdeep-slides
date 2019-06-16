@@ -1,0 +1,39 @@
+@font-face{
+    font-family: 'Vollkorn';
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    src: url('WOFF2/Vollkorn-Regular.woff2') format('woff2'),
+         url('WOFF/Vollkorn-Regular.woff') format('woff'),
+         url('TTF/Vollkorn-Regular.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Vollkorn';
+    font-weight: 400;
+    font-style: italic;
+    font-stretch: normal;
+    src: url('WOFF2/Vollkorn-Italic.woff2') format('woff2'),
+         url('WOFF/Vollkorn-Italic.woff') format('woff'),
+         url('TTF/Vollkorn-Italic.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Vollkorn';
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    src: url('WOFF2/Vollkorn-Bold.woff2') format('woff2'),
+         url('WOFF/Vollkorn-Bold.woff') format('woff'),
+         url('TTF/Vollkorn-Bold.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Vollkorn';
+    font-weight: 700;
+    font-style: italic;
+    font-stretch: normal;
+    src: url('WOFF2/Vollkorn-BoldItalic.woff2') format('woff2'),
+         url('WOFF/Vollkorn-BoldItalic.woff') format('woff'),
+         url('TTF/Vollkorn-BoldItalic.ttf') format('truetype');
+}

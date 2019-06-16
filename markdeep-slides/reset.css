@@ -347,6 +347,9 @@ still work just fine */
         white-space: pre;
     }
 }
+.hljs-comment {
+    font-style: italic;
+}
 
 
 /* lists (with pluses, minuses or dots as item signifiers) */
@@ -412,3 +415,4 @@ center img[full] {
 }
 
 */
+

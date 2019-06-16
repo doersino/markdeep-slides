@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Libre+Franklin:700,700i,900|Source+Serif+Pro:400,400i,700,700i|Fira+Mono&display=swap');
+@import url('../lib/webfonts/libre-franklin/1.015/webfont.css');
+@import url('../lib/webfonts/source-serif-pro/3.000R/webfont.css');
+@import url('../lib/webfonts/iosevka/2.2.1/webfont.css');
 
 :root {
     --text-color: white;
@@ -7,7 +9,7 @@
     --link-color: #9bacc4;
     --text-font: "Source Serif Pro";
     --accent-font: "Libre Franklin";
-    --code-font: "Fira Mono";
+    --code-font: "Iosevka";
 
     --slide-number-color: var(--accent-color);
     --slide-number-font: var(--accent-font);
@@ -156,7 +158,6 @@ hr {
 .md kbd,
 .md code {
     font-size: 0.93em;  /* em! */
-    letter-spacing: -0.03em;
 }
 .md code, .md pre.listing .linenumbers {
     color: black;

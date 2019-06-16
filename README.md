@@ -92,4 +92,4 @@ However, the subdirectory `markdeep-slides/lib/` contains **third-party software
 * Morgan McGuire's **Markdeep** is *also* licensed under the *BSD 2-Clause "Simplified" License*, see [here](https://casual-effects.com/markdeep/#license).
 * Markdeep includes Ivan Sagalaev's **highlight.js** with its *BSD 3-Clause License*, see [here](https://github.com/highlightjs/highlight.js/blob/master/LICENSE).
 * **MathJax** is licensed under the *Apache License 2.0*, see [here](https://github.com/mathjax/MathJax/blob/master/LICENSE).
-* All included **webfonts** (Source Sans Pro, Fira Mono, Vollkorn, Vollkorn SC, Libre Franklin, Source Serif Pro) are licensed under the *SIL Open Font License*, see [here](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL_web).
+* All included **webfonts** (IBM Plex Mono, Iosevka, Libre Franklin, Source Sans Pro, Source Serif Pro, Vollkorn) are licensed under the *SIL Open Font License*, see [here](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL_web).
