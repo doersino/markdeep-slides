@@ -266,7 +266,13 @@ function playAutoplayingVideos(slideNum) {
 function showSlide(slideNum) {
     if (document.documentElement.classList.contains("draft")) {
         Array.from(document.getElementsByClassName("slide")).map(e => e.style.display = "inline-block");
+
+        // fix for chrome sometimes missing the timing of scroll events
+        enableScroll = false;
         document.getElementById("slide" + slideNum).scrollIntoView();
+        setTimeout(function () {
+            enableScroll = true;
+        }, 10);
     } else if (document.documentElement.classList.contains("presentation")) {
         Array.from(document.getElementsByClassName("slide")).map(e => e.style.display = "none");
         document.getElementById("slide" + slideNum).style.display = "inline-block";
@@ -373,7 +379,6 @@ document.addEventListener("webkitfullscreenchange", fullscreenActions);
 document.addEventListener("msfullscreenchange", fullscreenActions);
 
 // turn the screen black or back again
-// TODO only in presentation (or: fullscreen) mode?
 function toggleBlack() {
     var black = document.getElementById("black");
     if (black.style.display === "none") {
