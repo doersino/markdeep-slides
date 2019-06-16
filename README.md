@@ -1,16 +1,20 @@
 # markdeep-slides
 
-TODO hero image thingy?
-
 *Build presentation slides with Markdeep and present them right in your browser.*
 
-* Two modes: **Draft** (with inline presenter notes) and **presentation** (full-screen, with *presenter notes in a separate window*). You can also **generate a PDF** of your slides!
+<img align="right" width="400" src="screenshot.jpg">
+
+* Two modes:
+    * **Draft** – with inline presenter notes, useful for editing.
+    * **Presentation** – full-screen, with *presenter notes in a separate window*.
+    * You can also **generate a PDF version** of your slides!
 * **Keyboard shortcuts** for all relevant functions.
 * Supports **everything Markdeep has to offer** – diagrams, math, inline videos, citations, admonitions, and all the standard Markdown stuff.
 * If you don't like any of the predefined themes: **Style your slides with CSS!** LaTeX Beamer is great, but things can get tricky. And *let's not talk about PowerPoint* and its various knockoffs.
 * The full power of CSS animations and JavaScript is at your fingertips – use it wisely.
 * 3 built-in themes – but you can also make your own with a couple dozen lines of CSS.
 * Compatible with those little [presenter gadgets](https://www.amazon.com/Logitech-Wireless-Presenter-Presentation-Pointer/dp/B00B6MODOA/).
+
 
 #### **Demo:** Try it out [right here on GitHub Pages](https://doersino.github.io/markdeep-slides/demo.md.html)!
 
