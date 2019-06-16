@@ -3,12 +3,12 @@
 **Building presentation slides with markdeep**
     Acrobat Reader? I hardly know her!
 
-<small><em>June 8, 2019</em></small><br>
+<small><em>June 16, 2019</em></small><br>
 Noah Doersing
 
 ---
 
-# Quick start
+# Getting started
 
 ---
 
@@ -16,19 +16,19 @@ Noah Doersing
 
 To start building your own slides with the help of Markdeep:
 
-1. Dowload a release at TODO (recommended) or clone this repository.
+1. Dowload a release from https://github.com/doersino/markdeep-slides/releases *(recommended)* or clone this repository.
 
     ```php
     $ git clone https://github.com/doersino/markdeep-slides
     ```
 
-2. Replace the contents of this file with your slide contents – keep the first line and the final lines intact; they're where the magic happens!
+2. Replace the contents of `demo.md.html` with whatever you want your slides to say, but keep the first line and the final lines intact; they're making the magic happen!
 
 ---
 
 ## Formatting
 
-Use **horizontal lines to begin a new slide**:
+Use **horizontal lines to separate slides**:
 
 ```
 slide 1
@@ -42,19 +42,7 @@ If you want to use a horizontal line *on* one of your slides, write `<hr class="
 
 <hr class="ignore">
 
-See? 💯
-
----
-
-## Media
-
-Images should always be given a width, height, or both in `rem`:
-
-```
-![](path/to/image.jpg style="height: 12rem")
-```
-
-Embedded videos can receive the same parameters.
+See?
 
 ---
 
@@ -72,14 +60,14 @@ These little presenter clicker thingies should work no problem.
 
 ---
 
->>> Presenter notes
+>>> Presenter notes...
 >>>
->>> * look like this...
->>> * or this.
+>>> * ...can contain lists!
+>>> * How neat.
 >>>
->>> You can use *arbitrary* Markdeep stuff in here (as long as it's allowed in blockquotes)!
+>>> You can use *arbitrary* Markdeep constructs in here (as long as they're allowed in blockquotes)!
 >>>
->>> ![](http://placekitten.com/400/120 style="width: 10rem")
+>>> ![](http://placekitten.com/400/140 style="width: 10rem")
 
 
 ## Presenter notes
@@ -100,9 +88,12 @@ In draft mode, presenter notes are shown below each slide.
 
 ## Printing to PDF
 
-You can **export a PDF version** of your slides by simply **printing it to a PDF file** using your browser's built-in tools – in my experience, this **works best in Chrome** as  it respect the `@page` CSS selector properly.
+You can **export a PDF version** of your slides by simply **printing it to a PDF file** using your browser's built-in tools.
 
-In the print modal, set "Margins" to "None" and make sure to keep the "Background graphics" option enabled.
+In my experience, this **works best in Chrome** as it respect the `@page` CSS selector properly.
+
+!!!
+    In the print modal, set "Margins" to "None" and make sure to keep the "Background graphics" option enabled.
 
 ---
 
@@ -110,66 +101,47 @@ In the print modal, set "Margins" to "None" and make sure to keep the "Backgroun
 
 ---
 
-## Options
+## Customization
 
-There are TODO options:
-
-* `aspectRatio` defines the aspect ratio of your slides.
+Make sure to define your options *before* loading `markdeep-slides.js`:
 
 ```
 <script>
 markdeepSlidesOptions = {
-    aspectRatio: 16 / 9
+    aspectRatio: 16 / 9,  // aspect ratio of your slides
+    theme: 'simple',      // theme – "simple", "vollkorn" or "deepsea"
+    fontSize: 28,         // base font size
+    diagramZoom: 1.0      // markdeep diagram scaling factor
 };
 </script>
 ```
 
-Make sure to define your options *before* loading Markdeep.
+You can tweak some aspects of the themes by overriding CSS variables – take a look at their CSS files.
 
 ---
 
-## Tips
+## Including media
 
-I recommend using only local resources (images, fonts, a local copy of mathjax) unless you're absolutely sure you'll have internet connectivity where you'll be holding your presentation.
+Images should always be given a width, height, or both in `rem`:
 
-* To download fonts from Google fonts, use https://google-webfonts-helper.herokuapp.com/fonts.
-* A guide on running MathJax locally can be found at http://docs.mathjax.org/en/latest/installation.html. Note that you'll have to add `detectMath: false` to your Markdeep config then. This has the added benefit of being able to configure MathJax to your liking.
+```
+![](path/to/image.jpg style="height: 12rem")
+```
+
+Embedded videos can receive the same parameters.
+
+!!! error: Important
+    If you specify width or height in `px`, your media **won't scale properly** based on your screen size – you don't want postage-stamp-sized images if you happen to present on a 4K screen, do you?
 
 ---
 
 ## Themeing
 
-If your want to make your own theme, here are some helpful tips:
+If your want to *build your own theme*, here are some helpful tips:
 
-* Make sure that all font sizes, margins, paddings, widths and heights are defined in terms of `rem` or `em`.
-* This enables your elements to scale properly depending on screen size.
-
----
-
-# Contributing
-
-Please file an issue or send a pull request.
-
----
-
-## Terminology
-
-When going fullscreen, you switch from **draft mode** into **presentation mode**.
-
----
-
-## Known issues
-
-* When resizing the window in Safari in draft mode, the font size is not scaled accordingly. No idea why – it's defined in terms of `vw` units in CSS, so it *should* scale as viewport width changes. 🤷‍♂️
-* Switching slides in Chrome using the arrow keys in draft mode sometimes skips over slides or requires two presses to get to the next slide. Scrolling works fine, the arrow keys work fine in presentation mode, and it works fine in other browsers. 🤷‍♂️
-* When leaving fullscreen mode in Firefox using <kbd>Esc</kbd>, presentation mode sometimes persists. No idea why – leaving it through <kbd>f</kbd> fires the same event, so the same stuff *should* happen. 🤷‍♂️
-
----
-
-* After refreshing while in fullscreen in Safari, the only way to exit fullscreen mode is clicking the green button – and even after that, presentation mode persists because the `webkitfullscreenchange` event does not fire in this situation. Other browsers exit fullscreen mode upon refresh, making this a non-issue there. 🤷‍♂️
-
-TL;DR: Every browser is its own flavor of terrible.
-
+* Make sure that all `font-size`s, `margin`s, `padding`s, `width`s and `height`s are defined in terms of `rem` or `em`. This enables your elements to scale properly depending on screen size.
+* Use CSS `var`iables to keep your theme configurable (take a look at the existing themes to see what I mean).
+* Keep in mind that the presenter notes will inherit styles you define in your theme.
 
 ---
 
@@ -268,7 +240,7 @@ cgenExpr l (K.TElemR e1 e2 ty) = do
 ```
 [Listing [hask]: An out-of context piece of Haskell code.]
 
-It's possible to reference listing [hask].
+It's possible to reference listings: Consider listing [hask].
 
 ---
 
@@ -284,16 +256,19 @@ It's possible to reference listing [hask].
           1. ...too!
     * You can also use pluses:
         + See!
+        - Minuses work too.
 
 ---
 
 ### Videos (images work too):
 
-![Figure [fig:dave]: Better than any podcast.](https://www.youtube.com/watch?v=ij9KXgiyDAc)
+![Figure [fig:dave]: Better than most podcasts.](https://www.youtube.com/watch?v=ij9KXgiyDAc)
 
 ---
 
-### Notes and references (defined further up):
+### Notes and references:
+
+These have been defined a couple of slides further up.
 
 [#Sagan80]: Sagan, C. (1980). Cosmos.
 
@@ -315,14 +290,14 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 <!--<link rel="stylesheet" href="markdeep-slides-theme-simple.css">-->
 <!--<link rel="stylesheet" href="markdeep-slides-theme-serif.css">-->
 <!--<link rel="stylesheet" href="markdeep-slides-theme-deepsea.css">-->
-<link rel="stylesheet" href="markdeep-slides-theme-serif.css">
+<link rel="stylesheet" href="markdeep-slides-theme-deepsea.css">
 <script>
     markdeepSlidesOptions = {
         aspectRatio: 16 / 9,
         theme: 'simple',
         fontSize: 28,
         diagramZoom: 1.0
-    }
+    };
 </script>
 <script src="markdeep-slides.js"></script>
 
