@@ -483,6 +483,7 @@ function togglePresenterNotes() {
         body {
             margin: 0;
             background-image: linear-gradient(#222, #111);
+            min-height: 100%;
             color: white;
         }
         body .presenter-notes > div.meta {
