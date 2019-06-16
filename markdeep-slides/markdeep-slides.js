@@ -124,19 +124,32 @@ function initSlides() {
     }
 
     // further initialization steps
-    addLetterboxing();
     processLocationHash();
-    fullscreenActions();
+    addLetterboxing();
     relativizeDiagrams(diagramZoom);
     pauseVideos();
+
+    fullscreenActions();
 };
+
+// check if a slide is set via the location hash – if so, load it, else
+// write the first slide to it. either way, go to that slide
+function processLocationHash() {
+    var slideNum;
+    if (window.location.hash) {
+        var slide = window.location.hash.substring(1);
+        var slideNum = parseInt(slide.substring(5), 10);
+    } else {
+        var slideNum = 0;
+    }
+    showSlide(slideNum);
+}
 
 // depending on whether your viewport is wider or taller than the aspect ratio
 // of your slides, add a corresponding class to the root <html> element. based
 // on this, in presentation mode, letterboxing is added to keep your slides
 // centered on a non-matching screen. until max() (or min(), or clamp()) is
 // available in css, this bit of javascript is required. :(
-// TODO rename
 function addLetterboxing() {
     var aspectRatio = eval(getComputedStyle(document.documentElement).getPropertyValue('--aspect-ratio'));
 
@@ -158,19 +171,6 @@ function addLetterboxing() {
 }
 window.addEventListener('resize', addLetterboxing);
 
-// check if a slide is set via the location hash – if so, load it, else
-// write the first slide to it. either way, go to that slide
-function processLocationHash() {
-    var slideNum;
-    if (window.location.hash) {
-        var slide = window.location.hash.substring(1);
-        var slideNum = parseInt(slide.substring(5), 10);
-    } else {
-        var slideNum = 0;
-    }
-    showSlide(slideNum);
-}
-
 // make diagrams resize properly: markdeep diagrams have their width and
 // height attributes set to absoulute pixel values, which don't scale. so we
 // need to move this width and height information into a new viewbox
@@ -180,9 +180,10 @@ function processLocationHash() {
 // this also matches width in print mode, which doesn't bring any advantages
 // but whatever)
 function relativizeDiagrams(diagramZoom) {
-    var baseRem = 17.92;// parseFloat(getComputedStyle(document.documentElement).fontSize) * (640 / window.innerWidth);
+    var baseRem = 17.92;
+    //var baseRem = parseFloat(getComputedStyle(document.documentElement).fontSize) * (640 / window.innerWidth);  // doesn't work in some browsers because the font size hasn't yet been set correctly when this function is executed
 
-    // this factor works well
+    // this factor works well as a baseline
     var zoom = 0.9 * diagramZoom;
 
     document.querySelectorAll("svg").forEach(function(diag) {
@@ -210,6 +211,29 @@ function relativizeDiagrams(diagramZoom) {
         }
         if (diag.style.marginLeft) {
             diag.style.marginLeft = toRem(diag.style.marginLeft);
+        }
+    });
+}
+
+// pause all videos and store their "autoplay" attribute for later
+function pauseVideos() {
+    Array.from(document.getElementsByTagName("video")).forEach(function (video) {
+        if (!video.hasAttribute("data-autoplay")) {
+            video.setAttribute("data-autoplay", video.autoplay);
+        }
+        video.preload = "auto";  // preload video, if possible
+        video.autoplay = false;  // set autoplay to false
+        video.load();            // reload it to reset position to zero
+    });
+}
+
+// play videos of the current slides which have been designated as "autoplay"
+function playAutoplayingVideos(slideNum) {
+    var slide = document.getElementById("slide" + slideNum);
+    Array.from(slide.getElementsByTagName("video")).forEach(function (video) {
+        video.autoplay = video.getAttribute("data-autoplay");
+        if (video.autoplay) {
+            video.play();
         }
     });
 }
@@ -248,29 +272,6 @@ function updateOnScroll() {
     }
 }
 window.addEventListener('scroll', updateOnScroll);
-
-// pause all videos and store their "autoplay" attribute for later
-function pauseVideos() {
-    Array.from(document.getElementsByTagName("video")).forEach(function (video) {
-        if (!video.hasAttribute("data-autoplay")) {
-            video.setAttribute("data-autoplay", video.autoplay);
-        }
-        video.preload = "auto";  // preload video, if possible
-        video.autoplay = false;  // set autoplay to false
-        video.load();            // reload it to reset position to zero
-    });
-}
-
-// play videos of the current slides which have been designated as "autoplay"
-function playAutoplayingVideos(slideNum) {
-    var slide = document.getElementById("slide" + slideNum);
-    Array.from(slide.getElementsByTagName("video")).forEach(function (video) {
-        video.autoplay = video.getAttribute("data-autoplay");
-        if (video.autoplay) {
-            video.play();
-        }
-    });
-}
 
 // switch to slide n
 function showSlide(slideNum) {
