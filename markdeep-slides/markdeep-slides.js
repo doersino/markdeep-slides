@@ -258,7 +258,6 @@ function updateOnScroll() {
         var slide = slides[i];
         var bcr = slide.getBoundingClientRect();
 
-        // TODO check if *middle* of slide is closest to *middle* of viewport instead?
         if (bcr.top >= 0 && (bcr.top < minTop || minTop == -1)) {
             minTop = bcr.top;
             minSlideNum = parseInt(slide.id.substring(5), 10);
@@ -278,7 +277,7 @@ function showSlide(slideNum) {
     if (document.documentElement.classList.contains("draft")) {
         Array.from(document.getElementsByClassName("slide")).map(e => e.style.display = "inline-block");
 
-        // fix for chrome sometimes missing the timing of scroll events
+        // fix for chrome sometimes mistiming scroll events (or at least that's what I think is going on)
         enableScroll = false;
         document.getElementById("slide" + slideNum).scrollIntoView();
         setTimeout(function () {
