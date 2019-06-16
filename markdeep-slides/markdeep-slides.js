@@ -1,6 +1,7 @@
 var currentSlideNum = 0;
 var slideCount = 0;
 
+var theme;
 var presenterNotesWindow;
 
 // process options, break rendered markdeep into slides on <hr> tags (unless the
@@ -17,9 +18,10 @@ function initSlides() {
             document.body.appendChild(sheet);
         }
         if (markdeepSlidesOptions.theme) {
+            theme = markdeepSlidesOptions.theme;
             var link = document.createElement('link');
             link.setAttribute("rel", "stylesheet");
-            link.setAttribute("href", "markdeep-slides/themes/" + markdeepSlidesOptions.theme + ".css");
+            link.setAttribute("href", "markdeep-slides/themes/" + theme + ".css");
             document.body.appendChild(link);
         }
         if (markdeepSlidesOptions.fontSize) {
@@ -456,6 +458,9 @@ function togglePresenterNotes() {
         return;
     }
 
+    if (theme) {
+        presenterNotesLink = '<link rel="stylesheet" href="markdeep-slides/themes/' + theme + '.css">';
+    }
     presenterNotesWindow = window.open("", "presenternotes", "");
 
     if (presenterNotesWindow) {
@@ -466,6 +471,12 @@ function togglePresenterNotes() {
 <head>
     <title>Presenter Notes</title>
     <style>
+        body {
+            font-family: sans-serif;
+        }
+    </style>
+    ${presenterNotesLink}
+    <style>
         html {
             font-size: 4vw;
         }
@@ -473,42 +484,50 @@ function togglePresenterNotes() {
             margin: 0;
             background-color: black;
             color: white;
-            font-family: sans-serif;
         }
-        .meta {
+        body .presenter-notes > div.meta {
+            font-family: sans-serif;
             font-size: 1.5rem;
             background-color: #333;
-            padding: 0.2em 1rem 0.3em;
-            height: 1em;
+            padding: 0.2em 1rem 0.2em;
+            line-height: 1em;
         }
-        #time {
+        body .presenter-notes > div.meta #time {
             float: left;
         }
-        #slide-number {
+        body .presenter-notes > div.meta #time .seconds {
+            opacity: 0.5;
+        }
+        body .presenter-notes > div.meta #slide-number {
             float: right;
         }
-        #presenter-notes {
+        body .presenter-notes > div#presenter-notes {
             margin: 1rem;
         }
     </style>
 </head>
 <body>
-    <div class="meta">
-        <div id="time"></div>
-        <div id="slide-number">${currentSlideNum + "/" + (slideCount - 1)}</div>
+    <div class="presenter-notes">
+        <div class="meta">
+            <div id="time"></div>
+            <div id="slide-number">${currentSlideNum + "/" + (slideCount - 1)}</div>
+            &nbsp;
+        </div>
+        <div id="presenter-notes"></div>
     </div>
-    <div id="presenter-notes"></div>
     <script>
         document.body.onkeydown = function(event) {
             opener.keyPress(event);
         };
-        setInterval(function () {
+        function updateTime() {
             var time = new Date();
-            time = ("0" + time.getHours()).slice(-2)   + ":" +
-                   ("0" + time.getMinutes()).slice(-2) + ":" +
-                   ("0" + time.getSeconds()).slice(-2);
-            document.getElementById("time").innerHTML = time;
-        }, 1000);
+            time = ('0' + time.getHours()).slice(-2)   + ':' +
+                   ('0' + time.getMinutes()).slice(-2) + '<span class="seconds">:' +
+                   ('0' + time.getSeconds()).slice(-2) + '</span>';
+            document.getElementById('time').innerHTML = time;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
     </script>
 </body>
 </html>`);
