@@ -70,7 +70,7 @@ Got an idea on how to improve something? Ran into unexpected behavior? Found a b
 * If you're making your own themes, make sure that all `font-size`s, `margin`s, `padding`s, `width`s, `height`s and other sizes are **defined in terms of `rem` `em` or `%`**. This enables your elements to scale properly depending on screen size. So don't use `px`, `pt`, or `mm`.
 * Also don't use `vw` and `vh` as size units – depending on the aspect ratio of your display and your slides, your **slides will be [letterboxed](https://en.wikipedia.org/wiki/Letterboxing_(filming))**, so `100vh` might be larger than the width of your slides (the same goes for height). The actual slide width and height can be read from the CSS variables `var(--slide-width)` and `var(--slide-height)`, respectively.
 * Use CSS `var`iables to keep your theme configurable (take a look at the existing themes to see some examples).
-* Keep in mind that the presenter notes will inherit your theme's styles.
+* Keep in mind that the presenter notes will inherit your theme's styles. You can override specific styles by targeting the `.presenter-notes` class.
 * **Download any webfonts to your computer.** Again, *you don't want to rely on wifi being available when and where you'll present*. To download webfonts from Google Fonts, I recommend using [this tool](https://google-webfonts-helper.herokuapp.com/fonts).
 
 

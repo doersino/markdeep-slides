@@ -478,17 +478,17 @@ function togglePresenterNotes() {
     ${presenterNotesLink}
     <style>
         html {
-            font-size: 4vw;
+            font-size: 3vw;
         }
         body {
             margin: 0;
-            background-color: black;
+            background-image: linear-gradient(#222, #111);
             color: white;
         }
         body .presenter-notes > div.meta {
             font-family: sans-serif;
-            font-size: 1.5rem;
-            background-color: #333;
+            font-size: 1.75rem;
+            background-color: #000;
             padding: 0.2em 1rem 0.2em;
             line-height: 1em;
         }
