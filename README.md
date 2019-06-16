@@ -1,6 +1,6 @@
 # markdeep-slides
 
-*Build presentation slides with Markdeep and present them right in your browser.*
+*Build presentation slides with [Markdeep](https://casual-effects.com/markdeep/) and present them right in your browser.*
 
 <img align="right" width="400" src="screenshot.jpg">
 
@@ -9,7 +9,7 @@
     * **Presentation** (shown to the right) – full-screen, with your *presenter notes in a separate window*.
     * You can also **generate a PDF version** of your slides.
 * **Keyboard shortcuts** for all relevant functions (see below).
-* Supports **all features Markdeep has to offer** – diagrams, math, inline videos, citations, admonitions, and all the standard Markdown stuff.
+* Supports **all features [Markdeep](https://casual-effects.com/markdeep/) has to offer** – diagrams, math, inline videos, citations, admonitions, and all the standard Markdown stuff.
 * If you don't like any of the built-in themes: **Style your slides with CSS!** LaTeX and Beamer are great, but things can get tricky. *Let's not talk about PowerPoint* and its various knockoffs.
 * The full power of CSS animations and JavaScript is at your fingertips – use it wisely.
 * **3 built-in themes** – but you can also make your own with a couple dozen lines of CSS.
