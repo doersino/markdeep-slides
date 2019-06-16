@@ -27,7 +27,11 @@ This repository contains **copies of all dependencies** (Markdeep, MathJax, and 
 
 #### [📦](https://github.com/doersino/markdeep-slides/archive/master.zip) Clone this repository or [download a ZIP](https://github.com/doersino/markdeep-slides/archive/master.zip).
 
-Then, navigate to `demo.md.html`, open it in your text editor and browser of choice, and start building your slides – that's all.
+Then simply...
+
+1. **navigate** to `demo.md.html`,
+2. **open** it in your text editor and browser of choice, and
+3. **start building your slides**. Easy!
 
 
 ### Shortcuts
