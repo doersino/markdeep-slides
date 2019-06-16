@@ -16,7 +16,7 @@ Noah Doersing
 
 To start building your own slides with the help of Markdeep:
 
-1. Download a release from https://github.com/doersino/markdeep-slides/releases *(recommended)* or clone this repository.
+1. Clone this repository, or download a zipped version of it from https://github.com/doersino/markdeep-slides/archive/master.zip.
 
     ```php
     $ git clone https://github.com/doersino/markdeep-slides
@@ -139,9 +139,10 @@ Embedded videos can receive the same parameters.
 
 If your want to *build your own theme*, here are some helpful tips:
 
-* Make sure that all `font-size`s, `margin`s, `padding`s, `width`s and `height`s are defined in terms of `rem` or `em`. This enables your elements to scale properly depending on screen size.
-* Use CSS `var`iables to keep your theme configurable (take a look at the existing themes to see what I mean).
-* Keep in mind that the presenter notes will inherit styles you define in your theme.
+* Make sure that all `font-size`s, `margin`s, `padding`s, `width`s and `height`s are **defined in terms of `rem` or `em`**. This enables your elements to scale properly depending on screen size.
+* Use CSS `var`iables to keep your theme configurable (take a look at the existing themes to see some examples).
+* Keep in mind that the presenter notes will inherit your theme's styles.
+* Download any webfonts to your computer. *You don't want to rely on wifi being available when and where you'll present – that's just asking for trouble.*
 
 ---
 
@@ -297,7 +298,38 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 <script src="markdeep-slides/markdeep-slides.js"></script>
 
 <!-- Markdeep stuff -->
-<script>markdeepOptions={tocStyle:'none', onLoad: function() { initSlides(); }}</script>
+<script>
+    markdeepOptions = {
+        tocStyle: 'none',
+        detectMath: false,
+        onLoad: function() {
+            initSlides();
+            loadMathJax();
+        }
+    };
+</script>
 <style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style>
-<script src="https://casual-effects.com/markdeep/latest/markdeep.min.js" charset="utf-8"></script>
+<script src="markdeep-slides/lib/markdeep/1.04/markdeep.min.js" charset="utf-8"></script>
 <script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
+
+<!-- MathJax stuff -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        jax: ["input/TeX","output/SVG"],
+        TeX: {
+            equationNumbers: {autoNumber: "AMS"},
+            extensions: ["color.js"]
+        },
+        SVG: {
+            font: "TeX"
+        }
+    });
+</script>
+<script>
+    var mathjaxUrl = "markdeep-slides/lib/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_SVG";
+    function loadMathJax() {
+        var script = document.createElement("script");
+        script.src = mathjaxUrl;
+        document.body.appendChild(script);
+    }
+</script>
