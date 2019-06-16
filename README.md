@@ -25,7 +25,7 @@
 
 This repository contains **copies of all dependencies** (Markdeep, MathJax and the webfonts used by the built-in themes) by design – it'll **work offline** (unless you include YouTube videos or something in your slides). *You don't want to rely on wifi being available when and where you'll present – that's just asking for trouble.*
 
-####  Clone this repository or [download a ZIP](https://github.com/doersino/markdeep-slides/archive/master.zip). [📦](https://github.com/doersino/markdeep-slides/archive/master.zip)
+#### [📦](https://github.com/doersino/markdeep-slides/archive/master.zip) Clone this repository or [download a ZIP](https://github.com/doersino/markdeep-slides/archive/master.zip).
 
 Then, navigate to `demo.md.html` and open it in your text editor and browser of choice – that's it. *Happy slide building!*
 
