@@ -1,5 +1,3 @@
-/*TODO mariana, but bluer – invert code to make highlighting work out more or less well? */
-
 @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:700,700i,900|Source+Serif+Pro:400,400i,700,700i|Fira+Mono&display=swap');
 
 :root {
@@ -108,12 +106,6 @@ hr {
     font-size: 1.5rem;
     margin-top: 1.5rem;
     text-transform: uppercase;
-}
-
-
-/* lists */
-TODO {
-
 }
 
 

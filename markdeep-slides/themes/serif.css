@@ -104,12 +104,6 @@ a[href^="#citation-"] {
 }
 
 
-/* lists */
-TODO {
-
-}
-
-
 /* quotes */
 .md blockquote {
     border-left: var(--hairline-width) solid var(--text-color);
