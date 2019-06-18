@@ -306,7 +306,7 @@ function updatePresenterNotes(slideNum) {
     }
 
     if (presenterNotesWindow) {
-        presenterNotesWindow.document.getElementById("slide-number").innerHTML = slideNum + "/" + (slideCount - 1);
+        presenterNotesWindow.document.getElementById("slide-number").innerHTML = `<span class="current">${currentSlideNum}</span>/<span class="total">${slideCount - 1}</span>`;
         presenterNotesWindow.document.getElementById("presenter-notes").innerHTML = presenterNotes;
     }
 }
@@ -458,64 +458,28 @@ function togglePresenterNotes() {
         return;
     }
 
+    presenterNotesStyles = '<link rel="stylesheet" href="markdeep-slides/markdeep-slides.css">';
     if (theme) {
-        presenterNotesLink = '<link rel="stylesheet" href="markdeep-slides/themes/' + theme + '.css">';
+        presenterNotesStyles += '<link rel="stylesheet" href="markdeep-slides/themes/' + theme + '.css">';
     }
-    presenterNotesWindow = window.open("", "presenternotes", "");
 
+    presenterNotesWindow = window.open("", "presenternotes", "");
     if (presenterNotesWindow) {
         with (presenterNotesWindow.document) {
             open("text/html", "replace");
             write(`
-<html>
+<html class="presenter-notes">
 <head>
     <title>Presenter Notes</title>
-    <style>
-        body {
-            font-family: sans-serif;
-        }
-    </style>
-    ${presenterNotesLink}
-    <style>
-        html {
-            font-size: 3vw;
-        }
-        body {
-            margin: 0;
-            background-image: linear-gradient(#222, #111);
-            min-height: 100%;
-            color: white;
-        }
-        body .presenter-notes > div.meta {
-            font-family: sans-serif;
-            font-size: 1.75rem;
-            background-color: #000;
-            padding: 0.2em 1rem 0.2em;
-            line-height: 1em;
-        }
-        body .presenter-notes > div.meta #time {
-            float: left;
-        }
-        body .presenter-notes > div.meta #time .seconds {
-            opacity: 0.5;
-        }
-        body .presenter-notes > div.meta #slide-number {
-            float: right;
-        }
-        body .presenter-notes > div#presenter-notes {
-            margin: 1rem;
-        }
-    </style>
+    ${presenterNotesStyles}
 </head>
 <body>
-    <div class="presenter-notes">
-        <div class="meta">
-            <div id="time"></div>
-            <div id="slide-number">${currentSlideNum + "/" + (slideCount - 1)}</div>
-            &nbsp;
-        </div>
-        <div id="presenter-notes"></div>
+    <div class="presenter-notes-meta">
+        <div id="time"></div>
+        <div id="slide-number"><span class="current">${currentSlideNum}</span>/<span class="total">${slideCount - 1}</span></div>
+        &nbsp;
     </div>
+    <div class="presenter-notes-notes" id="presenter-notes"></div>
     <script>
         document.body.onkeydown = function(event) {
             opener.keyPress(event);
