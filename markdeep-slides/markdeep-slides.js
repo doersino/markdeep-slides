@@ -452,7 +452,7 @@ document.body.onmousemove = function() {
 
 // open or close presenter notes window
 function togglePresenterNotes() {
-    if (presenterNotesWindow) {
+    if (presenterNotesWindow && !presenterNotesWindow.closed) {
         presenterNotesWindow.close();
         presenterNotesWindow = null;
         return;
