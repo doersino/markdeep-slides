@@ -117,7 +117,7 @@ function initSlides() {
 
     // replace .md content with slides
     md.innerHTML = '';
-    md.innerHTML = '<div id="black"></div>';  // insert black element
+    md.innerHTML = '<div id="black" style="display: none;"></div>';  // insert black element
     for (var j = 0; j < slides.length; j++) {
         var s = slides[j];
         md.appendChild(s);
@@ -391,7 +391,7 @@ document.addEventListener("msfullscreenchange", fullscreenActions);
 // turn the screen black or back again
 function toggleBlack() {
     var black = document.getElementById("black");
-    if (black.style.display === "none") {
+    if (black.style.display == "none") {
         black.style.display = "block";
     } else {
         black.style.display = "none";
