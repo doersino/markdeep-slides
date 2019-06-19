@@ -325,6 +325,13 @@ function prevSlide() {
     }
 }
 
+// goto
+function gotoSlide(slideNum) {
+    if (0 <= slideNum && slideNum <= slideCount - 1) {
+        showSlide(slideNum);
+    }
+}
+
 // my best shot at a works-everywhere "fullscreen?" predicate, which will
 // invariably break in the future. web development is great!
 function isFullscreen() {
@@ -400,7 +407,7 @@ function toggleBlack() {
 
 // keyboard/presenter controls (these map well to my logitech r400
 // presenter, others may vary)
-document.body.onkeydown = keyPress
+var gotoSlideNum = [];
 function keyPress(event) {
     switch (event.keyCode) {
       case 39:  // left
@@ -425,10 +432,38 @@ function keyPress(event) {
       case 78:  // n
         togglePresenterNotes();
         return false;
+      case 48:  // 0
+      case 49:  // 1
+      case 50:  // 2
+      case 51:  // 3
+      case 52:  // 4
+      case 53:  // 5
+      case 54:  // 6
+      case 55:  // 7
+      case 56:  // 8
+      case 57:  // 9
+        gotoSlideNum.push(event.keyCode - 48);
+        return false;
+      case 13:  // enter
+        if (!gotoSlideNum) {
+            return false;
+        }
+
+        // convert list "gotoSlideNum" of digits into number "slide"
+        var slide = 0;
+        var i = 0;
+        for (let n of gotoSlideNum.reverse()) {
+            slide += n * (10 ** i++);
+        }
+
+        gotoSlide(slide);
+        gotoSlideNum = [];
+        return false;
       default:
         break;
     }
 };
+document.body.onkeydown = keyPress;
 
 // make cursor disappear after two seconds in presentation mode
 var cursorTimeout;
