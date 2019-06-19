@@ -3,6 +3,7 @@ var slideCount = 0;
 
 var theme;
 var presenterNotesWindow;
+window.presenterNotesWindowTimerStart = null;
 
 // process options, break rendered markdeep into slides on <hr> tags (unless the
 // class "ignore" is set), kick off some other init tasks as well
@@ -306,7 +307,7 @@ function updatePresenterNotes(slideNum) {
     }
 
     if (presenterNotesWindow) {
-        presenterNotesWindow.document.getElementById("slide-number").innerHTML = `<span class="current">${currentSlideNum}</span>/<span class="total">${slideCount - 1}</span>`;
+        presenterNotesWindow.document.getElementById("slide-number").innerHTML = `<span class="current">${currentSlideNum}</span><span class="total">/${slideCount - 1}</span>`;
         presenterNotesWindow.document.getElementById("presenter-notes").innerHTML = presenterNotes;
     }
 }
@@ -405,6 +406,90 @@ function toggleBlack() {
     }
 }
 
+// open or close presenter notes window
+function togglePresenterNotes() {
+    if (presenterNotesWindow && !presenterNotesWindow.closed) {
+        presenterNotesWindow.close();
+        presenterNotesWindow = null;
+        return;
+    }
+
+    presenterNotesStyles = '<link rel="stylesheet" href="markdeep-slides/markdeep-slides.css">';
+    if (theme) {
+        presenterNotesStyles += '<link rel="stylesheet" href="markdeep-slides/themes/' + theme + '.css">';
+    }
+
+    presenterNotesWindow = window.open("", "presenternotes", "");
+    if (presenterNotesWindow) {
+        with (presenterNotesWindow.document) {
+            open("text/html", "replace");
+            write(`
+<html class="presenter-notes">
+<head>
+    <title>Presenter Notes</title>
+    ${presenterNotesStyles}
+</head>
+<body>
+    <div class="presenter-notes-meta">
+        <div id="timer"></div>
+        <div id="clock"></div>
+        <div id="slide-number"><span class="current">${currentSlideNum}</span><span class="total">/${slideCount - 1}</span></div>
+        &nbsp;
+    </div>
+    <div class="presenter-notes-notes" id="presenter-notes"></div>
+    <script>
+        document.body.onkeydown = function(event) {
+            opener.keyPress(event);
+        };
+
+        function updateClock() {
+            var time = new Date();
+            time = ('0' + time.getHours()).slice(-2)   + ':' +
+                   ('0' + time.getMinutes()).slice(-2) + '<span class="seconds">:' +
+                   ('0' + time.getSeconds()).slice(-2) + '</span>';
+            document.getElementById('clock').innerHTML = time;
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        function updateTimer() {
+            if (opener.presenterNotesWindowTimerStart) {
+                var time = Math.abs(new Date() - opener.presenterNotesWindowTimerStart);
+
+                var minutes = Math.floor(time / 60000);
+                var seconds = ((time % 60000) / 1000).toFixed(0);
+
+                time = ('0' + minutes).slice(-2) + '<span class="seconds">:' +
+                       ('0' + seconds).slice(-2) + '</span>';
+
+                document.getElementById('timer').innerHTML = time;
+            } else {
+                document.getElementById('timer').innerHTML = "";
+            }
+        }
+        updateTimer();
+        setInterval(updateTimer, 1000);
+
+    </script>
+</body>
+</html>`);
+            close();
+        }
+    }
+
+    updatePresenterNotes(currentSlideNum);
+}
+
+function resetPresenterNotesTimer() {
+    if (window.presenterNotesWindowTimerStart) {
+        window.presenterNotesWindowTimerStart = null;
+    } else {
+        window.presenterNotesWindowTimerStart = new Date();
+    }
+    presenterNotesWindow.updateTimer();  // apply reset immediately
+}
+
+
 // keyboard/presenter controls (these map well to my logitech r400
 // presenter, others may vary)
 var gotoSlideNum = [];
@@ -432,6 +517,9 @@ function keyPress(event) {
       case 78:  // n
         togglePresenterNotes();
         return false;
+      case 84:  // t
+        resetPresenterNotesTimer();
+        return false;
       case 48:  // 0
       case 49:  // 1
       case 50:  // 2
@@ -455,9 +543,9 @@ function keyPress(event) {
         for (let n of gotoSlideNum.reverse()) {
             slide += n * (10 ** i++);
         }
+        gotoSlideNum = [];
 
         gotoSlide(slide);
-        gotoSlideNum = [];
         return false;
       default:
         break;
@@ -484,56 +572,3 @@ document.body.onmousemove = function() {
         document.body.style.cursor = "none";
     }, 2000);
 };
-
-// open or close presenter notes window
-function togglePresenterNotes() {
-    if (presenterNotesWindow && !presenterNotesWindow.closed) {
-        presenterNotesWindow.close();
-        presenterNotesWindow = null;
-        return;
-    }
-
-    presenterNotesStyles = '<link rel="stylesheet" href="markdeep-slides/markdeep-slides.css">';
-    if (theme) {
-        presenterNotesStyles += '<link rel="stylesheet" href="markdeep-slides/themes/' + theme + '.css">';
-    }
-
-    presenterNotesWindow = window.open("", "presenternotes", "");
-    if (presenterNotesWindow) {
-        with (presenterNotesWindow.document) {
-            open("text/html", "replace");
-            write(`
-<html class="presenter-notes">
-<head>
-    <title>Presenter Notes</title>
-    ${presenterNotesStyles}
-</head>
-<body>
-    <div class="presenter-notes-meta">
-        <div id="time"></div>
-        <div id="slide-number"><span class="current">${currentSlideNum}</span>/<span class="total">${slideCount - 1}</span></div>
-        &nbsp;
-    </div>
-    <div class="presenter-notes-notes" id="presenter-notes"></div>
-    <script>
-        document.body.onkeydown = function(event) {
-            opener.keyPress(event);
-        };
-        function updateTime() {
-            var time = new Date();
-            time = ('0' + time.getHours()).slice(-2)   + ':' +
-                   ('0' + time.getMinutes()).slice(-2) + '<span class="seconds">:' +
-                   ('0' + time.getSeconds()).slice(-2) + '</span>';
-            document.getElementById('time').innerHTML = time;
-        }
-        updateTime();
-        setInterval(updateTime, 1000);
-    </script>
-</body>
-</html>`);
-            close();
-        }
-    }
-
-    updatePresenterNotes(currentSlideNum);
-}

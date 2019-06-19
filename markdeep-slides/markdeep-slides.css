@@ -142,12 +142,28 @@ html.presenter-notes {
     background-color: #000;
     padding: 0.2em 1rem 0.2em;
     line-height: 1em;
+    text-align: center;
+    font-variant-numeric: tabular-nums lining-nums;
 }
-.presenter-notes-meta #time {
+.presenter-notes-meta #timer {
+    float: left;
+    font-weight: bold;
+}
+.presenter-notes-meta #clock {
     float: left;
 }
-.presenter-notes-meta #time .seconds {
+.presenter-notes-meta #clock .seconds {
     opacity: 0.5;
+}
+.presenter-notes-meta #timer:not(:empty) + #clock {
+    font-size: 1rem;
+    margin-left: 0.75rem;
+}
+.presenter-notes-meta #timer:not(:empty) + #clock:before {
+    content: '(';
+}
+.presenter-notes-meta #timer:not(:empty) + #clock:after {
+    content: ')';
 }
 .presenter-notes-meta #slide-number {
     float: right;
