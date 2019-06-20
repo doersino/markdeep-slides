@@ -94,7 +94,7 @@ body {
     width: 2rem;
     text-align: right;
 }
-.slide-number .slide-number-total {
+.slide-number-total {
     display: var(--total-slide-number-display);
 }
 

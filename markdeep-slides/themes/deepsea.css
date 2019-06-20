@@ -28,6 +28,10 @@ body {
 .presentation.taller .slide-progress {
     margin-top: calc(var(--slide-height) - 0.2rem + var(--slide-letterbox-height) / 2);
 }
+.slide-number-total {
+    font-size: 0.75em;
+    opacity: 0.75;
+}
 
 
 /* fonts */
