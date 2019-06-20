@@ -129,6 +129,7 @@ body {
 
 html.presenter-notes {
     font-size: 3vw;
+    min-height: 100%;
 }
 .presenter-notes body {
     margin: 0;
