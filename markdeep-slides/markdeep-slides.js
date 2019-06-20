@@ -3,6 +3,8 @@ var slideCount = 0;
 
 var theme;
 var presenterNotesWindow;
+
+// "window." makes this variable available to the presenter notes window
 window.presenterNotesWindowTimerStart = null;
 
 // process options, break rendered markdeep into slides on <hr> tags (unless the
@@ -252,7 +254,8 @@ function playAutoplayingVideos(slideNum) {
 // some browsers (lookin' at you, safari) may fire scroll events as they're
 // leaving fullscreen. this makes it impossible to switch to the current slide
 // when coming out of presentation mode before updateOnScroll() resets the
-// location hash to the value it was before entering fullscreen
+// location hash to the value it was before entering fullscreen. so we need to
+// ignore scroll events for a short amount of time after leaving fullscreen mode
 var enableScroll = true;
 
 // when scrolling, update location hash (and presenter notes etc.) based on
@@ -263,18 +266,19 @@ function updateOnScroll() {
     }
 
     var slides = document.getElementsByClassName("slide");
-    var minTop = -1;
-    var minSlideNum = 0;
+    var minSlideNum = 0;  // number of slide completely visible and closest to the top of the viewport
+    var minTop = -1;      // that slide's offset relative to the viewport
     for (var i = 0; i < slides.length; i++) {
         var slide = slides[i];
         var bcr = slide.getBoundingClientRect();
 
         if (bcr.top >= 0 && (bcr.top < minTop || minTop == -1)) {
-            minTop = bcr.top;
             minSlideNum = parseInt(slide.id.substring(5), 10);
+            minTop = bcr.top;
         }
     }
 
+    // update url hash only when the slide changes to improve performance
     if (minSlideNum != currentSlideNum) {
         history.replaceState({}, '', '#' + "slide" + minSlideNum);
         currentSlideNum = minSlideNum;
@@ -286,6 +290,8 @@ window.addEventListener('scroll', updateOnScroll);
 // switch to slide n
 function showSlide(slideNum) {
     if (document.documentElement.classList.contains("draft")) {
+
+        // set all slides to visible (in case presentation mode was previously active)
         Array.from(document.getElementsByClassName("slide")).map(e => e.style.display = "inline-block");
 
         // fix for chrome sometimes mistiming scroll events (or at least that's what I think is going on)
@@ -295,28 +301,30 @@ function showSlide(slideNum) {
             enableScroll = true;
         }, 10);
     } else if (document.documentElement.classList.contains("presentation")) {
+
+        // hide all slides but the one to be shown
         Array.from(document.getElementsByClassName("slide")).map(e => e.style.display = "none");
         document.getElementById("slide" + slideNum).style.display = "inline-block";
 
+        // pause vidoes on other slides and start playing autoplay videos on the current slide
         pauseVideos();
         playAutoplayingVideos(slideNum);
     }
+
     history.replaceState({}, '', '#' + "slide" + slideNum);
     currentSlideNum = slideNum;
-
     updatePresenterNotes(slideNum);
 }
 
 // load presenter notes for slide n into presenter notes window
 function updatePresenterNotes(slideNum) {
-    var presenterNotes = "";
-
-    var presenterNotesElement = document.getElementById("slide" + slideNum).querySelector(".slide-presenter-notes");
-    if (presenterNotesElement) {
-        presenterNotes = presenterNotesElement.innerHTML;
-    }
-
     if (presenterNotesWindow) {
+        var presenterNotesElement = document.getElementById("slide" + slideNum).querySelector(".slide-presenter-notes");
+        var presenterNotes = "";
+        if (presenterNotesElement) {
+            presenterNotes = presenterNotesElement.innerHTML;
+        }
+
         presenterNotesWindow.document.getElementById("slide-number").innerHTML = `<span class="current">${currentSlideNum}</span><span class="total">/${slideCount - 1}</span>`;
         presenterNotesWindow.document.getElementById("presenter-notes").innerHTML = presenterNotes;
     }
@@ -353,7 +361,7 @@ function isFullscreen() {
 
 // toggles fullscreen mode, upon which the fullscreenchange event is fired
 // (which is *also* fired when a user leaves fullscreen via the Esc key, so we
-// *do* need to rely on it), so there's no need to call fullscreenActions()
+// can't just ignore it), so there's no need to call fullscreenActions()
 // directly in here
 function toggleFullscreen() {
     var root = document.documentElement;
@@ -448,10 +456,13 @@ function togglePresenterNotes() {
     </div>
     <div class="presenter-notes-notes" id="presenter-notes"></div>
     <script>
+
+        // forward key presses to parent window
         document.body.onkeydown = function(event) {
             opener.keyPress(event);
         };
 
+        // update clock once a second
         function updateClock() {
             var time = new Date();
             time = ('0' + time.getHours()).slice(-2)   + ':' +
@@ -462,6 +473,8 @@ function togglePresenterNotes() {
         updateClock();
         setInterval(updateClock, 1000);
 
+        // update timer once a second if it's running, hide it if it's not
+        // running anymore
         function updateTimer() {
             if (opener.presenterNotesWindowTimerStart) {
                 var time = Math.abs(new Date() - opener.presenterNotesWindowTimerStart);
@@ -479,7 +492,6 @@ function togglePresenterNotes() {
         }
         updateTimer();
         setInterval(updateTimer, 1000);
-
     </script>
 </body>
 </html>`);
@@ -487,6 +499,7 @@ function togglePresenterNotes() {
         }
     }
 
+    // load presenter notes for the current slide
     updatePresenterNotes(currentSlideNum);
 }
 
@@ -547,7 +560,7 @@ function keyPress(event) {
             return false;
         }
 
-        // convert list "gotoSlideNum" of digits into number "slide"
+        // convert list of digits "gotoSlideNum" into number "slide"
         var slide = 0;
         var i = 0;
         for (let n of gotoSlideNum.reverse()) {
