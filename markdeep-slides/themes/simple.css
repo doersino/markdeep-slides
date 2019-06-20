@@ -15,7 +15,6 @@ body {
 }
 
 .slide-progress {
-    display: block;
     background-color: rgba(190,190,190,.5);
     height: 0.2rem;
 }

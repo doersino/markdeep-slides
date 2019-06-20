@@ -21,7 +21,6 @@ body {
 }
 
 .slide-progress {
-    display: block;
     background-color: var(--accent-color);
     margin-top: calc(var(--slide-height) - 0.2rem);
     height: 0.2rem;

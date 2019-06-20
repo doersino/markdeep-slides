@@ -7,6 +7,8 @@
 
     --slide-number-color: #bbb;
     --slide-number-font: inherit;
+
+    --slide-progress-display: block;
 }
 
 @page {
@@ -104,7 +106,7 @@ body {
     /*width: calc(attr(data-progress) * var(--slide-width));*/  /* sadly, attr() outside of "content" is not supported by any browsers even though the spec provides for this use. the width is thus set explicitly using js – which works, but is less flexible */
     margin-top: 0;
     margin-left: 0;
-    display: none;
+    display: var(--slide-progress-display);
 }
 
 .presentation.taller .slide-progress {

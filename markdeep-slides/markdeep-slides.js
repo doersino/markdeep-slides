@@ -31,6 +31,11 @@ function initSlides() {
         if (markdeepSlidesOptions.diagramZoom) {
             diagramZoom = markdeepSlidesOptions.diagramZoom;
         }
+        if (typeof markdeepSlidesOptions.progressBar !== 'undefined') {
+            if (!markdeepSlidesOptions.progressBar) {
+                document.documentElement.style.setProperty('--slide-progress-display', 'none');
+            }
+        }
     }
 
     // break document into slides

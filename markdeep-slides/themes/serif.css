@@ -16,7 +16,6 @@ body {
 }
 
 .slide-progress {
-    display: block;
     height: 0.1rem;
     background-color: var(--text-color);
 }

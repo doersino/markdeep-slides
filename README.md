@@ -49,7 +49,7 @@ Use the following **keyboard shortcuts** to steer your presentation. Press...
 
 ### Options
 
-At the bottom of `demo.md.html`, right before a bunch of essential JavaScript files are loaded, you'll find a set of options:
+At the bottom of `demo.md.html`, right before a bunch of essential JavaScript files are loaded, you'll find a set of options. Their default values are:
 
 ```html
 <script>
@@ -57,7 +57,8 @@ markdeepSlidesOptions = {
     aspectRatio: 16 / 9,  // aspect ratio of your slides
     theme: 'simple',      // theme – "simple", "serif" or "deepsea"
     fontSize: 28,         // base font size
-    diagramZoom: 1.0      // markdeep diagram scaling factor
+    diagramZoom: 1.0,     // markdeep diagram scaling factor
+    progressBar: true     // show a presentation progress bar on each slide?
 };
 </script>
 ```
