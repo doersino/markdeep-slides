@@ -31,6 +31,11 @@ function initSlides() {
         if (markdeepSlidesOptions.diagramZoom) {
             diagramZoom = markdeepSlidesOptions.diagramZoom;
         }
+        if (typeof markdeepSlidesOptions.totalSlideNumber !== 'undefined') {
+            if (markdeepSlidesOptions.totalSlideNumber) {
+                document.documentElement.style.setProperty('--total-slide-number-display', 'inline');
+            }
+        }
         if (typeof markdeepSlidesOptions.progressBar !== 'undefined') {
             if (!markdeepSlidesOptions.progressBar) {
                 document.documentElement.style.setProperty('--slide-progress-display', 'none');
@@ -65,7 +70,7 @@ function initSlides() {
             if (slideCount != 0) {
                 var sn = document.createElement('div');
                 sn.className = "slide-number";
-                sn.innerHTML = slideCount;
+                sn.innerHTML = `${slideCount}<span class="slide-number-total">/${totalSlideCount}</span>`;
                 slide.appendChild(sn);
             }
 

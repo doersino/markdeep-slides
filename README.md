@@ -54,11 +54,12 @@ At the bottom of `demo.md.html`, right before a bunch of essential JavaScript fi
 ```html
 <script>
 markdeepSlidesOptions = {
-    aspectRatio: 16 / 9,  // aspect ratio of your slides
-    theme: 'simple',      // theme – "simple", "serif" or "deepsea"
-    fontSize: 28,         // base font size
-    diagramZoom: 1.0,     // markdeep diagram scaling factor
-    progressBar: true     // show a presentation progress bar on each slide?
+    aspectRatio: 16 / 9,      // aspect ratio of your slides
+    theme: 'simple',          // theme – "simple", "serif" or "deepsea"
+    fontSize: 28,             // base font size
+    diagramZoom: 1.0,         // markdeep diagram scaling factor
+    totalSlideNumber: false,  // show total number of slides next to slide number?
+    progressBar: true         // show a presentation progress bar on each slide?
 };
 </script>
 ```

@@ -8,6 +8,7 @@
     --slide-number-color: #bbb;
     --slide-number-font: inherit;
 
+    --total-slide-number-display: none;
     --slide-progress-display: block;
 }
 
@@ -92,6 +93,9 @@ body {
     height: 0;
     width: 2rem;
     text-align: right;
+}
+.slide-number .slide-number-total {
+    display: var(--total-slide-number-display);
 }
 
 .presentation.taller .slide-number {
