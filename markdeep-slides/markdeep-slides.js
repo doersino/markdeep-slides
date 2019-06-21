@@ -13,6 +13,7 @@ function initSlides() {
 
     // process options
     var diagramZoom = 1.0;
+    theme = 'simple';
     if (markdeepSlidesOptions) {
         if (markdeepSlidesOptions.aspectRatio) {
             document.documentElement.style.setProperty('--aspect-ratio', markdeepSlidesOptions.aspectRatio);

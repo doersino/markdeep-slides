@@ -5,18 +5,18 @@
 <img align="right" width="400" src="screenshot.jpg">
 
 * Two modes:
-    * **Draft** – with inline presenter notes, useful as a preview when building slides.
-    * **Presentation** (shown to the right) – full-screen, with your *presenter notes in a separate window*.
-    * You can also **generate a PDF version** of your slides.
+    * Initially, you're in **draft mode** – with inline presenter notes, useful as a preview when building slides.
+    * You can switch into **presentation mode** (shown to the right) – with your *slides shown fullscreen* and your *presenter notes in a separate window*.
+    * You can also **generate a PDF version** of your slides by printing them to a PDF (use Chrome for this; more below).
 * **Keyboard shortcuts** for all relevant functions (see below).
 * Supports **all features [Markdeep](https://casual-effects.com/markdeep/) has to offer** – diagrams, math, inline videos, citations, admonitions, and all the standard Markdown stuff.
-* If you don't like any of the built-in themes: **Style your slides with CSS!** LaTeX and Beamer are great, but things can get tricky. *Let's not talk about PowerPoint* and its various knockoffs.
+* If you don't like any of the built-in themes: **Style your slides with CSS!** LaTeX and Beamer are great, but things can get tricky if you really want to make them your own. *Let's not talk about PowerPoint and its various knockoffs.*
 * The full power of CSS animations and JavaScript is at your fingertips – use it wisely.
 * **3 built-in themes** – but you can also make your own with a couple dozen lines of CSS.
 * Compatible with those little [presenter gadgets](https://www.amazon.com/Logitech-Wireless-Presenter-Presentation-Pointer/dp/B00B6MODOA/).
 
 
-#### **Demo:** Try it out [right here on GitHub Pages](https://doersino.github.io/markdeep-slides/demo.md.html)!
+#### 💻 [Try out a demo presentation](https://doersino.github.io/markdeep-slides/demo.md.html) and take a look at its [Markdeep source code](demo.md.html).
 
 
 ## Getting started
@@ -25,7 +25,7 @@
 
 This repository contains **copies of all dependencies** (Markdeep, MathJax, and the webfonts used by the built-in themes) by design – it'll **work offline** (unless you include YouTube videos or something in your slides). *You don't want to rely on wifi being available when and where you'll present – that's just asking for trouble.*
 
-#### [📦](https://github.com/doersino/markdeep-slides/archive/master.zip) Clone this repository or [download a ZIP](https://github.com/doersino/markdeep-slides/archive/master.zip).
+#### 📦 Clone this repository or [download a ZIP](https://github.com/doersino/markdeep-slides/archive/master.zip).
 
 Then simply...
 
@@ -55,8 +55,8 @@ At the bottom of `demo.md.html`, right before a bunch of essential JavaScript fi
 <script>
 markdeepSlidesOptions = {
     aspectRatio: 16 / 9,      // aspect ratio of your slides
-    theme: 'simple',          // theme – "simple", "serif" or "deepsea"
-    fontSize: 28,             // base font size
+    theme: 'simple',          // theme – "simple", "deepsea" or "serif"
+    fontSize: 28,             // base font size, relative to slide display size
     diagramZoom: 1.0,         // markdeep diagram scaling factor
     totalSlideNumber: false,  // show total number of slides next to slide number?
     progressBar: true         // show a presentation progress bar on each slide?
@@ -64,7 +64,12 @@ markdeepSlidesOptions = {
 </script>
 ```
 
-Modify them to your liking, but don't decrease the font size too much (nobody wants to read novel-length slides). Additionally, you can tweak some aspects of each theme by overriding CSS variables – take a look at the relevant file in `markdeep-slides/themes/`.
+**Modify them to your liking**, but don't decrease the font size too much (nobody wants to read novel-length slides). Additionally, you can tweak some aspects of each theme by overriding CSS variables – take a look at the relevant file in `markdeep-slides/themes/`.
+
+
+### Exporting to PDF
+
+It's best to **use Chrome for generating a PDF version** of your slides – it respects the page size that's automatically specified in CSS based on your chosen aspect ratio (unlike all other browsers). In Chrome's print window, *set "Margins" to "None"* and *make sure to keep the "Background graphics" option enabled*.
 
 
 ## Contributing
@@ -80,7 +85,6 @@ Got an idea on how to improve something? Ran into unexpected behavior? Found a b
 ### Notes
 
 * **Tested** in recent versions of Chrome, Firefox and Safari. I don't have access to Edge/IE, so you're on your own there (although I suspect that folks interested in building their slides with Markdeep aren't using these browsers anyway). Not really made for mobile use, although scrolling through slides in draft mode works fine.
-* I **recommend using Chrome for generating a PDF version** of your slides – it uses the page size that's automatically specified in CSS based on your chosen aspect ratio, unlike all other browsers. In Chrome's print window, set "Margins" to "None" and make sure to keep the "Background graphics" option enabled.
 * The included variant of **MathJax** has been [heavily stripped down](https://github.com/mathjax/MathJax-docs/wiki/Guide:-reducing-size-of-a-mathjax-installation/1814429ed1e97bfb7675c0fd400804baa9287249) and only allows SVG as the output format. This was done to keep the size to a minimum and because SVG output looks best (other formats may be more accessible, but that doesn't matter in a presentation context).
 * If your **presenter** gadget doesn't work here, please go to https://keycode.info and record *1. which keycodes each button sends, 2. what happened, 3. what you expected to happen* and file an issue accordingly.
 
