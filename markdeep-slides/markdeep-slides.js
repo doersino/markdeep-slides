@@ -356,8 +356,8 @@ function gotoSlide(slideNum) {
 // invariably break in the future. web development is great!
 function isFullscreen() {
     return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement ||
-              window.fullScreen ||
-              (window.innerHeight == screen.height && window.innerWidth == screen.width));
+              window.fullScreen /*||
+              (window.innerHeight == screen.height && window.innerWidth == screen.width)*/);
 }
 
 // toggles fullscreen mode, upon which the fullscreenchange event is fired
