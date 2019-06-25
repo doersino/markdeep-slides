@@ -55,7 +55,7 @@ At the bottom of `demo.md.html`, right before a bunch of essential JavaScript fi
 <script>
 markdeepSlidesOptions = {
     aspectRatio: 16 / 9,      // aspect ratio of your slides
-    theme: 'simple',          // theme – "simple", "deepsea" or "serif"
+    theme: 'simple',          // theme – "simple", "deepsea", "serif" or path of a stylesheet
     fontSize: 28,             // base font size, relative to slide display size
     diagramZoom: 1.0,         // markdeep diagram scaling factor
     totalSlideNumber: false,  // show total number of slides next to slide number?

@@ -25,7 +25,11 @@ function initSlides() {
             theme = markdeepSlidesOptions.theme;
             var link = document.createElement('link');
             link.setAttribute("rel", "stylesheet");
-            link.setAttribute("href", "markdeep-slides/themes/" + theme + ".css");
+            if (/[/.]+/.test(theme)) {
+                link.setAttribute("href", theme);
+            } else {
+                link.setAttribute("href", "markdeep-slides/themes/" + theme + ".css");
+            }
             document.body.appendChild(link);
         }
         if (markdeepSlidesOptions.fontSize) {
