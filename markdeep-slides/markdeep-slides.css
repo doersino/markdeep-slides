@@ -181,6 +181,13 @@ html.presenter-notes {
 .presenter-notes-notes {
     margin: 1rem;
 }
+.presenter-notes iframe {
+    background-color: white;
+    border: none;
+    width: 35%;
+    float: right;
+    pointer-events: none;  /* keep it from capturing focus */
+}
 
 #black {
     position: fixed;

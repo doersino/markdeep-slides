@@ -331,6 +331,7 @@ function updatePresenterNotes(slideNum) {
         }
 
         presenterNotesWindow.document.getElementById("slide-number").innerHTML = `<span class="current">${slideNum}</span><span class="total">/${slideCount - 1}</span>`;
+        presenterNotesWindow.updateSlidePreview(slideNum);
         presenterNotesWindow.document.getElementById("presenter-notes").innerHTML = presenterNotes;
     }
 }
@@ -459,6 +460,7 @@ function togglePresenterNotes() {
         <div id="slide-number"><span class="current">${currentSlideNum}</span><span class="total">/${slideCount - 1}</span></div>
         &nbsp;
     </div>
+    <iframe id="slide-preview" src="javascript:void(0);"></iframe>
     <div class="presenter-notes-notes" id="presenter-notes"></div>
     <script>
 
@@ -497,6 +499,29 @@ function togglePresenterNotes() {
         }
         updateTimer();
         setInterval(updateTimer, 1000);
+
+        function initSlidePreview() {
+            var iframe = document.getElementById("slide-preview");
+            var aspectRatio = eval(getComputedStyle(opener.document.documentElement).getPropertyValue('--aspect-ratio'));
+            iframe.style.width = "15rem";
+            iframe.style.height = "calc(15rem / "+aspectRatio+")";
+            //iframe.style.height = "calc(2 * 15rem / "+aspectRatio+")";
+            iframe.contentWindow.document.documentElement.classList = opener.document.documentElement.classList;  // TODO presentation? or draft?
+            iframe.contentWindow.document.head.innerHTML = opener.document.head.innerHTML;
+            iframe.contentWindow.document.body.innerHTML = opener.document.body.innerHTML;
+            iframe.contentWindow.document.body.classList = opener.document.body.classList;
+        }
+        initSlidePreview();
+
+        function updateSlidePreview(slideNum) {
+            var iframe = document.getElementById("slide-preview");
+            Array.from(iframe.contentWindow.document.body.querySelectorAll(".slide")).map(x => x.style.display = "none");
+            iframe.contentWindow.document.getElementById("slide" + slideNum).style.display = "inline-block";
+            //iframe.contentWindow.document.getElementById("slide" + slideNum).style.opacity = "1";
+            //iframe.contentWindow.document.getElementById("slide" + (slideNum + 1)).style.display = "inline-block";
+            //iframe.contentWindow.document.getElementById("slide" + (slideNum + 1)).style.opacity = "0.5";
+        }
+        updateSlidePreview(${currentSlideNum});  // shouldn't be necessary since updatePresenterNotes() is called right after this window is opened, but oh well
     </script>
 </body>
 </html>`);
