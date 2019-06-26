@@ -63,7 +63,7 @@ body {
 hr {
     border: 0;
     height: 0.3rem;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.2);
     border-radius: 0.15rem;
 }
 
@@ -82,7 +82,6 @@ hr {
 .md div.subtitle {
     font-style: italic;
     margin: 1rem 0 0;
-    font-size: 0.8rem;
     padding: 0;
     text-align: right;
 }
@@ -215,7 +214,7 @@ hr {
     font-family: var(--accent-font);
     border-radius: 0.15rem 0.15rem 0 0;
     margin: -.25rem -.4rem -0.75rem -.4rem;
-    padding: .1rem 0.4rem;
+    padding: 0.05rem 0.4rem 0rem;
     border-width: 0;
     text-transform: uppercase;
     font-size: 0.7em;

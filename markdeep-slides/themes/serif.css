@@ -55,17 +55,15 @@ a[href^="#citation-"] {
 
 /* title */
 .md div.title {
-    float: left;
-    text-align: right;
-    width: 50%;
-    border-right: var(--hairline-width) solid var(--text-color);
-    margin: 4rem 2rem 4rem 0;
-    padding: 1rem 2rem 1rem 0;
+    font-size: 2rem;
+    width: 80%;
+    margin: 3.5rem 10% 0;
 }
 .md div.subtitle {
-    margin-top: 7.75rem;
-    font-size: 0.8rem;
     font-style: italic;
+}
+.md div.afterTitles + p {
+    text-align: center;
 }
 
 
@@ -89,7 +87,7 @@ a[href^="#citation-"] {
     font-size: 1.5rem;
     position: relative;
 }
-.md h2:after {
+/*.md h2:after {
     content:"";
     background: var(--text-color);
     position: absolute;
@@ -98,7 +96,7 @@ a[href^="#citation-"] {
     margin-left: 40%;
     width: 20%;
     height: var(--hairline-width);
-}
+}*/
 .md h3 {
     font-size: 1rem;
 }
@@ -106,8 +104,8 @@ a[href^="#citation-"] {
 
 /* quotes */
 .md blockquote {
-    border-left: var(--hairline-width) solid var(--text-color);
-    padding-left: 0.4rem;
+    border: var(--hairline-width) solid var(--text-color);
+    padding: .25rem 0.4rem;
     margin: 0;
 }
 .md blockquote.fancyquote {
@@ -135,7 +133,7 @@ a[href^="#citation-"] {
 .md a:visited,
 .md kbd,
 .md code {
-    font-size: 0.93em;  /* em! */
+    font-size: 0.89em;  /* em! */
     letter-spacing: -0.03em;
 }
 .md pre.listing {
