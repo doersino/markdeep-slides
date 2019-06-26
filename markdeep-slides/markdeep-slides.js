@@ -330,7 +330,7 @@ function updatePresenterNotes(slideNum) {
             presenterNotes = presenterNotesElement.innerHTML;
         }
 
-        presenterNotesWindow.document.getElementById("slide-number").innerHTML = `<span class="current">${currentSlideNum}</span><span class="total">/${slideCount - 1}</span>`;
+        presenterNotesWindow.document.getElementById("slide-number").innerHTML = `<span class="current">${slideNum}</span><span class="total">/${slideCount - 1}</span>`;
         presenterNotesWindow.document.getElementById("presenter-notes").innerHTML = presenterNotes;
     }
 }
