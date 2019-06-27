@@ -561,7 +561,7 @@ function keyPress(event) {
         gotoSlideNum.push(event.keyCode - 48);
         return false;
       case 13:  // enter
-        if (!gotoSlideNum) {
+        if (gotoSlideNum.length == 0) {
             return false;
         }
 
