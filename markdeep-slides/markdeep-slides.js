@@ -560,6 +560,9 @@ function keyPress(event) {
       case 57:  // 9
         gotoSlideNum.push(event.keyCode - 48);
         return false;
+      case 8:  // backspace
+        gotoSlideNum.pop();
+        return false;
       case 13:  // enter
         if (gotoSlideNum.length == 0) {
             return false;
