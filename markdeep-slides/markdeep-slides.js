@@ -304,7 +304,7 @@ function updateOnScroll() {
         }
     }
 
-    // update url hash only when the slide changes to improve performance
+    // update things only when the slide changes to improve performance
     if (minSlideNum != currentSlideNum) {
         history.replaceState({}, '', '#' + "slide" + minSlideNum);
         currentSlideNum = minSlideNum;
