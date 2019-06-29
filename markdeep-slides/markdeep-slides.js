@@ -155,34 +155,13 @@ function initSlides() {
     }
 
     // further initialization steps
-    processLocationHash();
     addLetterboxing();
+    restoreCurrentSlideAndScrollPosition();
     relativizeDiagrams(diagramZoom);
     pauseVideos();
 
     fullscreenActions();
 };
-
-// check if a slide is set via the location hash – if so, load it, else
-// write the first slide to it. either way, go to that slide
-function processLocationHash() {
-    var slideNum;
-    if (window.location.hash) {
-        var slide = window.location.hash.substring(1);
-        var slideNum = parseInt(slide.substring(5), 10);
-
-        // clamp slide number to maximum existing slide number (can be an issue
-        // when deleting slides while at the very bottom of the page in draft
-        // mode and then refreshing)
-        if (slideNum > slideCount - 1) {
-            slideNum = slideCount - 1;
-            history.replaceState({}, '', '#' + "slide" + slideNum);
-        }
-    } else {
-        var slideNum = 0;
-    }
-    showSlide(slideNum);
-}
 
 // depending on whether your viewport is wider or taller than the aspect ratio
 // of your slides, add a corresponding class to the root <html> element. based
@@ -209,6 +188,54 @@ function addLetterboxing() {
     }
 }
 window.addEventListener('resize', addLetterboxing);
+
+// TODO rv comment
+// check if a slide is set via the location hash – if so, load it, else
+// write the first slide to it. either way, go to that slide
+function restoreCurrentSlideAndScrollPosition() {
+    var slideNum;
+    var currentSlideScrollOffset = 0;
+    if (window.location.hash) {
+        var slide = window.location.hash.substring(1);
+        var slideNum = parseInt(slide.substring(5), 10);
+
+        // clamp slide number to maximum existing slide number (can be an issue
+        // when deleting slides while at the very bottom of the page in draft
+        // mode and then refreshing)
+        if (slideNum > slideCount - 1) {
+            slideNum = slideCount - 1;
+            history.replaceState({}, '', '#' + "slide" + slideNum);
+        } else {
+
+            // if we're sure a vaid slide has been specified, check if there's a stored scroll offset relative to that slide and apply it
+            if (window.localStorage.getItem("currentSlideScrollOffset")) {
+                currentSlideScrollOffset = parseInt(window.localStorage.getItem("currentSlideScrollOffset"));
+            }
+        }
+    } else {
+        var slideNum = 0;
+    }
+    showSlide(slideNum);
+
+    // TODO skip this if in pres mode/do it only in draft mode
+    setTimeout(function() {
+        window.scrollBy(0, -currentSlideScrollOffset);
+    }, 500);
+}
+
+// TODO comment
+function saveCurrentSlideAndScrollPosition(positionOnly = false) {
+    if (!positionOnly) {
+        history.replaceState({}, '', '#' + "slide" + currentSlideNum);
+    }
+
+    console.log("test");
+    // TODO skip this if in pres mode/do it only in draft mode
+    var slide = document.getElementById("slide" + currentSlideNum);
+    window.localStorage.setItem("currentSlideScrollOffset", slide.getBoundingClientRect().top);
+    console.log(window.localStorage.getItem("currentSlideScrollOffset"));
+    // TODO all? also call in places
+}
 
 // make diagrams resize properly: markdeep diagrams have their width and
 // height attributes set to absoulute pixel values, which don't scale. so we
@@ -306,9 +333,11 @@ function updateOnScroll() {
 
     // update things only when the slide changes to improve performance
     if (minSlideNum != currentSlideNum) {
-        history.replaceState({}, '', '#' + "slide" + minSlideNum);
         currentSlideNum = minSlideNum;
+        saveCurrentSlideAndScrollPosition();
         updatePresenterNotes(minSlideNum);
+    } else {
+        saveCurrentSlideAndScrollPosition(true);
     }
 }
 window.addEventListener('scroll', updateOnScroll);
@@ -322,7 +351,8 @@ function showSlide(slideNum) {
 
         // fix for chrome sometimes mistiming scroll events (or at least that's what I think is going on)
         enableScroll = false;
-        document.getElementById("slide" + slideNum).scrollIntoView();
+        // TODO
+        //document.getElementById("slide" + slideNum).scrollIntoView();
         setTimeout(function () {
             enableScroll = true;
         }, 10);
@@ -337,8 +367,8 @@ function showSlide(slideNum) {
         playAutoplayingVideos(slideNum);
     }
 
-    history.replaceState({}, '', '#' + "slide" + slideNum);
     currentSlideNum = slideNum;
+    saveCurrentSlideAndScrollPosition();
     updatePresenterNotes(slideNum);
 }
 
