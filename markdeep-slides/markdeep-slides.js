@@ -170,6 +170,14 @@ function processLocationHash() {
     if (window.location.hash) {
         var slide = window.location.hash.substring(1);
         var slideNum = parseInt(slide.substring(5), 10);
+
+        // clamp slide number to maximum existing slide number (can be an issue
+        // when deleting slides while at the very bottom of the page in draft
+        // mode and then refreshing)
+        if (slideNum > slideCount - 1) {
+            slideNum = slideCount - 1;
+            history.replaceState({}, '', '#' + "slide" + slideNum);
+        }
     } else {
         var slideNum = 0;
     }
