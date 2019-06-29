@@ -105,7 +105,7 @@ In my experience, this **works best in Chrome** as it respect the `@page` CSS se
 
 ## Customization
 
-Make sure to define your options *before* loading `markdeep-slides.js`:
+Make sure to define your options *before* loading `markdeep-slides.js` (only some options shown here, `README.md` explains the rest):
 
 ```
 <script>
@@ -113,8 +113,6 @@ markdeepSlidesOptions = {
     aspectRatio: 16 / 9,      // aspect ratio of your slides
     theme: 'simple',          // theme – "simple", "deepsea", "serif" or path of a stylesheet
     fontSize: 28,             // base font size, relative to slide display size
-    diagramZoom: 1.0,         // markdeep diagram scaling factor
-    totalSlideNumber: false,  // show total number of slides next to slide number?
     progressBar: true         // show a presentation progress bar on each slide?
 };
 </script>
@@ -297,7 +295,8 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
         fontSize: 28,
         diagramZoom: 1.0,
         totalSlideNumber: false,
-        progressBar: true
+        progressBar: true,
+        breakOnHeadings: false
     };
 </script>
 <link rel="stylesheet" href="markdeep-slides/markdeep-slides.css">

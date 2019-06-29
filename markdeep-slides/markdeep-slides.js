@@ -13,6 +13,7 @@ function initSlides() {
 
     // process options
     var diagramZoom = 1.0;
+    var breakOnHeadings = false;
     theme = 'simple';
     if (markdeepSlidesOptions) {
         if (markdeepSlidesOptions.aspectRatio) {
@@ -48,14 +49,21 @@ function initSlides() {
                 document.documentElement.style.setProperty('--slide-progress-display', 'none');
             }
         }
+        if (typeof markdeepSlidesOptions.breakOnHeadings !== 'undefined') {
+            breakOnHeadings = markdeepSlidesOptions.breakOnHeadings;
+        }
     }
 
     // break document into slides
     var md = document.querySelector("body > .md");
     var es = Array.from(md.childNodes);
 
+    function isHeadingSlideBreak(e) {
+        return breakOnHeadings && (e.tagName == "H1" || e.tagName == "H2");
+    }
+
     function isSlideBreak(e) {
-        return e.tagName == "HR" && e.className != 'ignore';
+        return (e.tagName == "HR" && e.className != 'ignore') || isHeadingSlideBreak(e);
     }
 
     // slide count used for progress bar
@@ -119,6 +127,11 @@ function initSlides() {
             slideCount++;
             currentSlide = [];
             currentPresenterNotes = [];
+
+            // if breaking before a heading, add the heading to the upcoming slide
+            if (isHeadingSlideBreak(e)) {
+                currentSlide.push(e);
+            }
         } else {
             if (e.tagName == "BLOCKQUOTE"
                 && e.children[0] && e.children[0].tagName == "BLOCKQUOTE"
