@@ -1,5 +1,8 @@
 When upgrading any of these dependencies, keep the following in mind:
 
+* Update the paths at the bottom of the demo presentation to match the new version of the upgraded dependency.
+
+
 ## Markdeep
 
 * Check if any of the non-relatively defined sizes in the built-in stylesheet have changed or new ones have been added.
