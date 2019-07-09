@@ -193,22 +193,26 @@ html.presenter-notes {
 }
 
 .markdeepFooter {
-    text-align: left;  /* the default creates a horizontal scrollbar */
+    text-align: left;  /* the default right-aligned variant creates a horizontal scrollbar */
 }
 .presentation .markdeepFooter {
     display: none;  /* sorry morgan */
 }
 
 @media print {
+    .slide {
+        --slide-width: 640px;
+        --slide-height: 360px;
+    }
     .slide, .draft .slide, .presentation .slide {
-        page-break-before: always;
+        page-break-before: always;  /* make sure to insert page breaks between slides (might not actually be needed anymore) */
         margin-bottom: 0 !important;
         box-shadow: none !important;
         display: inline-block !important;
     }
 
     .slide-content, .draft .slide-content, .presentation .slide-content {
-        border-width: 0 !important;
+        border-width: 0 !important;  /* letterboxing not needed here (shouldn't appear anyway, this just to fix potential weird rounding errors) */
     }
 
     .slide-presenter-notes {

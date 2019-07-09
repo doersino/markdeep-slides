@@ -19,7 +19,8 @@ function initSlides() {
         if (markdeepSlidesOptions.aspectRatio) {
             document.documentElement.style.setProperty('--aspect-ratio', markdeepSlidesOptions.aspectRatio);
             var sheet = document.createElement('style');
-            sheet.innerHTML = "@page { size: 640px " + (1 + 640 / markdeepSlidesOptions.aspectRatio) + "px; };";
+            sheet.innerHTML = "@page { size: 640px " + (640 / markdeepSlidesOptions.aspectRatio) + "px; }" +
+                "@media print { .slide, .slide { --slide-width: 640px !important; --slide-height: " + (640 / markdeepSlidesOptions.aspectRatio) + "px; }";
             document.body.appendChild(sheet);
         }
         if (markdeepSlidesOptions.theme) {
