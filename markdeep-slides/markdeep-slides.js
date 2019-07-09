@@ -5,7 +5,7 @@ var theme;
 var presenterNotesWindow;
 
 // "window." makes this variable available to the presenter notes window
-window.presenterNotesWindowTimerStart = null;
+window.presenterNotesTimerStart = null;
 
 // process options, break rendered markdeep into slides on <hr> tags (unless the
 // class "ignore" is set), kick off some other init tasks as well
@@ -503,8 +503,8 @@ function togglePresenterNotes() {
         // update timer once a second if it's running, hide it if it's not
         // running anymore
         function updateTimer() {
-            if (opener.presenterNotesWindowTimerStart) {
-                var time = Math.abs(new Date() - opener.presenterNotesWindowTimerStart);
+            if (opener.presenterNotesTimerStart) {
+                var time = Math.abs(new Date() - opener.presenterNotesTimerStart);
 
                 var minutes = Math.floor(time / 60000);
                 var seconds = ((time % 60000) / 1000).toFixed(0);
@@ -531,10 +531,10 @@ function togglePresenterNotes() {
 }
 
 function resetPresenterNotesTimer() {
-    if (window.presenterNotesWindowTimerStart) {
-        window.presenterNotesWindowTimerStart = null;
+    if (window.presenterNotesTimerStart) {
+        window.presenterNotesTimerStart = null;
     } else {
-        window.presenterNotesWindowTimerStart = new Date();
+        window.presenterNotesTimerStart = new Date();
     }
     presenterNotesWindow.updateTimer();  // apply reset immediately
 }
