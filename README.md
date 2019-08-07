@@ -40,9 +40,9 @@ Use the following **keyboard shortcuts** to steer your presentation. Press...
 
 * <kbd>Space</kbd>, <kbd>↓</kbd>, <kbd>→</kbd> or <kbd>PgDn</kbd> to go to the **next slide**,
 * <kbd>↑</kbd>, <kbd>←</kbd> or <kbd>PgUp</kbd> to go to the **previous slide**,
-* <kbd>F</kbd>, <kbd>F5</kbd> or <kbd>Esc</kbd> to **enter or exit fullscreen/presentation mode**,
+* <kbd>F</kbd>, <kbd>F5</kbd> or <kbd>Esc</kbd> to **toggle fullscreen/presentation mode**,
 * <kbd>.</kbd> to turn the screen **black** (and back again), and
-* <kbd>n</kbd> to open or close a window with your **presenter notes**,
+* <kbd>n</kbd> to toggle a window with your **presenter notes**,
 * <kbd>t</kbd> to start or dismiss a **timer** counting up from zero seconds (shown in the presenter notes window), and
 * a slide number, e.g. <kbd>1</kbd> <kbd>7</kbd>, followed by <kbd>Enter</kbd>, to **jump** directly to that slide.
 
