@@ -79,6 +79,8 @@ Got an idea on how to improve something? Ran into unexpected behavior? Found a b
 
 *Please [file an issue](https://github.com/doersino/markdeep-slides/issues) or send a pull request! I'll be glad to take a look at it.*
 
+**I'd love to [hear from you](https://hejnoah.com/about.html) (or take a peek at your slides) if you've used this tool in practice.**
+
 
 ---
 
