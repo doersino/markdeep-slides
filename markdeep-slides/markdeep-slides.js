@@ -544,6 +544,10 @@ function resetPresenterNotesTimer() {
 // presenter, others may vary)
 var gotoSlideNum = [];
 function keyPress(event) {
+    if (event.ctrlKey || event.altKey || event.metaKey) {
+        return;
+    }
+
     switch (event.keyCode) {
       case 39:  // left
       case 40:  // down
@@ -601,7 +605,7 @@ function keyPress(event) {
         gotoSlide(slide);
         return false;
       default:
-        break;
+        return;
     }
 };
 document.body.onkeydown = keyPress;
