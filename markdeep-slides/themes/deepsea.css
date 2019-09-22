@@ -145,6 +145,9 @@ hr {
   stroke: var(--text-color);
   fill: var(--text-color);
 }
+.md svg.diagram .opendot {
+    fill: var(--background-color) !important;
+}
 .md svg.diagram .dotteddot {
     stroke: var(--text-color);
 }
