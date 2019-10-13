@@ -226,7 +226,7 @@ function relativizeDiagrams(diagramZoom) {
     // this factor works well as a baseline
     var zoom = 0.9 * diagramZoom;
 
-    document.querySelectorAll("svg").forEach(function(diag) {
+    document.querySelectorAll("svg.diagram").forEach(function(diag) {
         function toRem(px) {
             return (parseFloat(px) / baseRem) + "rem";
         }
