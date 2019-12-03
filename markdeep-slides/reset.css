@@ -68,9 +68,9 @@ body {
     margin:calc(20rem / var(--rf)) 0 calc(-10rem / var(--rf));
 }
 
-.md div.imagecaption,
-.md div.tablecaption,
-.md div.listingcaption {
+.md .imagecaption,
+.md .tablecaption,
+.md .listingcaption {
     margin: calc(7rem / var(--rf)) calc(5rem / var(--rf)) calc(12rem / var(--rf));
 }
 
@@ -380,10 +380,10 @@ still work just fine */
 
 
 /* media */
-.md div.imagecaption,
-.md div.tablecaption,
-.md div.listingcaption {
-    margin: 0.5rem 0 0;
+.md .imagecaption,
+.md .tablecaption,
+.md .listingcaption {
+    margin: -0.5rem 0 0;  /* accounts for the 1rem margin on <center>, which captions are wrapped in */
 }
 .md img {
     max-width: 100%;
