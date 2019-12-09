@@ -549,6 +549,15 @@ function resetPresenterNotesTimer() {
 // presenter, others may vary)
 var gotoSlideNum = [];
 function keyPress(event) {
+
+    // ignore if the user is editing text (nothing of the sort is available in
+    // stock markdeep-slides, but the user might include interactive elements,
+    // which markdeep-slides should work with seamlessly)
+    if (document.activeElement.isContentEditable || document.activeElement.tagName == "INPUT" || document.activeElement.tagName == "TEXTAREA") {
+        return
+    }
+
+    // ignore if any meta keys have been pressed as well
     if (event.ctrlKey || event.altKey || event.metaKey) {
         return;
     }
