@@ -541,7 +541,11 @@ function resetPresenterNotesTimer() {
     } else {
         window.presenterNotesTimerStart = new Date();
     }
-    presenterNotesWindow.updateTimer();  // apply reset immediately
+
+    // apply reset immediately if presenter notes window is open
+    if (presenterNotesWindow && !presenterNotesWindow.closed) {
+        presenterNotesWindow.updateTimer();
+    }
 }
 
 
