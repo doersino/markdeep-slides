@@ -155,6 +155,11 @@ function initSlides() {
         md.appendChild(s);
     }
 
+    // fill in the current date for any elements with the .current-date class
+    document.querySelectorAll(".current-date").forEach(e => {
+        e.innerText = new Date().toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'});
+    });
+
     // further initialization steps
     processLocationHash();
     addLetterboxing();

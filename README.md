@@ -88,6 +88,7 @@ Got an idea on how to improve something? Ran into unexpected behavior? Found a b
 
 * **Tested** in recent versions of Chrome, Firefox and Safari. I don't have access to Edge/IE, so you're on your own there (although I suspect that folks interested in building their slides with Markdeep aren't using these browsers anyway). Not really made for mobile use, although scrolling through slides in draft mode works fine.
 * The included variant of **MathJax** has been [heavily stripped down](https://github.com/mathjax/MathJax-docs/wiki/Guide:-reducing-size-of-a-mathjax-installation/1814429ed1e97bfb7675c0fd400804baa9287249) and only allows SVG as the output format. This was done to keep the size to a minimum and because SVG output looks best (other formats may be more accessible, but that doesn't matter in a presentation context).
+* To display the **current date** on your title slide (or anywhere), simply write `<span class="current-date"></span>` – `markdeep-slides` takes care of the rest.
 * If your **presenter** gadget doesn't work here, please go to https://keycode.info and record *1. which keycodes each button sends, 2. what happened, 3. what you expected to happen* and file an issue accordingly.
 
 
