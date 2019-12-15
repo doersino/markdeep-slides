@@ -58,8 +58,10 @@ markdeepSlidesOptions = {
     fontSize: 28,             // base font size, relative to slide display size
     diagramZoom: 1.0,         // markdeep diagram scaling factor
     totalSlideNumber: false,  // show total number of slides next to slide number?
-    progressBar: true         // show a presentation progress bar on each slide?
-    breakOnHeadings: false    // start a new slide not only on encountering "---", but also level 1 and 2 headings?
+    progressBar: true,        // show a presentation progress bar on each slide?
+    breakOnHeadings: false,   // start a new slide not only on encountering "---", but also level 1 and 2 headings?
+    slideChangeHook: (oldSlide, newSlide) => {},  // function executed whenever the current slide changes, receives old and new slide number
+    modeChangeHook: (newMode) => {}               // function executed whenever the mode changes, receives new mode, e.g. "draft" or "presentation"
 };
 </script>
 ```

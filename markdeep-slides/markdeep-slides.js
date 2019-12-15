@@ -2,6 +2,10 @@ var currentSlideNum = 0;
 var slideCount = 0;
 
 var theme;
+
+var slideChangeHook = (oldSlide, newSlide) => {};
+var modeChangeHook = (newMode) => {};
+
 var presenterNotesWindow;
 
 // "window." makes this variable available to the presenter notes window
@@ -52,6 +56,12 @@ function initSlides() {
         }
         if (typeof markdeepSlidesOptions.breakOnHeadings !== 'undefined') {
             breakOnHeadings = markdeepSlidesOptions.breakOnHeadings;
+        }
+        if (markdeepSlidesOptions.slideChangeHook) {
+            slideChangeHook = markdeepSlidesOptions.slideChangeHook;
+        }
+        if (markdeepSlidesOptions.modeChangeHook) {
+            modeChangeHook = markdeepSlidesOptions.modeChangeHook;
         }
     }
 
@@ -313,6 +323,7 @@ function updateOnScroll() {
     // update things only when the slide changes to improve performance
     if (minSlideNum != currentSlideNum) {
         history.replaceState({}, '', '#' + "slide" + minSlideNum);
+        slideChangeHook(currentSlideNum, minSlideNum);
         currentSlideNum = minSlideNum;
         updatePresenterNotes(minSlideNum);
     }
@@ -334,7 +345,7 @@ function showSlide(slideNum) {
         }, 10);
     } else if (document.documentElement.classList.contains("presentation")) {
 
-        // hide all slides but the one to be shown
+        // hide all slides except for the one to be shown
         Array.from(document.getElementsByClassName("slide")).map(e => e.style.display = "none");
         document.getElementById("slide" + slideNum).style.display = "inline-block";
 
@@ -344,6 +355,7 @@ function showSlide(slideNum) {
     }
 
     history.replaceState({}, '', '#' + "slide" + slideNum);
+    slideChangeHook(currentSlideNum, slideNum);
     currentSlideNum = slideNum;
     updatePresenterNotes(slideNum);
 }
@@ -396,7 +408,6 @@ function isFullscreen() {
 // can't just ignore it), so there's no need to call fullscreenActions()
 // directly in here
 function toggleFullscreen() {
-    var root = document.documentElement;
     var fullscreen = isFullscreen();
 
     if (fullscreen) {
@@ -410,6 +421,7 @@ function toggleFullscreen() {
             document.msExitFullscreen();
         }
     } else {
+        var root = document.documentElement;
         if (root.requestFullscreen) {
             root.requestFullscreen();
         } else if (root.mozRequestFullScreen) {
@@ -426,6 +438,8 @@ function fullscreenActions() {
     enableScroll = false;
 
     var fullscreen = isFullscreen();
+    modeChangeHook(fullscreen? "presentation" : "draft");
+
     var root = document.documentElement;
     if (fullscreen) {
         root.classList.remove("draft");

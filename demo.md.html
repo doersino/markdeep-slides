@@ -296,7 +296,9 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
         diagramZoom: 1.0,
         totalSlideNumber: false,
         progressBar: true,
-        breakOnHeadings: false
+        breakOnHeadings: false,
+        slideChangeHook: (oldSlide, newSlide) => {},
+        modeChangeHook: (newMode) => {}
     };
 </script>
 <link rel="stylesheet" href="markdeep-slides/markdeep-slides.css">
