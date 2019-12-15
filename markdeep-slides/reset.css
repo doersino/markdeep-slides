@@ -385,7 +385,8 @@ still work just fine */
 .md .listingcaption {
     margin: -0.5rem 0 0;  /* accounts for the 1rem margin on <center>, which captions are wrapped in */
 }
-.md img {
+.md img,
+.md svg.diagram {
     max-width: 100%;
     max-height: calc(var(--slide-height) - 2rem);
 }
