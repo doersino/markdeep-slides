@@ -17,7 +17,7 @@ Note: I would've liked to define `--rf: calc(1rem / 16px)` and then use it like
       `calc(<N>px * var(--rf))`, but `calc` understandably, yet disappointingly,
       can't deal with "rem per pixel" units.
 
-Note: This is based on Markdeep 1.05 and will need adjustments for newer
+Note: This is based on Markdeep 1.07 and will need adjustments for newer
       Markdeep versions.
 
 ********************************************************************************
@@ -398,22 +398,3 @@ still work just fine */
     width: 21.33rem;
     height: 12rem;  /* 16:9 aspect ratio */
 }
-
-
-/*
-
-TODO images and videos that fill the slide completely, perhaps with black background if aspect ratio doesn't match?
-
-center img[full],
-center video[full],
-center iframe[full] {
-    margin-top: -1rem;  /* counteract center top margin
-    margin-left: -2rem;  /* counteract side margin
-}
-center img[full] {
-    max-height: var(--slide-height);
-    max-width: var(--slide-width);
-}
-
-*/
-
