@@ -3,9 +3,7 @@ When upgrading any of these dependencies, keep the following in mind:
 
 ## Markdeep
 
-* Check if any of the non-relatively defined sizes in the built-in stylesheet have changed or new ones have been added.
-    * Use a diff tool, e.g. FileMerge.
-    * If so, modify `../reset.css` accordingly.
+* Get the new `relativize.css` from [here](https://github.com/doersino/markdeep-relative-sizes).
 * Add support (and maybe a slide in the demo presentation) for any newly added constructs.
 * Update the include path at the bottom of the demo presentation to match the new version.
 
@@ -18,4 +16,4 @@ When upgrading any of these dependencies, keep the following in mind:
 
 ## Webfonts
 
-* Update their import paths the themes that use them.
+* Update their import paths in the themes that use them.

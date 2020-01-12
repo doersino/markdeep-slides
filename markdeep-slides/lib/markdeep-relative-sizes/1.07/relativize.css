@@ -1,0 +1,255 @@
+/*
+
+This stylesheet "relativizes" sizes: It overrides sizes/lengths defined in terms
+of `px`, `pt` etc. in the stylesheets that are automatically applied by Markdeep
+with lenghts defined in terms of `rem`. This enables scaling the entire document
+simply by adjusting the `<html>` element's font size – exactly what's required
+to enable
+
+* fullscreen presentations via https://github.com/doersino/markdeep-slides,
+* adjustable base font sizes in https://github.com/doersino/markdeep-thesis,
+* and more!
+
+The conversion rule is simple: `⟨N⟩px` ⟼ `calc(⟨N⟩rem / var(--rf))`, where
+`--rf` is the base font size the original `px` measurements are assumed to be
+relative to. In fact, `--rf` is the browser default, `16px`. (Note that I
+would've preferred to define `--rf: calc(1rem / 16px)` and then use it like
+`calc(⟨N⟩px * var(--rf))`, but `calc` disappointingly, yet understandably, can't
+deal with "rem per pixel" units in current browsers.)
+
+When applied to a standard Markdeep document, this stylesheet is designed *not
+to yield any visual changes* (unless you change the root font size from its
+`16px` default, that is).
+
+--------------------------------------------------------------------------------
+
+* Compatible with Markdeep 1.07.
+* See https://github.com/doersino/markdeep-relative-sizes for updates.
+* Licensed under then BSD 2-Clause "Simplified" License, see
+  https://github.com/doersino/markdeep-relative-sizes/blob/master/LICENSE.
+
+*/
+
+:root {
+    --rf: 16;
+}
+
+/* Relativize CSS generated via "BODY_STYLESHEET" variable */
+body {
+    padding: calc(20rem / var(--rf));
+}
+
+
+/* Relativize CSS generated via "STYLESHEET" variable */
+.md code,
+.md pre {
+    font-size: calc(13.43rem / var(--rf));
+}
+
+.md div.title {
+    font-size: calc(26rem / var(--rf));
+}
+
+.md div.afterTitles {
+    height:calc(10rem / var(--rf));
+}
+
+.md pre.listing .linenumbers span.line:before{
+    width:calc(30rem / var(--rf));
+    margin-left:calc(-28rem / var(--rf));
+    padding-right:calc(13rem / var(--rf));
+    margin-right:calc(8rem / var(--rf));
+}
+
+.md div.tilde {
+    margin:calc(20rem / var(--rf)) 0 calc(-10rem / var(--rf));
+}
+
+.md .imagecaption,
+.md .tablecaption,
+.md .listingcaption {
+    margin: calc(7rem / var(--rf)) calc(5rem / var(--rf)) calc(12rem / var(--rf));
+}
+
+.md blockquote.fancyquote {
+    margin: calc(25rem / var(--rf)) 0 calc(25rem / var(--rf));
+}
+
+.md blockquote.fancyquote::before {
+    font-size: calc(45rem / var(--rf));
+    margin-right: calc(6rem / var(--rf));
+}
+
+.md span.fancyquote::after {
+    font-size: calc(45rem / var(--rf));
+    margin-left: calc(6rem / var(--rf));
+}
+
+.md blockquote.fancyquote .author {
+    margin-top: calc(10rem / var(--rf));
+}
+
+.md div.title,
+contents,
+.md .tocHeader,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.md .shortTOC,
+.md .mediumTOC,
+.nonumberh1,
+.nonumberh2,
+.nonumberh3,
+.nonumberh4,
+.nonumberh5,
+.nonumberh6 {
+    margin: calc(13.4rem / var(--rf)) 0 calc(13.4rem / var(--rf));
+    padding: calc(15rem / var(--rf)) 0 calc(3rem / var(--rf));
+}
+
+/* Note that diagrams are scaled differently */
+/* .md svg.diagram {
+    font-size: calc(13.43rem / var(--rf));
+    stroke-width: calc(2rem / var(--rf));
+} */
+
+.md h1,
+.md .tocHeader,
+.md .nonumberh1 {
+    border-bottom-width: calc(3rem / var(--rf));
+    font-size: calc(20rem / var(--rf));
+}
+
+.md h2,
+.md .nonumberh2{
+    border-bottom-width: calc(2rem / var(--rf));
+    font-size: calc(18rem / var(--rf));
+}
+
+.md h3,
+.md h4,
+.md h5,
+.md h6,
+.md .nonumberh3,
+.md .nonumberh4,
+.md .nonumberh5,
+.md .nonumberh6 {
+    font-size: calc(16rem / var(--rf));
+}
+
+.md div.table {
+    margin: calc(16rem / var(--rf)) 0 calc(16rem / var(--rf)) 0;
+}
+
+.md table.calendar{
+    font-size:calc(11rem / var(--rf));
+}
+
+.md table.calendar th {
+    font-size: calc(16rem / var(--rf));
+}
+
+.md table.table th {
+    border-width: calc(1rem / var(--rf));
+    padding: calc(8rem / var(--rf)) calc(15rem / var(--rf)) calc(8rem / var(--rf)) calc(15rem / var(--rf));
+}
+
+.md table.table td {
+    padding: calc(5rem / var(--rf)) calc(15rem / var(--rf)) calc(5rem / var(--rf)) calc(15rem / var(--rf));
+    border-width: calc(1rem / var(--rf));
+}
+
+.md pre.tilde {
+    border-top-width: calc(1rem / var(--rf));
+    border-bottom-width: calc(1rem / var(--rf));
+    padding: calc(5rem / var(--rf)) 0 calc(5rem / var(--rf)) calc(20rem / var(--rf));
+}
+
+.md dl > dd {
+    margin-top: calc(-8rem / var(--rf));
+    margin-bottom: calc(8rem / var(--rf))
+}
+
+.md dl > table {
+    margin: calc(35rem / var(--rf)) 0 calc(30rem / var(--rf));
+}
+
+.md .endnote {
+    font-size: calc(13rem / var(--rf));
+    line-height: calc(15rem / var(--rf));
+    padding-left: calc(10rem / var(--rf));
+    text-indent: calc(-10rem / var(--rf))
+}
+
+.md .bib {
+    padding-left: calc(80rem / var(--rf));
+    text-indent: calc(-80rem / var(--rf));
+}
+
+.markdeepFooter {
+    font-size: calc(9rem / var(--rf));
+    padding-top: calc(80rem / var(--rf));
+}
+
+.md .mediumTOC {
+    font-size: calc(12rem / var(--rf));
+    line-height: calc(15rem / var(--rf));
+    border-left-width: calc(1rem / var(--rf));
+    padding-left: calc(15rem / var(--rf));
+    margin: calc(15rem / var(--rf)) calc(0rem / var(--rf)) calc(15rem / var(--rf)) calc(25rem / var(--rf));
+}
+
+.md .longTOC .level1 {
+    padding-top: calc(12rem / var(--rf));
+    margin: 0 0 calc(-20rem / var(--rf));
+}
+
+.md .shortTOC {
+    margin-top: calc(15rem / var(--rf));
+    font-size: calc(14rem / var(--rf));
+}
+
+.md .admonition-title {
+    border-bottom-width: calc(1rem / var(--rf));
+    padding-bottom: calc(4rem / var(--rf));
+    margin-bottom: calc(4rem / var(--rf));
+}
+
+.md .admonition.tip::before {
+    top: calc(3rem / var(--rf));
+}
+
+.md .admonition.warn::before,
+.md .admonition.warning::before {
+    top: calc(2rem / var(--rf));
+}
+
+.md .admonition.error::before {
+    top: calc(2rem / var(--rf));
+}
+
+
+/* Relativize CSS generated near "Add more spacing before the title in a long
+document" comment */
+div.title {
+    padding-top: calc(40rem / var(--rf));
+}
+
+div.afterTitles {
+    height: calc(15rem / var(--rf));
+}
+
+
+/* Relativize CSS generated near "Creates a style sheet containing elements
+like:" comment */
+.md h1::before,
+.md h2::before,
+.md h3::before,
+.md h4::before,
+.md h5::before,
+.md h6::before {
+    margin-right: calc(10rem / var(--rf));
+}
