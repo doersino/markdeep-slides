@@ -1,0 +1,27 @@
+@font-face {
+	font-family: 'Iosevka';
+	font-weight: 400;
+	font-style: normal;
+	src: url('woff2/iosevka-regular.woff2') format('woff2'), url('woff/iosevka-regular.woff') format('woff'), url('ttf/iosevka-regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Iosevka';
+	font-weight: 400;
+	font-style: italic;
+	src: url('woff2/iosevka-italic.woff2') format('woff2'), url('woff/iosevka-italic.woff') format('woff'), url('ttf/iosevka-italic.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Iosevka';
+	font-weight: 700;
+	font-style: normal;
+	src: url('woff2/iosevka-bold.woff2') format('woff2'), url('woff/iosevka-bold.woff') format('woff'), url('ttf/iosevka-bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Iosevka';
+	font-weight: 700;
+	font-style: italic;
+	src: url('woff2/iosevka-bolditalic.woff2') format('woff2'), url('woff/iosevka-bolditalic.woff') format('woff'), url('ttf/iosevka-bolditalic.ttf') format('truetype');
+}
