@@ -16,4 +16,11 @@ When upgrading any of these dependencies, keep the following in mind:
 
 ## Webfonts
 
+* Download new versions of ... from ...:
+    * IBM Plex Mono from https://github.com/IBM/plex
+    * Iosevka from https://github.com/be5invis/Iosevka
+    * Libre Franklin from https://github.com/impallari/Libre-Franklin
+    * Source Sans Pro from https://github.com/adobe-fonts/source-sans-pro
+    * Source Serif Pro from https://github.com/adobe-fonts/source-serif-pro
+    * Vollkorn from http://www.vollkorn-typeface.com
 * Update their import paths in the themes that use them.
