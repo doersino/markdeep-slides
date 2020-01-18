@@ -17,6 +17,8 @@
 
 #### 💻 [Try out a demo presentation](https://doersino.github.io/markdeep-slides/demo.md.html) and take a look at its [Markdeep source code](demo.md.html).
 
+*Also, check out [markdeep-thesis](https://github.com/doersino/markdeep-thesis) and [markdeep-diagram-drafting-board](https://github.com/doersino/markdeep-diagram-drafting-board)!*
+
 
 ## Getting started
 
