@@ -59,7 +59,6 @@ markdeepSlidesOptions = {
     theme: 'simple',          // theme – "simple", "deepsea", "serif" or path of a stylesheet
     fontSize: 28,             // base font size, relative to slide display size
     diagramZoom: 1.0,         // markdeep diagram scaling factor
-    mathJax: ["TeX"],         // a list of enabled math formats – "TeX", "MathML" and/or "AsciiMath"
     totalSlideNumber: false,  // show total number of slides next to slide number?
     progressBar: true,        // show a presentation progress bar on each slide?
     breakOnHeadings: false,   // start a new slide not only on encountering "---", but also level 1 and 2 headings?
