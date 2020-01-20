@@ -50,7 +50,7 @@ Use the following **keyboard shortcuts** to steer your presentation. Press...
 
 ### Options
 
-At the bottom of `demo.md.html`, right before a bunch of essential JavaScript files are loaded, you'll find a set of options. Their default values are:
+At the bottom of `demo.md.html`, right before a bunch of essential JavaScript files are loaded, you'll find a set of options. Their default values (each of which is automatically applied if you *omit* the corresponding option) are:
 
 ```html
 <script>
@@ -59,6 +59,7 @@ markdeepSlidesOptions = {
     theme: 'simple',          // theme – "simple", "deepsea", "serif" or path of a stylesheet
     fontSize: 28,             // base font size, relative to slide display size
     diagramZoom: 1.0,         // markdeep diagram scaling factor
+    mathJax: ["TeX"],         // a list of enabled math formats – "TeX", "MathML" and/or "AsciiMath"
     totalSlideNumber: false,  // show total number of slides next to slide number?
     progressBar: true,        // show a presentation progress bar on each slide?
     breakOnHeadings: false,   // start a new slide not only on encountering "---", but also level 1 and 2 headings?

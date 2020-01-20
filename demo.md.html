@@ -294,6 +294,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
         theme: 'simple',
         fontSize: 28,
         diagramZoom: 1.0,
+        mathJax: ["TeX"],
         totalSlideNumber: false,
         progressBar: true,
         breakOnHeadings: false,
@@ -312,32 +313,9 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
         detectMath: false,
         onLoad: function() {
             initSlides();
-            loadMathJax();
         }
     };
 </script>
 <style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style>
 <script src="markdeep-slides/lib/markdeep/1.07/markdeep.min.js" charset="utf-8"></script>
 <script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
-
-<!-- MathJax stuff -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        jax: ["input/TeX","output/SVG"],
-        TeX: {
-            equationNumbers: {autoNumber: "AMS"},
-            extensions: ["color.js"]
-        },
-        SVG: {
-            font: "TeX"
-        }
-    });
-</script>
-<script>
-    var mathjaxUrl = "markdeep-slides/lib/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_SVG";
-    function loadMathJax() {
-        var script = document.createElement("script");
-        script.src = mathjaxUrl;
-        document.body.appendChild(script);
-    }
-</script>

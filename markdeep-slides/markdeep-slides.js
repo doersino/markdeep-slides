@@ -150,6 +150,9 @@ function initSlides() {
         md.appendChild(s);
     }
 
+    // initialize mathjax
+    initMathJax();
+
     // fill in the current date for any elements with the .current-date class
     document.querySelectorAll(".current-date").forEach(e => {
         e.innerText = new Date().toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'});
@@ -164,12 +167,14 @@ function initSlides() {
     fullscreenActions();
 };
 
+// override default options with any differing user-specified options
 function processMarkdeepSlidesOptions() {
     options = {
         aspectRatio: 16 / 9,
         theme: 'simple',
         fontSize: 28,
         diagramZoom: 1.0,
+        mathJax: ["TeX"],
         totalSlideNumber: false,
         progressBar: true,
         breakOnHeadings: false,
@@ -180,6 +185,51 @@ function processMarkdeepSlidesOptions() {
     if (typeof markdeepSlidesOptions !== 'undefined') {
         options = Object.assign({}, options, markdeepSlidesOptions);
     }
+}
+
+// initialize mathjax
+function initMathJax() {
+    var extensions = [];
+    var jax = [];
+    options.mathJax.forEach(o => {
+        switch (o) {
+            case "TeX":
+                extensions.push("tex2jax.js");
+                jax.push("input/TeX");
+                break;
+
+            case "MathML":
+                extensions.push("mml2jax.js");
+                jax.push("input/MathML");
+                break;
+
+            case "AsciiMath":
+                extensions.push("asciimath2jax.js");
+                jax.push("input/AsciiMath");
+                break;
+        }
+    });
+
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "markdeep-slides/lib/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_SVG";
+
+    var config = `
+        MathJax.Hub.Config({
+            extensions: ["${extensions.join("\",\"")}"],
+            jax: ["${jax.join("\",\"")}", "output/SVG"],
+            TeX: {
+                equationNumbers: {autoNumber: "AMS"},
+                extensions: ["color.js"]
+            },
+            SVG: {
+                font: "TeX"
+            }
+        });
+    `;
+
+    script.text = config;
+    document.getElementsByTagName("head")[0].appendChild(script);
 }
 
 // check if a slide is set via the location hash – if so, load it, else
