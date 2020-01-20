@@ -1,76 +1,61 @@
 var currentSlideNum = 0;
 var slideCount = 0;
 
-var theme;
-
-var slideChangeHook = (oldSlide, newSlide) => {};
-var modeChangeHook = (newMode) => {};
-
+// make presenter notes window modifiable globally
 var presenterNotesWindow;
 
 // "window." makes this variable available to the presenter notes window
 window.presenterNotesTimerStart = null;
 
+var slideChangeHook = (oldSlide, newSlide) => {};
+var modeChangeHook = (newMode) => {};
+
+// make options available globally
+var options;
+
 // process options, break rendered markdeep into slides on <hr> tags (unless the
 // class "ignore" is set), kick off some other init tasks as well
 function initSlides() {
 
-    // process options
-    var diagramZoom = 1.0;
-    var breakOnHeadings = false;
-    theme = 'simple';
-    if (markdeepSlidesOptions) {
-        if (markdeepSlidesOptions.aspectRatio) {
-            document.documentElement.style.setProperty('--aspect-ratio', markdeepSlidesOptions.aspectRatio);
-            var sheet = document.createElement('style');
-            sheet.innerHTML = "@page { size: 640px " + (640 / markdeepSlidesOptions.aspectRatio) + "px; }" +
-                "@media print { .slide, .slide { --slide-width: 640px !important; --slide-height: " + (640 / markdeepSlidesOptions.aspectRatio) + "px; }";
-            document.body.appendChild(sheet);
-        }
-        if (markdeepSlidesOptions.theme) {
-            theme = markdeepSlidesOptions.theme;
-            var link = document.createElement('link');
-            link.setAttribute("rel", "stylesheet");
-            if (/[/.]+/.test(theme)) {
-                link.setAttribute("href", theme);
-            } else {
-                link.setAttribute("href", "markdeep-slides/themes/" + theme + ".css");
-            }
-            document.body.appendChild(link);
-        }
-        if (markdeepSlidesOptions.fontSize) {
-            document.documentElement.style.setProperty('--font-size', markdeepSlidesOptions.fontSize);
-        }
-        if (markdeepSlidesOptions.diagramZoom) {
-            diagramZoom = markdeepSlidesOptions.diagramZoom;
-        }
-        if (typeof markdeepSlidesOptions.totalSlideNumber !== 'undefined') {
-            if (markdeepSlidesOptions.totalSlideNumber) {
-                document.documentElement.style.setProperty('--total-slide-number-display', 'inline');
-            }
-        }
-        if (typeof markdeepSlidesOptions.progressBar !== 'undefined') {
-            if (!markdeepSlidesOptions.progressBar) {
-                document.documentElement.style.setProperty('--slide-progress-display', 'none');
-            }
-        }
-        if (typeof markdeepSlidesOptions.breakOnHeadings !== 'undefined') {
-            breakOnHeadings = markdeepSlidesOptions.breakOnHeadings;
-        }
-        if (markdeepSlidesOptions.slideChangeHook) {
-            slideChangeHook = markdeepSlidesOptions.slideChangeHook;
-        }
-        if (markdeepSlidesOptions.modeChangeHook) {
-            modeChangeHook = markdeepSlidesOptions.modeChangeHook;
-        }
+    // override default options with any differing user-specified options
+    processMarkdeepSlidesOptions();
+
+    // handle aspect ratio
+    document.documentElement.style.setProperty('--aspect-ratio', options.aspectRatio);
+    var sheet = document.createElement('style');
+    sheet.innerHTML = "@page { size: 640px " + (640 / options.aspectRatio) + "px; }" +
+        "@media print { .slide, .slide { --slide-width: 640px !important; --slide-height: " + (640 / options.aspectRatio) + "px; }";
+    document.body.appendChild(sheet);
+
+    // handle theme
+    var link = document.createElement('link');
+    link.setAttribute("rel", "stylesheet");
+    if (/[/.]+/.test(options.theme)) {
+        link.setAttribute("href", options.theme);
+    } else {
+        link.setAttribute("href", "markdeep-slides/themes/" + options.theme + ".css");
     }
+    document.body.appendChild(link);
+
+    // handle other options
+    document.documentElement.style.setProperty('--font-size', options.fontSize);
+    if (options.totalSlideNumber) {
+        document.documentElement.style.setProperty('--total-slide-number-display', 'inline');
+    }
+    if (!options.progressBar) {
+        document.documentElement.style.setProperty('--slide-progress-display', 'none');
+    }
+
+    // done with options processing – note that the diagramZoom,
+    // breakOnHeadings, slideChangeHook and modeChangeHook options are
+    // referenced later on and need no further processing at this stage
 
     // break document into slides
     var md = document.querySelector("body > .md");
     var es = Array.from(md.childNodes);
 
     function isHeadingSlideBreak(e) {
-        return breakOnHeadings && (e.tagName == "H1" || e.tagName == "H2");
+        return options.breakOnHeadings && (e.tagName == "H1" || e.tagName == "H2");
     }
 
     function isSlideBreak(e) {
@@ -173,11 +158,29 @@ function initSlides() {
     // further initialization steps
     processLocationHash();
     addLetterboxing();
-    relativizeDiagrams(diagramZoom);
+    relativizeDiagrams(options.diagramZoom);
     pauseVideos();
 
     fullscreenActions();
 };
+
+function processMarkdeepSlidesOptions() {
+    options = {
+        aspectRatio: 16 / 9,
+        theme: 'simple',
+        fontSize: 28,
+        diagramZoom: 1.0,
+        totalSlideNumber: false,
+        progressBar: true,
+        breakOnHeadings: false,
+        slideChangeHook: (oldSlide, newSlide) => {},
+        modeChangeHook: (newMode) => {}
+    };
+
+    if (typeof markdeepSlidesOptions !== 'undefined') {
+        options = Object.assign({}, options, markdeepSlidesOptions);
+    }
+}
 
 // check if a slide is set via the location hash – if so, load it, else
 // write the first slide to it. either way, go to that slide
@@ -323,7 +326,7 @@ function updateOnScroll() {
     // update things only when the slide changes to improve performance
     if (minSlideNum != currentSlideNum) {
         history.replaceState({}, '', '#' + "slide" + minSlideNum);
-        slideChangeHook(currentSlideNum, minSlideNum);
+        options.slideChangeHook(currentSlideNum, minSlideNum);
         currentSlideNum = minSlideNum;
         updatePresenterNotes(minSlideNum);
     }
@@ -355,7 +358,7 @@ function showSlide(slideNum) {
     }
 
     history.replaceState({}, '', '#' + "slide" + slideNum);
-    slideChangeHook(currentSlideNum, slideNum);
+    options.slideChangeHook(currentSlideNum, slideNum);
     currentSlideNum = slideNum;
     updatePresenterNotes(slideNum);
 }
@@ -438,7 +441,7 @@ function fullscreenActions() {
     enableScroll = false;
 
     var fullscreen = isFullscreen();
-    modeChangeHook(fullscreen? "presentation" : "draft");
+    options.modeChangeHook(fullscreen? "presentation" : "draft");
 
     var root = document.documentElement;
     if (fullscreen) {
