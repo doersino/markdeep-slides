@@ -494,7 +494,9 @@ function togglePresenterNotes() {
     }
 
     presenterNotesStyles = '<link rel="stylesheet" href="markdeep-slides/markdeep-slides.css">';
-    if (options.theme) {
+    if (/[/.]+/.test(options.theme)) {
+        presenterNotesStyles += '<link rel="stylesheet" href="' + options.theme + '">';
+    } else {
         presenterNotesStyles += '<link rel="stylesheet" href="markdeep-slides/themes/' + options.theme + '.css">';
     }
 
