@@ -494,8 +494,8 @@ function togglePresenterNotes() {
     }
 
     presenterNotesStyles = '<link rel="stylesheet" href="markdeep-slides/markdeep-slides.css">';
-    if (theme) {
-        presenterNotesStyles += '<link rel="stylesheet" href="markdeep-slides/themes/' + theme + '.css">';
+    if (options.theme) {
+        presenterNotesStyles += '<link rel="stylesheet" href="markdeep-slides/themes/' + options.theme + '.css">';
     }
 
     presenterNotesWindow = window.open("", "presenternotes", "");
