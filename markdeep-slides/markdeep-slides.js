@@ -659,6 +659,29 @@ function keyPress(event) {
 };
 document.body.onkeydown = keyPress;
 
+// set --vw and --vw css variables to viewport size, EXCLUDING the scroll bars
+// (the css units vw and vh include them, which is less than ideal), in order to
+// fix #23. ideally, this would run whenever the following events are fired:
+// * load
+// * resize
+// * fullscreenchange
+// but that doesn't seem to suffice in all cases and all browsers, so we sadly
+// need to run it a couple times a second (this works perceptually instantly
+// without slowing everything down too much)
+function setCssViewport() {
+    var cw = document.body.clientWidth;
+    document.documentElement.style.setProperty('--vw', cw / 100 + 'px');
+    var ch = document.body.clientHeight;
+    document.documentElement.style.setProperty('--vh', ch / 100 + 'px');
+}
+document.addEventListener("load", setCssViewport);
+document.addEventListener("resize", setCssViewport);
+document.addEventListener("fullscreenchange", setCssViewport);
+document.addEventListener("mozfullscreenchange", setCssViewport);
+document.addEventListener("webkitfullscreenchange", setCssViewport);
+document.addEventListener("msfullscreenchange", setCssViewport);
+setInterval(setCssViewport, 200);
+
 // make cursor disappear after two seconds in presentation mode
 var cursorTimeout;
 document.body.onmousemove = function() {

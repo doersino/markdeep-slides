@@ -3,13 +3,16 @@
 :root {
     --font-size: 28;         /* unit-less – just tweak it to your liking */
     --side-margin: 2rem;     /* left and right margin of each slide */
-    --aspect-ratio: 16 / 9;  /* may be overridden via js */
+    --aspect-ratio: 16 / 9;  /* is usually overridden via js */
 
     --slide-number-color: #bbb;
     --slide-number-font: inherit;
 
     --total-slide-number-display: none;
     --slide-progress-display: block;
+
+    --vw: 1vw;  /* these two are set to the viewport size, EXCLUDING the... */
+    --vh: 1vh;  /* ...scroll bars, via js in order to fix #23 */
 }
 
 @page {
@@ -18,10 +21,10 @@
 
 html.draft,
 html.presentation.taller {
-    font-size: calc(var(--font-size) * 0.1vw);
+    font-size: calc(var(--font-size) * (0.1 * var(--vw)));
 }
 html.presentation.wider {
-    font-size: calc(var(--font-size) * 0.1vh * (var(--aspect-ratio)));
+    font-size: calc(var(--font-size) * (0.1 * var(--vh)) * (var(--aspect-ratio)));
 }
 
 body {
@@ -30,16 +33,16 @@ body {
 }
 
 .slide {
-    --slide-width: 100vw;
+    --slide-width: calc(100 * var(--vw));
     --slide-height: calc(var(--slide-width) / (var(--aspect-ratio)));
 }
 .presentation.taller .slide {
-    --slide-letterbox-height: calc(100vh - var(--slide-height));
+    --slide-letterbox-height: calc((100 * var(--vh)) - var(--slide-height));
 }
 .presentation.wider .slide {
-    --slide-height: 100vh;
+    --slide-height: calc(100 * var(--vh));
     --slide-width: calc(var(--slide-height) * (var(--aspect-ratio)));
-    --slide-letterbox-width: calc(100vw - var(--slide-width));
+    --slide-letterbox-width: calc((100 * var(--vw)) - var(--slide-width));
 }
 
 .draft .slide {
@@ -133,8 +136,9 @@ body {
     display: none;  /* will be shown in separate window */
 }
 
+/* presenter notes window */
 html.presenter-notes {
-    font-size: 3vw;
+    font-size: 3vw;  /* it'd be wrong to use var(--vw) here since this is a whole different window */
     min-height: 100%;
 }
 .presenter-notes body {
@@ -192,6 +196,12 @@ html.presenter-notes {
     background-color: black;
 }
 
+.md {
+    display: block;  /* its font-size and line-height will otherwise create a white bar at the bottom of the page in presentation mode */
+}
+#mdContextMenu {
+    display: none;  /* display:hidden anyway, but that leaves its height in place, will otherwise create a white bar at the bottom of the page in presentation mode */
+}
 .markdeepFooter {
     text-align: left;  /* the default right-aligned variant creates a horizontal scrollbar */
 }
