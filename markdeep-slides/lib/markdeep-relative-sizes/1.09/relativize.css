@@ -17,13 +17,13 @@ would've preferred to define `--rf: calc(1rem / 16px)` and then use it like
 `calc(⟨N⟩px * var(--rf))`, but `calc` disappointingly, yet understandably, can't
 deal with "rem per pixel" units in current browsers.)
 
-When applied to a standard Markdeep document, this stylesheet is designed *not
-to yield any visual changes* (unless you change the root font size from its
-`16px` default, that is).
+When applied to a standard Markdeep document (i.e. loaded before Markdeep), this
+stylesheet is designed *not to yield any visual changes* (unless you change the
+root font size from its `16px` default, that is).
 
 --------------------------------------------------------------------------------
 
-* Compatible with Markdeep 1.07.
+* Compatible with Markdeep 1.09.
 * See https://github.com/doersino/markdeep-relative-sizes for updates.
 * Licensed under then BSD 2-Clause "Simplified" License, see
   https://github.com/doersino/markdeep-relative-sizes/blob/master/LICENSE.
@@ -41,11 +41,6 @@ body {
 
 
 /* Relativize CSS generated via "STYLESHEET" variable */
-.md code,
-.md pre {
-    font-size: calc(13.43rem / var(--rf));
-}
-
 .md div.title {
     font-size: calc(26rem / var(--rf));
 }

@@ -202,6 +202,9 @@ html.presenter-notes {
 #mdContextMenu {
     display: none;  /* display:hidden anyway, but that leaves its height in place, will otherwise create a white bar at the bottom of the page in presentation mode */
 }
+.md svg.diagram {
+    font-size: 13.5px;  /* the relative font size introduced in markdeep 1.09 will otherwise clash with diagram scaling as implemented here, yielding grotesquely large font sizes */
+}
 .markdeepFooter {
     text-align: left;  /* the default right-aligned variant creates a horizontal scrollbar */
 }
