@@ -7,7 +7,7 @@ When upgrading any of these dependencies, keep the following in mind:
 
 * Add support (and maybe an example in the demo) for any newly added constructs.
 * Get the new `relativize.css` from [here](https://github.com/doersino/markdeep-relative-sizes).
-* Update the include path at the bottom of the demo to match the new version.
+* Update the include paths at the bottom of the demo to match the new version.
 
 
 ## MathJax
