@@ -51,6 +51,7 @@ still work just fine */
 
 /* make diagram lines a bit thinner (must be defined in px – diagrams are scaled differently than the rest) */
 .md svg.diagram {
+    font-size: 13.5px;  /* the relative font size introduced in markdeep 1.09 will otherwise clash with diagram scaling as implemented here, yielding grotesquely large font sizes */
     stroke-width: 1.5px;
 }
 
