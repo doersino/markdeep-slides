@@ -210,6 +210,11 @@ html.presenter-notes {
 }
 
 @media print {
+    :root {  /* fixes #25 */
+        --vw: 1vw !important;
+        --vh: 1vh !important;
+    }
+
     .slide {
         --slide-width: 640px;  /* for a 16:9 aspect ratio; may be overridden via js */
         --slide-height: 360px;  /* for a 16:9 aspect ratio; may be overridden via js */
