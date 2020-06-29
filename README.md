@@ -76,6 +76,17 @@ markdeepSlidesOptions = {
 It's best to **use Chrome for generating a PDF version** of your slides – it respects the page size that's automatically specified in CSS based on your chosen aspect ratio (unlike all other browsers). In Chrome's print window, *set "Margins" to "None"* and *make sure to keep the "Background graphics" option enabled*.
 
 
+## Examples
+
+Here's a **list of presentations that folks have built** using this tool:
+
+* Christian Duta, Torsten Grust: "Functional-Style UDFs with a Capital 'F'". *Presented at SIGMOD 2020.* [🎥 Video](https://www.youtube.com/watch?v=QlPO2mkbli8)
+* Joel Falcou: "An array of problems. An array of solutions". [🎥 Video](https://www.youtube.com/watch?v=IwBG_JjfcIA), [🗂 Slides](https://github.com/jfalcou/presentations/tree/meetup/munich_25_06_2020)
+* Yuri Valentini: "Test basati su proprietà con rapidcheck". [🎥 Video](https://www.youtube.com/watch?v=BHNFFhf8LAY), [🗂 Slides](https://github.com/yuroller/proptest)
+* Alexander Tchitchigin: *Various presentations.* [🗂 Slides](https://github.com/gabriel-fallen/talks)
+* *...and [yours](https://github.com/doersino/markdeep-slides/issues)?*
+
+
 ## Contributing
 
 Got an idea on how to improve something? Ran into unexpected behavior? Found a bug? (Maybe even fixed that bug?)
