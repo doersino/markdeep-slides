@@ -23,7 +23,7 @@ root font size from its `16px` default, that is).
 
 --------------------------------------------------------------------------------
 
-* Compatible with Markdeep 1.09.
+* Compatible with Markdeep 1.11.
 * See https://github.com/doersino/markdeep-relative-sizes for updates.
 * Licensed under then BSD 2-Clause "Simplified" License, see
   https://github.com/doersino/markdeep-relative-sizes/blob/master/LICENSE.
@@ -44,6 +44,16 @@ body {
 .md div.title {
     font-size: calc(26rem / var(--rf));
 }
+
+.md iframe.textinsert,
+.md object.textinsert,
+.md iframe:not(.markdeep) {
+    margin-top: calc(10rem / var(--rf));
+    margin-bottom: calc(10rem / var(--rf));
+    border-width: calc(1rem / var(--rf));
+    border-radius: calc(4rem / var(--rf));
+}
+
 
 .md div.afterTitles {
     height:calc(10rem / var(--rf));

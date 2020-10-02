@@ -5,8 +5,9 @@ When upgrading any of these dependencies, keep the following in mind:
 
 ## Markdeep
 
-* Add support (and maybe an example in the demo) for any newly added constructs.
+* Add new `markdeep.min.js`.
 * Get the new `relativize.css` from [here](https://github.com/doersino/markdeep-relative-sizes).
+* Add support (and maybe an example in the demo) for any newly added constructs.
 * Update the include paths at the bottom of the demo to match the new version.
 
 
