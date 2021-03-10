@@ -75,6 +75,12 @@ markdeepSlidesOptions = {
 
 It's best to **use Chrome for generating a PDF version** of your slides – it respects the page size that's automatically specified in CSS based on your chosen aspect ratio (unlike all other browsers). In Chrome's print window, *set "Margins" to "None"* and *make sure to keep the "Background graphics" option enabled*.
 
+In my experience, once you've dialled in this print configuration, you can [run Chrome headlessly](https://developers.google.com/web/updates/2017/04/headless-chrome) for future exports (you may need to boost the `--virtual-time-budget` depending on the complexity of your slides):
+
+```
+chrome --headless --disable-gpu --print-to-pdf=demo.md.html.pdf --no-margins --virtual-time-budget=5000 demo.md.html
+```
+
 
 ## Examples
 

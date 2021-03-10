@@ -17,6 +17,7 @@
 
 @page {
     size: 640px 360px;  /* for a 16:9 aspect ratio; may be overridden via js */
+    margin: 0;
 }
 
 html.draft,
