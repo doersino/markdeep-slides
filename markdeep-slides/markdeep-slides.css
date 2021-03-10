@@ -20,6 +20,10 @@
     margin: 0;
 }
 
+* {
+    -webkit-print-color-adjust: exact;
+}
+
 html.draft,
 html.presentation.taller {
     font-size: calc(var(--font-size) * (0.1 * var(--vw)));
