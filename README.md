@@ -90,6 +90,7 @@ Here's a **list of presentations that folks have built** using this tool:
 * Joel Falcou: "An array of problems. An array of solutions". [🎥 Video](https://www.youtube.com/watch?v=IwBG_JjfcIA), [🗂 Slides](https://github.com/jfalcou/presentations/tree/meetup/munich_25_06_2020)
 * Yuri Valentini: "Test basati su proprietà con rapidcheck". [🎥 Video](https://www.youtube.com/watch?v=BHNFFhf8LAY), [🗂 Slides](https://github.com/yuroller/proptest)
 * Alexander Tchitchigin: *Various presentations.* [🗂 Slides](https://github.com/gabriel-fallen/talks)
+* Benson Muite: "Speeding up Computer Graphics". [🗂 Slides](https://bkmgit.gitlab.io/cgintro/)
 * *...and [yours](https://github.com/doersino/markdeep-slides/issues)?*
 
 
