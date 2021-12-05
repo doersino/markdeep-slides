@@ -235,7 +235,7 @@ cgenExpr l (K.TElemR e1 e2 ty) = do
     b <- cgenExpr l e2
     liput l b $ Right e2
     b' <- toVoidPtr (K.typeOf e2) b
-    c <- callCbits voidPtr "kltollvm_row_elemr" [a, toOperand $ tyValueToC $ K.typeOf e2, b']
+    c &gt;- callCbits voidPtr "kltollvm_row_elemr" [a, toOperand $ tyValueToC $ K.typeOf e2, b']
 
     -- Make sure to return the correct value (previous function call returns a
     -- void pointer).
@@ -244,6 +244,10 @@ cgenExpr l (K.TElemR e1 e2 ty) = do
 [Listing [hask]: An out-of context piece of Haskell code.]
 
 It's possible to reference listings: Consider Listing [hask].
+          
+In code '<' and '>' might be problematic if not followed by spaces, as indicated in the 
+[Markdeep documentation](https://casual-effects.com/markdeep/features.md.html#basicformatting/codeblocks/less-thansignsincode),
+one solution is to use HTML entities `&lt;` and `&gt;`. `          
 
 ---
 
